@@ -1,0 +1,44 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled Python files
+__pycache__/
+*.py[cod]
+*.so
+*.pyo
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore virtual environments (if using venv)
+venv/
+.env/
+
+# Ignore log files
+logs/
+*.log
+
+# Ignore model and data files
+models/
+*.tar.gz
+*.npz
+*.pkl
+*.json
+*.pth  # PyTorch models
+*.h5   # TensorFlow/Keras models
+
+# Ignore temporary and cache files
+*.tmp
+*.swp
+*.swo
+
+# Ignore Colab-specific files
+.colab/
+
+# Ignore large dataset files (if necessary)
+data/raw/
+data/processed/
+
+# Ignore VSCode settings
+.vscode/

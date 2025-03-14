@@ -1,0 +1,11 @@
+Loaded data from NPZ format.
+✅ Model saved at: models/random_forest/random_forest_without_SMOTE.pkl
+✅ Results saved at: models/random_forest/random_forest_without_SMOTE_results.json
+✅ Model saved at: models/random_forest/random_forest_with_SMOTE.pkl
+✅ Results saved at: models/random_forest/random_forest_with_SMOTE_results.json
+
+📊 **Final Results**
+| model                       |   precision |   recall |   f1_score |   roc_auc | best_params                                                                                                   |
+|:----------------------------|------------:|---------:|-----------:|----------:|:--------------------------------------------------------------------------------------------------------------|
+| random_forest_without_SMOTE |    0.90982  | 0.911799 |   0.909813 |  0.959671 | {'n_estimators': 600, 'max_depth': 38, 'min_samples_split': 10, 'min_samples_leaf': 2, 'max_features': None}  |
+| random_forest_with_SMOTE    |    0.926822 | 0.923528 |   0.924645 |  0.968276 | {'n_estimators': 200, 'max_depth': 49, 'min_samples_split': 5, 'min_samples_leaf': 1, 'max_features': 'sqrt'} |

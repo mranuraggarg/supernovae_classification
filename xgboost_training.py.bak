@@ -1,0 +1,284 @@
+import os
+import json
+import numpy as np
+import xgboost as xgb
+from imblearn.over_sampling import SMOTE
+from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_score
+from sklearn.preprocessing import StandardScaler
+from joblib import dump
+from dataset import load_saved_data
+import optuna
+import pandas as pd
+from sklearn.model_selection import StratifiedKFold
+
+def train_xgboost_models(X_train, Y_train, X_test, Y_test, save_path="models/xgboost"):
+    """
+    Train and evaluate XGBoost models with and without SMOTE.
+    - Saves both models & results in `models/xgboost/`
+    - Uses predefined best hyperparameters for both cases.
+    - Returns a dictionary with both results for further merging.
+    """
+
+    # ✅ Create the model directory if it doesn't exist
+    os.makedirs(save_path, exist_ok=True)
+
+    # ✅ Flatten Input Data (Convert 3D -> 2D)
+    X_train_flat = X_train.reshape(X_train.shape[0], -1)
+    X_test_flat = X_test.reshape(X_test.shape[0], -1)
+
+    # ✅ Convert One-Hot Labels to Class Indices
+    Y_train_labels = np.argmax(Y_train, axis=1)
+    Y_test_labels = np.argmax(Y_test, axis=1)
+
+    # ✅ Scale Features for XGBoost Without SMOTE
+    scaler_no_SMOTE = StandardScaler()
+    X_train_scaled_no_SMOTE = scaler_no_SMOTE.fit_transform(X_train_flat)
+    X_test_scaled_no_SMOTE = scaler_no_SMOTE.transform(X_test_flat)
+
+    # ✅ Save Scaler for Without SMOTE
+    scaler_path_no_SMOTE = os.path.join(save_path, "xgboost_scaler_without_SMOTE.pkl")
+    dump(scaler_no_SMOTE, scaler_path_no_SMOTE)
+    print(f"✅ Scaler Without SMOTE saved at: {scaler_path_no_SMOTE}")
+
+    # ✅ Best Hyperparameters for XGBoost Without SMOTE
+    best_params_no_SMOTE = {
+        "n_estimators": 800,
+        "max_depth": 9,
+        "learning_rate": 0.10395737648935904,
+        "subsample": 0.9325347218208813,
+        "colsample_bytree": 0.9575800100259657,
+        "reg_lambda": 0.4412762545321114,
+        "reg_alpha": 0.01734600565286113,
+        "gamma": 0.019585560247787227,
+        "tree_method": "gpu_hist" if xgb.get_config().get("gpu") else "hist",
+        "use_label_encoder": False
+    }
+
+    # ✅ Train XGBoost Without SMOTE
+    print("\n🚀 Training XGBoost Without SMOTE...")
+    model_no_SMOTE = xgb.XGBClassifier(**best_params_no_SMOTE)
+    model_no_SMOTE.fit(X_train_scaled_no_SMOTE, Y_train_labels)
+
+    # ✅ Save XGBoost Without SMOTE
+    model_path_no_SMOTE = os.path.join(save_path, "xgboost_without_SMOTE.json")
+    model_no_SMOTE.save_model(model_path_no_SMOTE)
+    print(f"✅ XGBoost Model Without SMOTE Saved: {model_path_no_SMOTE}")
+
+    # ✅ Evaluate XGBoost Without SMOTE
+    Y_pred_no_SMOTE = model_no_SMOTE.predict(X_test_scaled_no_SMOTE)
+    Y_pred_probs_no_SMOTE = model_no_SMOTE.predict_proba(X_test_scaled_no_SMOTE)[:, 1]
+
+    results_no_SMOTE = {
+        "model": "xgboost_without_SMOTE",
+        "precision": precision_score(Y_test_labels, Y_pred_no_SMOTE, average="weighted"),
+        "recall": recall_score(Y_test_labels, Y_pred_no_SMOTE, average="weighted"),
+        "f1_score": f1_score(Y_test_labels, Y_pred_no_SMOTE, average="weighted"),
+        "roc_auc": roc_auc_score(Y_test_labels, Y_pred_probs_no_SMOTE),
+        "best_params": best_params_no_SMOTE
+    }
+
+    # ✅ Save Results for XGBoost Without SMOTE
+    results_path_no_SMOTE = os.path.join(save_path, "xgboost_without_SMOTE_results.json")
+    with open(results_path_no_SMOTE, "w") as f:
+        json.dump(results_no_SMOTE, f, indent=4)
+    print(f"✅ Results Saved: {results_path_no_SMOTE}")
+
+    # ✅ Apply SMOTE After Scaling (Now SMOTE gets standardized data)
+    print("\n🚀 Applying SMOTE and Training XGBoost With SMOTE...")
+    smote = SMOTE(sampling_strategy="auto", random_state=42)
+    X_train_SMOTE, Y_train_SMOTE = smote.fit_resample(X_train_scaled_no_SMOTE, Y_train_labels)
+
+    # ✅ Scale Features Again for XGBoost With SMOTE
+    scaler_SMOTE = StandardScaler()
+    X_train_scaled_SMOTE = scaler_SMOTE.fit_transform(X_train_SMOTE)
+    X_test_scaled_SMOTE = scaler_SMOTE.transform(X_test_flat)
+
+    # ✅ Save Scaler for With SMOTE
+    scaler_path_SMOTE = os.path.join(save_path, "xgboost_scaler_with_SMOTE.pkl")
+    dump(scaler_SMOTE, scaler_path_SMOTE)
+    print(f"✅ Scaler With SMOTE saved at: {scaler_path_SMOTE}")
+
+    # ✅ Best Hyperparameters for XGBoost With SMOTE
+    best_params_SMOTE = {
+        "n_estimators": 500,
+        "max_depth": 13,
+        "learning_rate": 0.08614824936261714,
+        "subsample": 0.9777196600944965,
+        "colsample_bytree": 0.6787609818404279,
+        "reg_lambda": 0.003873267140271191,
+        "reg_alpha": 0.14529756598279214,
+        "gamma": 0.004603006578452727,
+        "tree_method": "gpu_hist" if xgb.get_config().get("gpu") else "hist"
+    }
+
+    # ✅ Train XGBoost With SMOTE
+    model_SMOTE = xgb.XGBClassifier(**best_params_SMOTE)
+    model_SMOTE.fit(X_train_scaled_SMOTE, Y_train_SMOTE)
+
+    # ✅ Save XGBoost With SMOTE
+    model_path_SMOTE = os.path.join(save_path, "xgboost_with_SMOTE.json")
+    model_SMOTE.save_model(model_path_SMOTE)
+    print(f"✅ XGBoost Model With SMOTE Saved: {model_path_SMOTE}")
+
+    # ✅ Evaluate XGBoost With SMOTE
+    Y_pred_SMOTE = model_SMOTE.predict(X_test_scaled_SMOTE)
+    Y_pred_probs_SMOTE = model_SMOTE.predict_proba(X_test_scaled_SMOTE)[:, 1]
+
+    results_SMOTE = {
+        "model": "xgboost_with_SMOTE",
+        "precision": precision_score(Y_test_labels, Y_pred_SMOTE, average="weighted"),
+        "recall": recall_score(Y_test_labels, Y_pred_SMOTE, average="weighted"),
+        "f1_score": f1_score(Y_test_labels, Y_pred_SMOTE, average="weighted"),
+        "roc_auc": roc_auc_score(Y_test_labels, Y_pred_probs_SMOTE),
+        "best_params": best_params_SMOTE
+    }
+
+    # ✅ Save Results for XGBoost With SMOTE
+    results_path_SMOTE = os.path.join(save_path, "xgboost_with_SMOTE_results.json")
+    with open(results_path_SMOTE, "w") as f:
+        json.dump(results_SMOTE, f, indent=4)
+    print(f"✅ Results Saved: {results_path_SMOTE}")
+
+    # ✅ Print Final Performance Comparison Table
+    import pandas as pd
+    df_results = pd.DataFrame({
+        "Metric": ["Precision", "Recall", "F1-Score", "ROC-AUC"],
+        "XGBoost Without SMOTE": [
+            results_no_SMOTE["precision"],
+            results_no_SMOTE["recall"],
+            results_no_SMOTE["f1_score"],
+            results_no_SMOTE["roc_auc"]
+        ],
+        "XGBoost With SMOTE": [
+            results_SMOTE["precision"],
+            results_SMOTE["recall"],
+            results_SMOTE["f1_score"],
+            results_SMOTE["roc_auc"]
+        ]
+    })
+
+    print("\n📊 **Performance Comparison (XGBoost Without SMOTE vs With SMOTE)**")
+    print(df_results.to_markdown())
+
+    # ✅ Return Results as Dictionary
+    return {
+        "xgboost_without_SMOTE": results_no_SMOTE,
+        "xgboost_with_SMOTE": results_SMOTE
+    }
+
+def xgboost_optimized(X_train, Y_train, X_test, Y_test):
+    """
+    Trains an optimized XGBoost model using Optuna for hyperparameter tuning.
+    - Saves the model, results, and scaler in `models/xgboost_optimized/`
+    """
+
+    # ✅ Ensure output directory exists
+    SAVE_DIR = "models/xgboost_optimized"
+    os.makedirs(SAVE_DIR, exist_ok=True)
+
+    # ✅ Load Data
+    X_train_flat = X_train.reshape(X_train.shape[0], -1)
+    X_test_flat = X_test.reshape(X_test.shape[0], -1)
+    Y_train_labels = np.argmax(Y_train, axis=1)
+    Y_test_labels = np.argmax(Y_test, axis=1)
+
+    # ✅ Scale Features
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train_flat)
+    X_test_scaled = scaler.transform(X_test_flat)
+    dump(scaler, os.path.join(SAVE_DIR, "xgboost_scaler.pkl"))
+
+    # ✅ Optuna Optimization with Stratified K-Fold CV
+    def objective(trial):
+        params = {
+            "n_estimators": trial.suggest_int("n_estimators", 100, 1000, step=100),
+            "max_depth": trial.suggest_int("max_depth", 3, 15),
+            "learning_rate": trial.suggest_float("learning_rate", 0.01, 0.3, log=True),
+            "subsample": trial.suggest_float("subsample", 0.5, 1.0),
+            "colsample_bytree": trial.suggest_float("colsample_bytree", 0.5, 1.0),
+            "reg_lambda": trial.suggest_float("reg_lambda", 1e-3, 10.0, log=True),
+            "reg_alpha": trial.suggest_float("reg_alpha", 1e-3, 10.0, log=True),
+            "gamma": trial.suggest_float("gamma", 1e-3, 10.0, log=True),
+            "tree_method": "hist",  # ✅ Use "hist" (or "gpu_hist" for older XGBoost)
+            "device": "cuda"  # ✅ Ensures GPU usage
+        }
+
+        skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+        f1_scores = []
+
+        for train_idx, val_idx in skf.split(X_train_scaled, Y_train_labels):
+            X_train_fold, X_val_fold = X_train_scaled[train_idx], X_train_scaled[val_idx]
+            Y_train_fold, Y_val_fold = Y_train_labels[train_idx], Y_train_labels[val_idx]
+
+            dtrain = xgb.DMatrix(X_train_fold, label=Y_train_fold)  # ✅ FIX: Removed `device="cuda"`
+            dval = xgb.DMatrix(X_val_fold, label=Y_val_fold)  # ✅ FIX: Removed `device="cuda"`
+
+            model = xgb.XGBClassifier(**params)
+            model.fit(X_train_fold, Y_train_fold)
+
+            Y_pred = model.predict(X_val_fold)
+            f1_scores.append(f1_score(Y_val_fold, Y_pred, average="weighted"))
+
+        return np.mean(f1_scores)
+
+    # ✅ Run Optuna Optimization
+    study = optuna.create_study(direction="maximize")
+    study.optimize(objective, n_trials=150)
+
+    # ✅ Train Final Model with Best Parameters
+    best_params = study.best_params
+
+    # ✅ Convert train & test sets to DMatrix
+    dtrain = xgb.DMatrix(X_train_scaled, label=Y_train_labels)  # ✅ FIX: Removed `device="cuda"`
+    dtest = xgb.DMatrix(X_test_scaled, label=Y_test_labels)  # ✅ FIX: Removed `device="cuda"`
+
+    # ✅ Train Best Model
+    best_model = xgb.XGBClassifier(**best_params)
+    best_model.fit(X_train_scaled, Y_train_labels)
+
+    # ✅ Save Model
+    model_path = os.path.join(SAVE_DIR, "xgboost_optimized.json")
+    best_model.save_model(model_path)
+    print(f"✅ Best XGBoost Model Saved: {model_path}")
+
+    # ✅ Evaluate Final Model
+    Y_pred = best_model.predict(X_test_scaled)
+    Y_pred_probs = best_model.predict_proba(X_test_scaled)[:, 1]
+
+    precision = precision_score(Y_test_labels, Y_pred, average="weighted")
+    recall = recall_score(Y_test_labels, Y_pred, average="weighted")
+    f1 = f1_score(Y_test_labels, Y_pred, average="weighted")
+    roc_auc = roc_auc_score(Y_test_labels, Y_pred_probs)
+
+    # ✅ Save Results
+    results = {
+        "model": "XGBoost Optimized",
+        "precision": precision,
+        "recall": recall,
+        "f1_score": f1,
+        "roc_auc": roc_auc,
+        "best_params": best_params
+    }
+
+    results_path = os.path.join(SAVE_DIR, "xgboost_optimized_results.json")
+    with open(results_path, "w") as f:
+        json.dump(results, f, indent=4)
+
+    print(f"✅ Results Saved: {results_path}")
+
+    # ✅ Print Final Model Performance
+    print("\n📊 **Optimized XGBoost Performance**")
+    df_results = pd.DataFrame({
+        "Metric": ["Precision", "Recall", "F1-Score", "ROC-AUC"],
+        "XGBoost Optimized": [precision, recall, f1, roc_auc]
+    })
+    print(df_results.to_markdown())
+
+if __name__ == "__main__":
+    # Load the data from stored npz file
+    X_train, Y_train, X_test, Y_test, X_train_reverse, X_test_reverse, ids_train, ids_test, metadata = load_saved_data(format="npz")
+
+    xgboost_results = train_xgboost_models(X_train, Y_train, X_test, Y_test)
+    print(xgboost_results)
+
+    # xgboost_optimized(X_train, Y_train, X_test, Y_test)
