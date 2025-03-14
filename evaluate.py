@@ -10,20 +10,6 @@ from sklearn.metrics import precision_score, recall_score, roc_auc_score, precis
 from sklearn.metrics import f1_score
 from torch import nn
 
-# Define SPCC F1 score
-def f1_score(y_true, y_test)
-    '''
-    Calculating SPCC F1-score
-    = (1/ (TP + FN))x (TP^2 / (TP + 3 x FP))
-
-    TP: True Positive
-    FN: False Negative
-    FP: False Positive
-    '''
-
-
-
-
 
 # ✅ Load Best Hyperparameters from JSON Results
 def load_best_params(result_dirs):
