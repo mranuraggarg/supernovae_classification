@@ -1,3 +1,12 @@
+
+# Supernovae Type Ia Classification
+
+[![DOI](https://zenodo.org/badge/948372312.svg)](https://doi.org/10.5281/zenodo.15074652)
+
+A complete machine learning pipeline for the photometric classification of Type Ia Supernovae.
+
+----------
+
 **Supernovae Type Ia Classification**
 A machine-learning pipeline for  **Type Ia Supernovae classification**, leveraging  **XGBoost, Random Forest, and Linear Models**. This repository is inspired by  [Adam Moss’s Supernovae Dataset](https://github.com/adammoss/supernovae)  and extends it with optimized training and evaluation techniques.
 
@@ -203,3 +212,11 @@ This project is licensed under the  **MIT License**. Feel free to modify and use
 •  **Deep Learning**: Exploring Transformer-based approaches for classification.
 
 ----------
+
+## 📜 Citation
+
+If you use this code or models in your research, please cite the Zenodo record:
+
+**DOI**: [10.5281/zenodo.15074652](https://doi.org/10.5281/zenodo.15074652)
+
+Anurag Garg. (2025). mranuraggarg/supernovae_classification: v1.0 — Type Ia Supernovae Classification with Emphasis on F1-Score and PR-AUC (v1.0). Zenodo. https://doi.org/10.5281/zenodo.15074653
