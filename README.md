@@ -183,6 +183,8 @@ SMOTE (**Synthetic Minority Over-sampling Technique**) is used for balancing dat
 |Random Forest (Without SMOTE)  | 0.9098  | 0.9118 | 0.9098 | 0.9597 |
 |Random Forest (With SMOTE)| **0.9268** | 0.9235 | **0.9246** | 0.9683 |
 |XGBoost (Without SMOTE and optimized)| 0.9230 | **0.9240** | 0.9234 | **0.9760** |
+
+
 🛠  **Final selection:**  **XGBoost (Without SMOTE)**  was found to be the most optimal model based on  **ROC-AUC > 0.97**.
 
 ----------
