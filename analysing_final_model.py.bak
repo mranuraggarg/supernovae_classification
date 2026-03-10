@@ -1,0 +1,149 @@
+from dataset import load_saved_data
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+from pandas.plotting import table
+import seaborn as sns
+import xgboost as xgb
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_score
+from sklearn.metrics import roc_curve, auc, precision_recall_curve
+from sklearn.utils import resample
+
+# Load the saved data
+data = load_saved_data(format="npz")
+X_train, Y_train, X_test, Y_test, _, _, _, _, _ = data
+
+# Flatten data
+X_train_flat = X_train.reshape(X_train.shape[0], -1)
+X_test_flat = X_test.reshape(X_test.shape[0], -1)
+Y_train_labels = np.argmax(Y_train, axis=1)
+Y_test_labels = np.argmax(Y_test, axis=1)
+
+# Define optimized XGBoost parameters
+best_params = {
+    'n_estimators': 900,
+    'max_depth': 7,
+    'learning_rate': 0.0782,
+    'subsample': 0.9816,
+    'colsample_bytree': 0.7284,
+    'gamma': 0.1743,
+    'reg_alpha': 0.0895,
+    'reg_lambda': 2.0075,
+    'scale_pos_weight': 1.4276,
+    'random_state': 42,
+    'n_jobs': -1,
+    'eval_metric': 'logloss'
+}
+
+# Train optimized model
+model = xgb.XGBClassifier(**best_params)
+model.fit(X_train_flat, Y_train_labels)
+
+# Predict probabilities and classes
+Y_pred_probs = model.predict_proba(X_test_flat)[:, 1]
+Y_pred = (Y_pred_probs >= 0.5).astype(int)
+
+# Bootstrap resampling for confidence intervals
+n_iterations = 1000
+precision_scores, recall_scores, f1_scores, roc_auc_scores, pr_auc_scores = [], [], [], [], []
+
+for _ in range(n_iterations):
+    indices = resample(range(len(Y_test_labels)), replace=True)
+    y_true_sample = Y_test_labels[indices]
+    y_pred_probs_sample = Y_pred_probs[indices]
+    y_pred_sample = (y_pred_probs_sample >= 0.5).astype(int)
+
+    precision_scores.append(precision_score(y_true_sample, y_pred_sample, average="weighted"))
+    recall_scores.append(recall_score(y_true_sample, y_pred_sample, average="weighted"))
+    f1_scores.append(f1_score(y_true_sample, y_pred_sample, average="weighted"))
+    roc_auc_scores.append(roc_auc_score(y_true_sample, y_pred_probs_sample))
+    precision_curve, recall_curve, _ = precision_recall_curve(y_true_sample, y_pred_probs_sample)
+    pr_auc_scores.append(auc(recall_curve, precision_curve))
+
+def confidence_interval(scores):
+    lower = np.percentile(scores, 2.5)
+    upper = np.percentile(scores, 97.5)
+    return np.mean(scores), lower, upper
+
+# Compute metrics
+precision = precision_score(Y_test_labels, Y_pred, average="weighted")
+recall = recall_score(Y_test_labels, Y_pred, average="weighted")
+f1 = f1_score(Y_test_labels, Y_pred, average="weighted")
+roc_auc = roc_auc_score(Y_test_labels, Y_pred_probs)
+precision_curve, recall_curve, _ = precision_recall_curve(Y_test_labels, Y_pred_probs)
+pr_auc = auc(recall_curve, precision_curve)
+
+# Display table
+metrics_results = {
+    " ": ["Final Model", "Bootstrap Mean", "Bootstrap Lower", "Bootstrap Upper"],
+    "Precision": [precision, *confidence_interval(precision_scores)],
+    "Recall": [recall, *confidence_interval(recall_scores)],
+    "F1-Score": [f1, *confidence_interval(f1_scores)],
+    "ROC-AUC": [roc_auc, *confidence_interval(roc_auc_scores)],
+    "PR-AUC": [pr_auc, *confidence_interval(pr_auc_scores)]
+}
+metrics_df = pd.DataFrame(metrics_results, index=["Final", "Mean", "Lower", "Upper"])
+print("\n🔹 Final Optimized Model Results:")
+print(metrics_df.to_markdown(index=False, tablefmt="grid"))
+
+# All your plots exactly as earlier
+conf_matrix = confusion_matrix(Y_test_labels, Y_pred)
+df_cm = pd.DataFrame(conf_matrix, index=["Non Type Ia", "Type Ia"], columns=["Non Type Ia", "Type Ia"])
+plt.figure(figsize=(10, 7))
+sns.heatmap(df_cm, annot=True, fmt="d", cmap="Blues")
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Final Model Confusion Matrix")
+plt.savefig("plots/final_model_confusion_matrix.png", dpi=300, bbox_inches="tight")
+
+# ROC curve
+fpr, tpr, _ = roc_curve(Y_test_labels, Y_pred_probs)
+roc_auc = auc(fpr, tpr)
+plt.figure()
+plt.plot(fpr, tpr, label=f'ROC curve (area = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], 'k--', label='No Skill')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.legend()
+plt.savefig("plots/final_model_roc_curve.png", dpi=300, bbox_inches="tight")
+
+# Precision-recall curve
+plt.figure(figsize=(8, 6))
+plt.plot(recall_curve, precision_curve, label=f'PR Curve (AUC = {pr_auc:.2f})')
+plt.xlabel('Recall')
+plt.ylabel('Precision')
+plt.title('Precision-Recall Curve')
+plt.legend()
+plt.savefig("plots/final_model_precision_recall_curve.png", dpi=300, bbox_inches="tight")
+
+# Misclassification analysis
+fp = conf_matrix[0, 1]
+fn = conf_matrix[1, 0]
+plt.figure(figsize=(8, 5))
+sns.barplot(x=["False Positives", "False Negatives"], y=[fp, fn], palette="Reds_r", 
+            hue=["False Positives", "False Negatives"], legend=False)
+plt.ylabel("Count")
+plt.title("Misclassification Analysis")
+plt.savefig("plots/misclassification_analysis.png", dpi=300, bbox_inches="tight")
+
+# Cumulative gain curve
+plt.figure(figsize=(8, 6))
+sns.lineplot(x=fpr, y=tpr, label="Model", color="blue")
+sns.lineplot(x=[0, 1], y=[0, 1], label="Random", linestyle="dashed", color="black")
+plt.xlabel("False Positive Rate")
+plt.ylabel("True Positive Rate (Cumulative Gain)")
+plt.title("Cumulative Gain Curve")
+plt.legend()
+plt.savefig("plots/cumulative_gain_curve.png", dpi=300, bbox_inches="tight")
+
+# Prediction probability distribution
+plt.figure(figsize=(8, 5))
+sns.histplot(x=Y_pred[Y_test_labels == 0], label="Non-Ia", color="blue", kde=True, stat="density", bins=30)
+sns.histplot(x=Y_pred[Y_test_labels == 1], label="Ia", color="red", kde=True, stat="density", bins=30)
+plt.xlabel("Predicted Probability")
+plt.ylabel("Density")
+plt.title("Prediction Probability Distribution")
+plt.legend()
+plt.savefig("plots/prediction_probability_distribution.png", dpi=300, bbox_inches="tight")
