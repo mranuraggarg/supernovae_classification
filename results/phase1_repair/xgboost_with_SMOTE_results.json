@@ -1,0 +1,17 @@
+{
+    "model": "xgboost_with_SMOTE",
+    "precision": 0.9268532620598805,
+    "recall": 0.9251700680272109,
+    "f1_score": 0.9258306563760349,
+    "roc_auc": 0.9732437707315158,
+    "pr_auc": 0.9922232133697253,
+    "best_params": {
+        "n_estimators": 700,
+        "max_depth": 9,
+        "learning_rate": 0.09411172683787414,
+        "subsample": 0.8336019992984126,
+        "colsample_bytree": 0.534162333222795,
+        "gamma": 0.01507870520170107,
+        "reg_lambda": 1.7761585068293582
+    }
+}
