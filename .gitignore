@@ -42,3 +42,6 @@ data/processed/
 
 # Ignore VSCode settings
 .vscode/
+
+# Allow experiment result JSON files
+!results/original_paper/*.json
