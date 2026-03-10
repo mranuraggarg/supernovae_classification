@@ -1,4 +1,3 @@
-
 # Supernovae Type Ia Classification
 
 [![DOI](https://zenodo.org/badge/948372312.svg)](https://doi.org/10.5281/zenodo.15074652)
@@ -13,8 +12,8 @@ A machine-learning pipeline for  **Type Ia Supernovae classification**, leveragi
 **📌 Project Overview**
 This project provides an end-to-end pipeline for classifying Type Ia Supernovae using multiple machine-learning models. The workflow consists of three key stages:
 1.  **Preprocessing**  - Converts raw data into a structured format.
-2.  **Model Training**  - Trains six models with optimized hyperparameters.
-3.  **Evaluation**  - Runs trained models on the test dataset and presents final results.
+2.  **Model Training**  - Trains six models with validation-based hyperparameter optimization.
+3.  **Evaluation**  - Evaluates the final selected models on an untouched test dataset and presents final results.
 
 The repository allows users to either  **run pre-trained models**  or  **train models from scratch**, depending on their requirements.
 
@@ -59,7 +58,7 @@ python main.py
 
 •  Uses the preprocessed dataset  supernovae_dataset.npz
 
-•  Evaluates all six models and presents results in a structured format
+•  Evaluates all six models on the held-out test split and presents results in a structured format
 
   
 
@@ -90,7 +89,7 @@ python train.py
 
 •  Saves trained models in  models/{model_name}
 
-•  Generates a results summary
+•  Generates a results summary using validation-tuned models and final test-set evaluation
 
   
 
@@ -167,25 +166,22 @@ supernovae-classification/
 
   
 
-We train  **six different models**  to compare their performance.
-
-SMOTE (**Synthetic Minority Over-sampling Technique**) is used for balancing datasets where necessary.
+We train  **six different models**  to compare their performance.  
+The results below reflect the repaired Phase 1 evaluation pipeline, where hyperparameter tuning is performed on a validation split and final metrics are reported on an untouched test set.
 
 ----------
 
 **📊 Performance Summary**
-|**Model**  |**Precision** | **Recall**| **F1-Score** | **ROC-AUC** |
-| -- | -- | -- | -- | -- |
-| Linear (Without SMOTE) | 0.7494 | 0.7713 | 0.7553 | 0.7422 |
-|Linear (With SMOTE)| 0.7715 | 0.7881 | 0.7796 | 0.7611 |
-| XGBoost (Without SMOTE) | 0.9215 | 0.9224 | 0.9218 | 0.9738 |
-|XGBoost (With SMOTE)| 0.9197 | 0.9207 | 0.9200 | 0.9749 |
-|Random Forest (Without SMOTE)  | 0.9098  | 0.9118 | 0.9098 | 0.9597 |
-|Random Forest (With SMOTE)| **0.9268** | 0.9235 | **0.9246** | 0.9683 |
-|XGBoost (Without SMOTE and optimized)| 0.9230 | **0.9240** | 0.9234 | **0.9760** |
+|**Model**  |**Precision** | **Recall**| **F1-Score** | **ROC-AUC** | **PR-AUC** |
+| -- | -- | -- | -- | -- | -- |
+| Linear (Without SMOTE) | 0.7446 | 0.7253 | 0.7334 | 0.7223 | 0.8873 |
+| Linear (With SMOTE) | 0.7472 | 0.6753 | 0.6971 | 0.7250 | 0.8896 |
+| Random Forest (Without SMOTE) | 0.9010 | 0.9031 | 0.8992 | 0.9645 | 0.9893 |
+| Random Forest (With SMOTE) | 0.9239 | 0.9209 | 0.9220 | 0.9679 | 0.9905 |
+| XGBoost (Without SMOTE) | 0.9226 | 0.9238 | 0.9229 | 0.9750 | **0.9926** |
+| XGBoost (With SMOTE) | **0.9269** | **0.9252** | **0.9258** | **0.9732** | 0.9922 |
 
-
-🛠  **Final selection:**  **XGBoost (Without SMOTE)**  was found to be the most optimal model based on  **ROC-AUC > 0.97**.
+🛠  **Final selection:** **XGBoost (Without SMOTE)** remains the preferred model when prioritizing ranking performance (**highest ROC-AUC and PR-AUC**), while **XGBoost (With SMOTE)** provides the best thresholded classification metrics (**precision, recall, and F1-score**).
 
 ----------
 
