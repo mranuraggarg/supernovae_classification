@@ -45,3 +45,7 @@ data/processed/
 
 # Allow experiment result JSON files
 !results/original_paper/*.json
+
+# Allow phase1 repair result summaries to be tracked
+!results/phase1_repair/
+!results/phase1_repair/*.json
