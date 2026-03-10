@@ -1,7 +1,5 @@
 # Supernovae Type Ia Classification
 
-[![DOI](https://zenodo.org/badge/948372312.svg)](https://doi.org/10.5281/zenodo.15074652)
-
 A complete machine learning pipeline for the photometric classification of Type Ia Supernovae.
 
 ----------
@@ -185,6 +183,47 @@ The results below reflect the repaired Phase 1 evaluation pipeline, where hyperp
 
 ----------
 
+----------
+
+**📊 Paper vs Phase‑1 Repaired Results**
+
+The table below compares the originally reported paper results with the repaired Phase‑1 evaluation pipeline implemented in this repository.
+
+| Model | Metric | Paper | Repaired | Δ (Repaired − Paper) | Interpretation |
+|------|------|------|------|------|------|
+| Linear (No SMOTE) | Precision | 0.714 | 0.7446 | +0.0306 | Material change – baseline evaluation corrected |
+|  | Recall | 0.714 | 0.7253 | +0.0113 | Small increase |
+|  | F1 | 0.714 | 0.7334 | +0.0194 | Moderate increase |
+|  | ROC‑AUC | 0.000 | 0.7223 | +0.7223 | Evaluation bug fixed |
+| Linear (SMOTE) | Precision | 0.685 | 0.7472 | +0.0622 | Material change – corrected baseline |
+|  | Recall | 0.685 | 0.6753 | −0.0097 | Small change |
+|  | F1 | 0.685 | 0.6971 | +0.0121 | Small increase |
+|  | ROC‑AUC | 0.000 | 0.7250 | +0.7250 | Evaluation bug fixed |
+| Random Forest (No SMOTE) | Precision | 0.902 | 0.9010 | −0.0010 | Negligible change |
+|  | Recall | 0.905 | 0.9031 | −0.0019 | Negligible change |
+|  | F1 | 0.902 | 0.8992 | −0.0028 | Negligible change |
+|  | ROC‑AUC | 0.965 | 0.9645 | −0.0005 | Negligible change |
+| Random Forest (SMOTE) | Precision | 0.927 | 0.9239 | −0.0031 | Small change |
+|  | Recall | 0.922 | 0.9209 | −0.0011 | Negligible change |
+|  | F1 | 0.924 | 0.9220 | −0.0020 | Small change |
+|  | ROC‑AUC | 0.970 | 0.9679 | −0.0021 | Small change |
+| XGBoost (No SMOTE) | Precision | 0.926 | 0.9226 | −0.0034 | Small change |
+|  | Recall | 0.927 | 0.9238 | −0.0032 | Small change |
+|  | F1 | 0.927 | 0.9229 | −0.0041 | Small change |
+|  | ROC‑AUC | 0.975 | 0.9750 | ~0 | No meaningful change |
+| XGBoost (SMOTE) | Precision | 0.931 | 0.9269 | −0.0041 | Small change |
+|  | Recall | 0.927 | 0.9252 | −0.0018 | Negligible change |
+|  | F1 | 0.928 | 0.9258 | −0.0022 | Small change |
+|  | ROC‑AUC | 0.972 | 0.9732 | +0.0012 | Negligible change |
+
+**Summary:**
+
+• Ensemble models (XGBoost and Random Forest) remain stable after methodological repair.
+
+• The linear baseline shows the largest change because the original evaluation pipeline produced invalid ROC‑AUC values.
+
+• The repaired pipeline confirms that XGBoost remains the strongest model while preserving the original scientific conclusions.
+
 **📚 Acknowledgments**
 
 •  **Data Source:**  The dataset and preprocessing pipeline are borrowed from  [Adam Moss’s Supernovae Dataset](https://github.com/adammoss/supernovae).
@@ -210,10 +249,3 @@ This project is licensed under the  **MIT License**. Feel free to modify and use
 
 ----------
 
-## 📜 Citation
-
-If you use this code or models in your research, please cite the Zenodo record:
-
-**DOI**: [10.5281/zenodo.15074652](https://doi.org/10.5281/zenodo.15074652)
-
-Anurag Garg. (2025). mranuraggarg/supernovae_classification: v1.0 — Type Ia Supernovae Classification with Emphasis on F1-Score and PR-AUC (v1.0). Zenodo. https://doi.org/10.5281/zenodo.15074653
