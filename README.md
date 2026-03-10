@@ -131,25 +131,39 @@ tar -xvf SIMGEN_PUBLIC_DES.tar.gz && python preprocess.py && python train.py && 
 **📂 Repository Structure**
 
 ```
-supernovae-classification/
-│── data/                        # Raw and processed data
-│   ├── SIMGEN_PUBLIC_DES.tar.gz  # Raw dataset (original)
-│   ├── supernovae_dataset.npz    # Preprocessed dataset
-│
-│── models/                      # Trained models directory
-│   ├── linear/
-│   ├── xgboost/
-│   ├── random_forest/
-│
-│── scripts/                      # Python scripts for different tasks
-│   ├── preprocess.py             # Preprocesses raw data
-│   ├── train.py                  # Trains all models
-│   ├── main.py                   # Runs pre-trained models for evaluation
-│
-│── environment.yml               # Conda environment setup
-│── .gitignore                    # Files to ignore in Git
-│── README.md                     # Project documentation
+supernovae_classification/
+├── README.md
+├── environment.yml
+├── astro-ml.yml
+├── main.py                    # Evaluate saved models
+├── train.py                   # Train all model variants
+├── preprocess.py              # Build supernovae_dataset.npz from raw inputs
+├── evaluate.py                # Shared evaluation helpers
+├── dataset.py                 # Dataset loading utilities
+├── linear_training.py
+├── random_forest_training.py
+├── xgboost_training.py
+├── grid_experiments.py        # Grid-search experiment runner
+├── analysing_final_model.py   # Final model analysis and plots
+├── check_imbalance.py
+├── spcc_f1_score.py
+├── data/                      # Input CSV shards
+├── models/
+│   ├── original_paper/
+│   └── phase1_repair/
+├── results/
+│   ├── original_paper/
+│   └── phase1_repair/
+├── plots/
+│   ├── original_paper/
+│   └── phase1_repair/
+├── notebooks/                 # Exploratory notebooks
+├── scripts/
+├── notes/
+└── supernovae_dataset.npz     # Cached preprocessed dataset
 ```
+
+For the full file listing, see `repo_tree.txt`.
 ----------
 
 **📈 Models Implemented**
@@ -248,4 +262,3 @@ This project is licensed under the  **MIT License**. Feel free to modify and use
 •  **Deep Learning**: Exploring Transformer-based approaches for classification.
 
 ----------
-
