@@ -1,341 +1,337 @@
-# Supernovae Type Ia Classification — Phase 2 Tier‑1
+# Supernovae Type Ia Classification — Phase 2 Tier-1 (SPCC Preprocessing Branch)
 
-This branch represents **Phase‑2 Tier‑1 of the project**, where the focus shifts from repairing the original pipeline (Phase‑1) to **owning the full preprocessing pipeline and building an interpretable compact feature baseline**.  
+This branch, `phase2-tier1-spcc-preprocessing`, represents **Phase-2 Tier-1** of the project. The focus of this phase is no longer repair of the original evaluation pipeline. Instead, this branch is dedicated to **owning the SPCC preprocessing pipeline**, constructing a **native feature-engineering workflow from raw light curves**, and producing a **compact, interpretable XGBoost baseline** for Type Ia supernova classification.
 
-Phase‑2 introduces:
+The outcome of this branch is a reproducible Tier-1 experimental pipeline that:
 
-• A reproducible **feature engineering pipeline derived directly from light‑curve statistics**  
-• A **compact 16‑feature baseline model** validated through ablation and importance analysis  
-• **Interpretability analysis (SHAP + permutation importance)** to understand the astrophysical signals driving classification  
-• A structured experimental workflow designed to support future studies such as feature ablation, early classification, and uncertainty estimation.
+- ingests raw **SPCC / SNPhotCC** light-curve `.DAT` files,
+- constructs physically interpretable photometric features,
+- evaluates progressively reduced feature sets,
+- identifies a **compact 16-feature baseline**, and
+- explains classifier behavior using **permutation importance** and **SHAP analysis**.
 
-A complete machine learning pipeline for the photometric classification of Type Ia Supernovae.
+A paper-length summary of this branch is included in:
 
-----------
-
-**Supernovae Type Ia Classification**
-A machine-learning pipeline for  **Type Ia Supernovae classification**, leveraging  **XGBoost, Random Forest, and Linear Models**. This repository is inspired by  [Adam Moss’s Supernovae Dataset](https://github.com/adammoss/supernovae)  and extends it with optimized training and evaluation techniques.
-
-**📌 Project Overview**
-The workflow in Phase‑2 Tier‑1 consists of four stages:
-
-1. **Raw Data Preprocessing**  
-   Construction of light curves and extraction of physically interpretable summary features.
-
-2. **Feature Engineering**  
-   Generation of brightness, color, variability, and temporal features derived from multi‑band photometric observations.
-
-3. **Model Training**  
-   Gradient boosted tree models (XGBoost) are trained on progressively reduced feature sets.
-
-4. **Interpretability and Validation**  
-   Feature importance, SHAP analysis, and ablation studies are used to identify a compact and scientifically meaningful feature representation.
-
-The repository allows users to either  **run pre-trained models**  or  **train models from scratch**, depending on their requirements.
-
-----------
-
-**🛠️ Installation and Setup**
-
-This project uses  **Conda**  for environment management to ensure reproducibility.
-
-**1️⃣ Create and Activate Conda Environment**
-
-```bash
-conda env create -f environment.yml
-conda activate ds_new  # Ensure the environment name matches  
+```text
+phase2_tier1_paper.pdf
 ```
 
-**2️⃣ Clone the Repository**
-```bash
-git clone https://github.com/your-repo/supernovae-classification.git
-cd supernovae-classification
-```
-**🚀 Usage Guide**
+---
 
-  
+## 1. What this branch does
 
-This repository supports three different execution modes based on user needs.
+Phase-2 Tier-1 consists of four linked tasks:
 
-  
+1. **Raw SPCC preprocessing**  
+   Parse raw DES/SPCC light-curve files and organize multi-band observations.
 
-**1️⃣ Running Pre-Trained Models**
+2. **Native feature engineering**  
+   Build brightness, color, variability, and temporal features directly from the light curves.
 
-  
+3. **Model benchmarking and reduction**  
+   Train and evaluate XGBoost-based feature sets of different sizes.
 
-If you only want to evaluate pre-trained models and skip training, run:
-```bash
-python main.py
-```
+4. **Interpretability and scientific analysis**  
+   Use permutation importance and SHAP to understand which astrophysical signals drive classification.
 
-• **What happens?**
+This branch should be treated as the **canonical implementation of Phase-2 Tier-1**, not as a generic branch for all earlier project stages.
 
-•  Loads the existing models from  models/{model_name}
+---
 
-•  Uses the preprocessed dataset  supernovae_dataset.npz
+## 2. Branch status
 
-•  Evaluates all six models on the held-out test split and presents results in a structured format
+### Phase-2 Tier-1 goal
 
-  
+Build a fully owned and scientifically interpretable preprocessing and modeling pipeline for SPCC data.
 
-✅ **No training or preprocessing is performed** in this mode.
+### Phase-2 Tier-1 outcome
 
-----------
-
-**2️⃣ Training All Models**
-
-  
-
-If you wish to  **train all six models**  from scratch using preprocessed data:
-
-```bash
-python train.py
-```
-• **What happens?**
-
-•  Uses the dataset stored in  supernovae_dataset.npz
-
-•  Trains six models sequentially:
-
-• **Linear Models (with and without SMOTE)**
-
-• **XGBoost (with and without SMOTE)**
-
-• **Random Forest (with and without SMOTE)**
-
-•  Saves trained models in  models/{model_name}
-
-•  Generates a results summary using validation-tuned models and final test-set evaluation
-
-  
-
-⚠️  **Note:**  Training all models is computationally expensive and was originally performed using:
-
-• **Colab A100 GPU** for **XGBoost training**
-
-• **Apple M1 GPU** for **Linear Model training**
-
-  
-
-🚀  **Recommended:**  Run this step on a machine with a  **powerful GPU**.
-
-----------
-
-**3️⃣ Full Pipeline Execution**
-
-  
-
-To  **start from raw data**  and execute the entire workflow:
-
-```bash
-tar -xvf SIMGEN_PUBLIC_DES.tar.gz && python preprocess.py && python train.py && python main.py
-```
-• **What happens?**
-
-1. **Extracts raw supernovae dataset** (from SIMGEN_PUBLIC_DES.tar.gz)
-
-2. **Runs preprocessing** (preprocess.py) to generate supernovae_dataset.npz
-
-3. **Trains all six models** (train.py) and saves them in models/{model_name}
-
-4.  **Evaluates trained models**  (main.py) and presents a final summary
-
-  
-
-📊  **Final Output:**  A structured  **Pandas DataFrame**  comparing all trained models.
-
-----------
-
-**📂 Repository Structure**
-
-```
-supernovae_classification/
-├── README.md
-├── environment.yml
-├── astro-ml.yml
-├── main.py                    # Evaluate saved models
-├── train.py                   # Train all model variants
-├── preprocess.py              # Build supernovae_dataset.npz from raw inputs
-├── evaluate.py                # Shared evaluation helpers
-├── dataset.py                 # Dataset loading utilities
-├── linear_training.py
-├── random_forest_training.py
-├── xgboost_training.py
-├── grid_experiments.py        # Grid-search experiment runner
-├── analysing_final_model.py   # Final model analysis and plots
-├── check_imbalance.py
-├── spcc_f1_score.py
-├── data/                      # Input CSV shards
-├── models/
-│   ├── original_paper/
-│   └── phase1_repair/
-├── results/
-│   ├── original_paper/
-│   └── phase1_repair/
-├── plots/
-│   ├── original_paper/
-│   └── phase1_repair/
-├── notebooks/                 # Exploratory notebooks
-├── scripts/
-├── notes/
-└── supernovae_dataset.npz     # Cached preprocessed dataset
-```
-
-For the full file listing, see `repo_tree.txt`.
-----------
-
-----------
-
-📘 **Phase‑2 Tier‑1 Experimental Design**
-
-Phase‑2 introduces a structured feature‑selection workflow.
-
-Feature sets evaluated:
+This goal has been achieved in this branch through three experimental feature configurations:
 
 | Configuration | Feature Count | Purpose |
-|---------------|--------------|--------|
-| Full Baseline | 31 | Original engineered feature pool |
-| Working Set | 30 | Removal of clearly redundant features |
-| Compact Baseline | 16 | Final interpretable feature set |
+|---|---:|---|
+| Full baseline | 31 | Initial engineered feature pool |
+| Working set | 30 | Removal of clearly redundant features |
+| Compact baseline | 16 | Final interpretable Tier-1 baseline |
 
-The compact baseline preserves model performance while improving interpretability and reducing redundancy.
-
-Final compact baseline performance:
+### Final compact baseline metrics
 
 | Metric | Value |
-|------|------|
-| F1 | **0.8442** |
-| ROC‑AUC | **0.9766** |
-| PR‑AUC | **0.9278** |
+|---|---:|
+| F1 | **0.844230** |
+| ROC-AUC | **0.976588** |
+| PR-AUC | **0.927761** |
 
-These results demonstrate that a carefully engineered feature set can match the predictive power of larger models while remaining scientifically interpretable.
+### Comparison across Phase-2 Tier-1 configurations
 
-----------
+| Configuration | F1 | ROC-AUC | PR-AUC |
+|---|---:|---:|---:|
+| 31-feature full baseline | 0.836717 | 0.976449 | 0.928071 |
+| 30-feature working set | 0.840529 | 0.976398 | 0.928204 |
+| 16-feature compact baseline | **0.844230** | **0.976588** | 0.927761 |
 
-📊 **Interpretability Analysis**
+The compact baseline preserves ranking performance while improving thresholded classification performance and reducing the feature count by almost half.
 
-Phase‑2 Tier‑1 emphasizes understanding *why* the classifier works.
+---
 
-Two complementary analyses are used:
+## 3. Scientific result of this branch
 
-• **Permutation importance** – measures performance degradation when features are shuffled.
+The main scientific result of Phase-2 Tier-1 is that a **compact 16-feature representation** is sufficient to capture the dominant photometric information needed for Type Ia classification on SPCC.
 
-• **SHAP values** – quantify each feature's contribution to individual predictions.
+The retained features span four physically meaningful groups:
 
-The SHAP summary plot for the compact baseline can be found at:
+### Brightness features
 
+- `r_mean_flux`
+- `g_mean_flux`
+- `z_peak_flux`
+- `i_peak_flux`
+- `r_peak_flux`
+
+### Color features
+
+- `peak_color_g_minus_r`
+- `peak_color_r_minus_i`
+- `peak_color_i_minus_z`
+
+### Variability features
+
+- `i_std_flux`
+- `z_std_flux`
+- `r_std_flux`
+- `i_amplitude`
+
+### Temporal features
+
+- `r_time_of_peak`
+- `i_time_of_peak`
+- `z_time_of_peak`
+- `time_span`
+
+These features were selected after staged reduction, ablation-guided tightening, compact reruns, and interpretability review.
+
+---
+
+## 4. Astrophysical interpretation
+
+Interpretability analysis shows that the compact model relies on three dominant physical signal families:
+
+1. **Brightness scale across bands**  
+   Captured by mean and peak flux features, especially in redder bands.
+
+2. **Color gradients across filters**  
+   Captured by peak color differences, which act as photometric proxies for spectral energy distribution evolution.
+
+3. **Temporal structure of the light curve**  
+   Captured by band-specific peak times and total time span, reflecting the ordering and evolution of emission across filters.
+
+In other words, the classifier is not functioning as an arbitrary black box. It is learning physically interpretable signatures associated with Type Ia supernovae.
+
+---
+
+## 5. Interpretability analysis
+
+Two complementary methods were used to interpret the compact baseline:
+
+- **Permutation importance** — measures performance degradation when a feature is shuffled.
+- **SHAP values** — quantify how each feature contributes to individual predictions.
+
+The main interpretability outputs are located in:
+
+```text
+results/phase2_tier1/
 ```
+
+Important files include:
+
+```text
+results/phase2_tier1/phase2_tier1_compact_baseline_importance.json
+results/phase2_tier1/phase2_tier1_compact_baseline_interpretation_table.md
+results/phase2_tier1/phase2_tier1_compact_baseline_metrics.json
+results/phase2_tier1/phase2_tier1_compact_baseline_robustness.json
+results/phase2_tier1/phase2_tier1_compact_baseline_comparison.md
+```
+
+The SHAP summary plot for the compact baseline is located at:
+
+```text
 results/phase2_tier1/phase2_tier1_compact_baseline_plots/phase2_tier1_compact_baseline_shap_summary.png
 ```
 
-Key physical signals learned by the model:
+Additional dependence and probability plots for the top compact features are stored in the same plot directory.
 
-• Brightness scale across photometric bands  
-• Color gradients between filters  
-• Temporal ordering of peak emission  
-• Light‑curve variability structure
+---
 
-These correspond directly to known observational characteristics of Type Ia supernovae.
+## 6. Robustness
 
-----------
+The compact baseline was also evaluated across multiple random seeds to ensure that the result is not an artifact of one favorable split.
 
-**📈 Models Implemented**
-|**Model Name**|**Data Balancing**  |**Algorithm Used** |
-|--|--| --|
-| Linear (Without SMOTE) |No  | MLP |
-|Linear (With SMOTE)|Yes| MLP |
-| XGBoost (Without SMOTE) | No | Gradient Boosting Trees |
-|XGBoost (With SMOTE)|Yes| Gradient Boosting Trees |
-|Random Forest (Without SMOTE)  | No |Random Forest |
-|Random Forest (With SMOTE)|Yes| Random Forest|
+Compact-baseline robustness summary:
 
-  
+- **F1 mean:** 0.842998 ± 0.001783
+- **ROC-AUC mean:** 0.976723 ± 0.000219
+- **PR-AUC mean:** 0.928472 ± 0.000985
 
-We train  **six different models**  to compare their performance.  
-The results below reflect the repaired Phase 1 evaluation pipeline, where hyperparameter tuning is performed on a validation split and final metrics are reported on an untouched test set.
+This stability supports the use of the compact feature set as the frozen Tier-1 baseline for future work.
 
-----------
+---
 
-**📊 Performance Summary**
-|**Model**  |**Precision** | **Recall**| **F1-Score** | **ROC-AUC** | **PR-AUC** |
-| -- | -- | -- | -- | -- | -- |
-| Linear (Without SMOTE) | 0.7446 | 0.7253 | 0.7334 | 0.7223 | 0.8873 |
-| Linear (With SMOTE) | 0.7472 | 0.6753 | 0.6971 | 0.7250 | 0.8896 |
-| Random Forest (Without SMOTE) | 0.9010 | 0.9031 | 0.8992 | 0.9645 | 0.9893 |
-| Random Forest (With SMOTE) | 0.9239 | 0.9209 | 0.9220 | 0.9679 | 0.9905 |
-| XGBoost (Without SMOTE) | 0.9226 | 0.9238 | 0.9229 | 0.9750 | **0.9926** |
-| XGBoost (With SMOTE) | **0.9269** | **0.9252** | **0.9258** | **0.9732** | 0.9922 |
+## 7. Repository structure for Phase-2 Tier-1
 
-🛠  **Final selection:** **XGBoost (Without SMOTE)** remains the preferred model when prioritizing ranking performance (**highest ROC-AUC and PR-AUC**), while **XGBoost (With SMOTE)** provides the best thresholded classification metrics (**precision, recall, and F1-score**).
+```text
+supernovae_classification/
+├── README.md
+├── feature_pipeline/
+│   ├── config.py
+│   ├── policies.py
+│   ├── schemas.py
+│   ├── loaders/
+│   │   └── spcc_raw.py
+│   ├── cleaning/
+│   │   └── spcc_clean.py
+│   ├── interpolation/
+│   │   ├── spcc_legacy_reference.py
+│   │   └── spcc_native_reconstruct.py
+│   ├── extraction/
+│   │   ├── feature_registry.py
+│   │   └── spcc_features.py
+│   └── validation/
+│       └── checks.py
+├── data/
+│   └── spcc/
+│       └── raw/
+├── plots/
+│   └── phase2_tier1/
+├── results/
+│   └── phase2_tier1/
+├── notebooks/
+│   ├── colab_phase2_tier1_xgb_importance.ipynb
+│   └── colab_phase2_tier1_review_ablation.ipynb
+├── phase2_tier1_benchmarks.py
+├── phase2_tier1_build_feature_manifest.py
+├── phase2_tier1_xgb_importance.py
+├── phase2_tier1_review_ablation.py
+├── phase2_tier1_tighten_manifest.py
+├── phase2_tier1_compact_rerun.py
+├── phase2_tier1_finalize_compact_baseline.py
+├── phase2_tier1_interpretability.py
+├── phase2_tier1_paper.md
+└── phase2_tier1_paper.pdf
+```
 
-----------
+This structure reflects the actual work done in this branch. Older Phase-1 utilities are still in the repository history, but they are no longer the main focus of this branch README.
 
-----------
+---
 
-**📊 Paper vs Phase‑1 Repaired Results**
+## 8. Reproducing the Phase-2 Tier-1 workflow
 
-The table below compares the originally reported paper results with the repaired Phase‑1 evaluation pipeline implemented in this repository.
+### 8.1 Environment
 
-| Model | Metric | Paper | Repaired | Δ (Repaired − Paper) | Interpretation |
-|------|------|------|------|------|------|
-| Linear (No SMOTE) | Precision | 0.714 | 0.7446 | +0.0306 | Material change – baseline evaluation corrected |
-|  | Recall | 0.714 | 0.7253 | +0.0113 | Small increase |
-|  | F1 | 0.714 | 0.7334 | +0.0194 | Moderate increase |
-|  | ROC‑AUC | 0.000 | 0.7223 | +0.7223 | Evaluation bug fixed |
-| Linear (SMOTE) | Precision | 0.685 | 0.7472 | +0.0622 | Material change – corrected baseline |
-|  | Recall | 0.685 | 0.6753 | −0.0097 | Small change |
-|  | F1 | 0.685 | 0.6971 | +0.0121 | Small increase |
-|  | ROC‑AUC | 0.000 | 0.7250 | +0.7250 | Evaluation bug fixed |
-| Random Forest (No SMOTE) | Precision | 0.902 | 0.9010 | −0.0010 | Negligible change |
-|  | Recall | 0.905 | 0.9031 | −0.0019 | Negligible change |
-|  | F1 | 0.902 | 0.8992 | −0.0028 | Negligible change |
-|  | ROC‑AUC | 0.965 | 0.9645 | −0.0005 | Negligible change |
-| Random Forest (SMOTE) | Precision | 0.927 | 0.9239 | −0.0031 | Small change |
-|  | Recall | 0.922 | 0.9209 | −0.0011 | Negligible change |
-|  | F1 | 0.924 | 0.9220 | −0.0020 | Small change |
-|  | ROC‑AUC | 0.970 | 0.9679 | −0.0021 | Small change |
-| XGBoost (No SMOTE) | Precision | 0.926 | 0.9226 | −0.0034 | Small change |
-|  | Recall | 0.927 | 0.9238 | −0.0032 | Small change |
-|  | F1 | 0.927 | 0.9229 | −0.0041 | Small change |
-|  | ROC‑AUC | 0.975 | 0.9750 | ~0 | No meaningful change |
-| XGBoost (SMOTE) | Precision | 0.931 | 0.9269 | −0.0041 | Small change |
-|  | Recall | 0.927 | 0.9252 | −0.0018 | Negligible change |
-|  | F1 | 0.928 | 0.9258 | −0.0022 | Small change |
-|  | ROC‑AUC | 0.972 | 0.9732 | +0.0012 | Negligible change |
+Use the project Conda environment defined for this repository.
 
-**Summary:**
+Example:
 
-• Ensemble models (XGBoost and Random Forest) remain stable after methodological repair.
+```bash
+conda env create -f environment.yml
+conda activate astro-ml
+```
 
-• The linear baseline shows the largest change because the original evaluation pipeline produced invalid ROC‑AUC values.
+Adjust the environment name if your local setup differs.
 
-• The repaired pipeline confirms that XGBoost remains the strongest model while preserving the original scientific conclusions.
+### 8.2 Raw data
 
-**📚 Acknowledgments**
+This branch assumes availability of raw SPCC/SNPhotCC files under:
 
-•  **Data Source:**  The dataset and preprocessing pipeline are borrowed from  [Adam Moss’s Supernovae Dataset](https://github.com/adammoss/supernovae).
+```text
+data/spcc/raw/
+```
 
-•  **Inspiration:**  Inspired by existing works in Type Ia Supernovae classification.
+### 8.3 Recommended execution order
 
-----------
+The Phase-2 Tier-1 workflow was developed through staged scripts rather than one monolithic entry point.
 
-**📜 License**
+A practical execution order is:
 
-  
+```bash
+python phase2_tier1_benchmarks.py
+python phase2_tier1_build_feature_manifest.py
+python phase2_tier1_xgb_importance.py
+python phase2_tier1_review_ablation.py
+python phase2_tier1_tighten_manifest.py
+python phase2_tier1_compact_rerun.py
+python phase2_tier1_finalize_compact_baseline.py
+python phase2_tier1_interpretability.py
+```
 
-This project is licensed under the  **MIT License**. Feel free to modify and use it as per your needs.
+The exact command-line options may depend on local file paths and runtime environment, especially for Colab-based experiments.
 
-----------
+### 8.4 Colab notebooks
 
-**💡 Future Work**
-•  **Hyperparameter Optimization**: Further fine-tuning XGBoost with Bayesian Optimization.
+Some heavier Phase-2 XGBoost experiments were also run using Colab notebooks:
 
-•  **Ensemble Learning**: Combining multiple models to improve accuracy.
+```text
+notebooks/colab_phase2_tier1_xgb_importance.ipynb
+notebooks/colab_phase2_tier1_review_ablation.ipynb
+```
 
-•  **Deep Learning**: Exploring Transformer-based approaches for classification.
+---
 
-• **Feature Ablation Study (Phase‑2 Tier‑2)** – systematic removal of compact features to quantify astrophysical signal strength.
+## 9. Relation to Phase-1
 
-• **Early Classification** – evaluate how early in the light curve a reliable Ia classification can be made.
+Phase-1 focused on **repairing the original evaluation pipeline** and verifying the scientific integrity of the original results.
 
-• **Uncertainty / Abstention Framework** – allow the classifier to abstain on ambiguous events.
+Phase-2 Tier-1, by contrast, focuses on:
+
+- raw SPCC preprocessing,
+- native feature engineering,
+- compact baseline construction,
+- and interpretability.
+
+Therefore this README intentionally emphasizes **Phase-2 Tier-1 outputs**, not the original six-model Phase-1 comparison table.
+
+---
+
+## 10. Data source and inspiration
+
+This repository originally drew inspiration from Adam Moss’s supernova classification work and data organization:
+
+- [Adam Moss’s Supernovae Dataset](https://github.com/adammoss/supernovae)
+
+Phase-2 Tier-1 extends that direction by reconstructing a native preprocessing and feature-engineering workflow for SPCC/SNPhotCC data and by emphasizing interpretability.
+
+---
+
+## 11. Branch deliverables
+
+This branch should be considered complete when interpreted as a **Phase-2 Tier-1 research branch**. Its main deliverables are:
+
+- a native SPCC preprocessing pipeline,
+- a compact 16-feature interpretable baseline,
+- comparison tables across feature configurations,
+- compact-baseline robustness evaluation,
+- permutation importance and SHAP analysis,
+- and a paper-length summary (`phase2_tier1_paper.pdf`).
+
+---
+
+## 12. Future work
+
+The next logical directions after this branch are:
+
+- **Feature Ablation Study (Phase-2 Tier-2)**  
+  Systematic removal of compact features to quantify astrophysical signal strength.
+
+- **Early Classification**  
+  Study how early reliable Ia classification can be achieved from partial light curves.
+
+- **Uncertainty / Abstention Framework**  
+  Allow the classifier to abstain on ambiguous events.
+
+- **Modern Dataset Extension**  
+  Extend the preprocessing and feature-engineering framework beyond SPCC to newer datasets.
+
+---
+
+## 13. License
+
+This project is licensed under the **MIT License**.
