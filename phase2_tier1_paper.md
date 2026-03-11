@@ -10,16 +10,25 @@ Photometric classification of supernovae is an essential task in modern time‑d
 
 # 1 Introduction
 
-Large astronomical surveys such as LSST, ZTF, and DES discover vast numbers of transient events each night. Spectroscopic classification, the traditional method for identifying supernova types, cannot keep pace with this discovery rate. Consequently, reliable photometric classification has become a critical component of modern supernova research.
+Time‑domain astronomy has entered an era in which modern wide‑field surveys detect transient astronomical events at a rate far exceeding the capacity of traditional follow‑up observations. Facilities such as the Zwicky Transient Facility (ZTF), the Dark Energy Survey (DES), and the upcoming Vera C. Rubin Observatory Legacy Survey of Space and Time (LSST) are designed to repeatedly scan large fractions of the sky, producing enormous streams of transient alerts each night. These alerts include supernovae, tidal disruption events, variable stars, and other astrophysical phenomena. Identifying the physical nature of these events in real time has therefore become a central challenge for modern observational cosmology and astrophysics.
 
-Machine learning methods have demonstrated strong performance for photometric classification. Previous work includes approaches based on boosted decision trees, random forests, and deep neural networks. While deep learning approaches can achieve strong predictive accuracy, they often lack interpretability and require large amounts of training data. In contrast, feature‑based models can offer both strong performance and clear physical interpretation.
+Type Ia supernovae (SNe Ia) play a particularly important role in this context. Their relatively uniform peak luminosity and well‑understood light‑curve evolution make them powerful cosmological probes and key tools for measuring the expansion history of the Universe. Traditionally, supernova classification has relied on spectroscopic observations. However, spectroscopic resources are limited and cannot keep pace with the enormous number of transient discoveries produced by modern surveys. As a result, photometric classification methods have become increasingly important.
 
-Type Ia supernovae possess distinctive observational properties including predictable light‑curve shapes, characteristic color evolution, and relatively uniform luminosity. These features make them well suited for classification using carefully engineered photometric features.
+Machine‑learning approaches have emerged as one of the most effective strategies for photometric supernova classification. Previous studies have explored a wide variety of techniques including boosted decision trees, random forests, Gaussian processes, and deep neural networks. Large community efforts such as the Supernova Photometric Classification Challenge (SPCC) demonstrated that machine‑learning methods can achieve strong classification accuracy when trained on well‑designed feature representations derived from multi‑band light curves.
 
-The goal of this study is therefore twofold:
+Despite these advances, a tension remains between predictive performance, interpretability, and computational cost. High-performing models based on deep learning or very large engineered feature sets can achieve strong results, but they often do so at the expense of transparency and real-time efficiency. This trade-off is especially relevant in the Rubin/LSST era, where transient brokers must process extremely large alert streams using models that are both accurate and operationally lightweight.
 
-1. Construct an interpretable machine‑learning classifier for Type Ia supernova identification.
-2. Identify the physical light‑curve properties that most strongly drive classification decisions.
+Interpretable feature-based models offer a promising alternative. Community benchmarks such as the Supernova Photometric Classification Challenge established that high classification accuracy can be achieved from multi-band light curves when informative photometric descriptors are available. Lochner et al. (2016) further showed that a compact set of physically motivated features can rival much higher-dimensional representations, highlighting the importance of feature parsimony in supernova classification.
+
+In this work we investigate this trade-off by constructing an interpretable XGBoost-based feature-selection pipeline for SPCC light curves. Using permutation importance, SHAP attribution, and iterative ablation-guided tightening, we identify a compact 16-feature representation that captures the dominant photometric information required for Type Ia classification.
+
+We refer to the resulting behavior as an information plateau: once a compact set of brightness, color, variability, and temporal descriptors is included, additional engineered features provide only marginal gains. The final compact model achieves an F1 score of 0.8442 and an ROC-AUC of 0.9766, slightly improving thresholded classification performance relative to the larger 31-feature baseline while preserving essentially identical ranking performance.
+
+These results indicate that much of the discriminatory power in photometric supernova classification can be retained in a small, physically interpretable feature set. In this sense, the present work is broadly aligned with earlier feature-parsimonious studies while extending them toward a lightweight, explainable baseline suitable for real-time transient classification.
+
+Beyond predictive performance, this study contributes to the broader goal of explainable machine learning in astrophysics. By linking feature importance to physically meaningful light-curve properties, we show that the classifier reconstructs key observational signatures of Type Ia explosions, including characteristic color evolution, brightness scaling across photometric bands, and the temporal structure of the light curve.
+
+The paper is organized as follows. Section 2 describes the photometric data and the construction of candidate light-curve features. Section 3 presents the experimental design and feature-selection methodology. Section 4 reports classification performance across multiple feature configurations. Section 5 analyzes model interpretability using SHAP attribution and permutation importance. Section 6 discusses the astrophysical interpretation of the learned decision structure. Section 7 evaluates robustness across repeated training runs, and Section 8 discusses the broader implications for large-scale transient surveys.
 
 ---
 
@@ -244,7 +253,43 @@ The most important signals correspond directly to known physical properties of s
 - temporal light‑curve structure
 - brightness scale across bands
 
+
 This confirms that the classifier is learning meaningful astrophysical relationships rather than exploiting spurious correlations.
+
+---
+
+## 8.1 Feature Parsimony and the "Occam's Razor" Effect
+
+One of the most notable results of this study is that the compact 16‑feature model slightly outperforms the full 31‑feature baseline in terms of F1 score while maintaining nearly identical ROC‑AUC performance. This behaviour is consistent with the principle of model parsimony: removing redundant or weakly informative features can improve classification performance by reducing noise in the feature space.
+
+Astronomical time‑series features derived from light curves are often highly correlated. For example, multiple flux statistics can encode similar brightness information, while different temporal features may capture overlapping aspects of the light‑curve evolution. Including many such correlated features can introduce noise and increase model variance. By removing these redundant signals, the compact representation allows the classifier to identify a cleaner decision boundary between Type Ia and non‑Ia transients.
+
+The SHAP analysis provides further validation of this effect. The dominant predictors—such as `r_mean_flux`, `z_peak_flux`, and the peak color differences—correspond to physically meaningful signals that characterize Type Ia explosions: brightness scale, spectral color structure, and temporal light‑curve evolution. The model therefore focuses on the key astrophysical indicators rather than weak secondary correlations.
+
+
+## 8.2 Implications for Real‑Time Survey Pipelines
+
+The compact feature representation has important implications for next‑generation astronomical surveys. Facilities such as the Vera C. Rubin Observatory's Legacy Survey of Space and Time (LSST) are expected to generate millions of transient alerts per night. Real‑time classification systems operating on these streams must therefore balance predictive performance with computational efficiency.
+
+A compact 16‑feature model significantly reduces the computational cost of feature extraction compared with larger feature sets or parametric light‑curve fitting approaches. Many traditional pipelines rely on models such as SALT2 that require iterative fitting of physical light‑curve parameters. While physically informative, such fits are computationally expensive and difficult to apply at the scale required for real‑time alert streams.
+
+In contrast, the statistical features used in this study—mean flux, peak flux, color differences, variability statistics, and peak timing—can be computed directly from the photometric data with minimal processing. The results therefore suggest a practical "fast‑stream" classification strategy in which simple photometric summaries provide sufficient information for high‑quality Type Ia identification.
+
+
+## 8.3 Information Plateau in Photometric Features
+
+The near‑identical ROC‑AUC values observed across the full (31 features), working (30 features), and compact (16 features) configurations indicate that the essential discriminatory information contained in the photometric data is captured by the compact representation. This behaviour suggests the presence of an information plateau: once a small set of core features describing brightness scale, color structure, and temporal evolution is included, additional engineered features contribute little additional predictive power.
+
+This result is important for survey design and machine‑learning pipelines because it implies that improvements in classification accuracy are unlikely to come from adding more photometric summary statistics alone. Instead, meaningful gains may require additional sources of information such as host‑galaxy properties, contextual features, or spectroscopic measurements.
+
+
+## 8.4 Exclusion of Redshift Information
+
+Redshift was intentionally excluded from the compact baseline feature set. Although redshift can provide valuable contextual information about the distance and time dilation of the transient, many real‑time classification scenarios lack reliable spectroscopic redshift measurements at the time of discovery. Including redshift as a feature would therefore limit the applicability of the classifier to a subset of events for which such measurements are available.
+
+Moreover, several effects associated with redshift are already indirectly encoded in the photometric features used here. Brightness scaling is captured through mean and peak flux statistics, color evolution is represented by inter‑band color differences, and time dilation is partially reflected in the temporal features describing peak timing and observation span. As a result, redshift contributes relatively little additional information once these photometric features are included.
+
+By focusing on purely photometric observables, the compact model remains applicable to large‑scale survey pipelines where redshift information may be incomplete or unavailable.
 
 ---
 
@@ -266,12 +311,23 @@ Future work may extend this approach by incorporating additional contextual feat
 
 # References
 
-Bloom, J. S. et al. 2012, PASP, 124, 1175
+Bloom, J. S. et al. 2012, *Automating discovery and classification of transients and variable stars*, PASP, 124, 1175
 
-Lochner, M. et al. 2016, ApJS, 225, 31
+Chen, T., & Guestrin, C. 2016, *XGBoost: A scalable tree boosting system*, Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining
 
-Guy, J. et al. 2007, A&A, 466, 11
+Guy, J. et al. 2007, *SALT2: using distant supernovae to improve the use of Type Ia supernovae as distance indicators*, A&A, 466, 11
 
-Villar, V. A. et al. 2019, ApJ, 884, 83
+Guy, J. et al. 2010, *The Supernova Legacy Survey 3‑year sample*, A&A, 523, A7
 
-Chen, T., & Guestrin, C. 2016, XGBoost: A scalable tree boosting system, KDD
+Kessler, R. et al. 2010, *Results from the Supernova Photometric Classification Challenge*, PASP, 122, 1415
+
+Lochner, M. et al. 2016, *Photometric supernova classification with machine learning*, ApJS, 225, 31
+
+Villar, V. A. et al. 2019, *SuperRAENN: A semi‑supervised supernova photometric classification pipeline*, ApJ, 884, 83
+
+Möller, A., & de Boissière, T. 2020, *SuperNNova: an open‑source framework for Bayesian neural‑network classification of supernovae*, MNRAS, 491, 4277
+
+Pasquet, J. et al. 2019, *Deep learning approach for classifying, detecting, and predicting photometric supernovae*, A&A, 627, A21
+
+Ivezić, Ž. et al. 2019, *LSST: From science drivers to reference design and anticipated data products*, ApJ, 873, 111
+
