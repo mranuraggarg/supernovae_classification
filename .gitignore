@@ -36,10 +36,6 @@ models/
 # Ignore Colab-specific files
 .colab/
 
-# Ignore large dataset files (if necessary)
-data/raw/
-data/processed/
-
 # Ignore VSCode settings
 .vscode/
 
