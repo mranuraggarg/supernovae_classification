@@ -1,6 +1,6 @@
-# Supernovae Type Ia Classification — Phase 2 Tier-1 (SPCC Preprocessing Branch)
+# Supernovae Type Ia Classification — Phase 2 Tier-2 (Compact Feature Ablation Branch)
 
-This branch, `phase2-tier1-spcc-preprocessing`, represents **Phase-2 Tier-1** of the project. The focus of this phase is no longer repair of the original evaluation pipeline. Instead, this branch is dedicated to **owning the SPCC preprocessing pipeline**, constructing a **native feature-engineering workflow from raw light curves**, and producing a **compact, interpretable XGBoost baseline** for Type Ia supernova classification.
+This branch, `phase2-tier2-compact-feature-ablation`, represents **Phase-2 Tier-2** of the project. The focus of this phase is the systematic ablation analysis of the compact feature model developed in Phase-2 Tier-1. The goal of this branch is to quantify the physical importance of individual photometric features and feature groups and to determine the minimum interpretable feature subset that preserves classification performance for Type Ia supernovae.
 
 The outcome of this branch is a reproducible Tier-1 experimental pipeline that:
 
@@ -20,63 +20,46 @@ phase2_tier1_paper.pdf
 
 ## 1. What this branch does
 
-Phase-2 Tier-1 consists of four linked tasks:
+Phase-2 Tier-2 consists of four linked tasks:
 
-1. **Raw SPCC preprocessing**  
-   Parse raw DES/SPCC light-curve files and organize multi-band observations.
+1. **Load the compact 16-feature baseline from Phase-2 Tier-1**  
+   Use the frozen compact feature manifest as the reference model.
 
-2. **Native feature engineering**  
-   Build brightness, color, variability, and temporal features directly from the light curves.
+2. **Single-feature ablation experiments**  
+   Remove each feature individually and measure the change in F1-score and PR-AUC.
 
-3. **Model benchmarking and reduction**  
-   Train and evaluate XGBoost-based feature sets of different sizes.
+3. **Subset growth experiments**  
+   Evaluate staged feature groups (brightness, color, variability, temporal) to study how classification performance builds as physical information is added.
 
-4. **Interpretability and scientific analysis**  
-   Use permutation importance and SHAP to understand which astrophysical signals drive classification.
-
-This branch should be treated as the **canonical implementation of Phase-2 Tier-1**, not as a generic branch for all earlier project stages.
+4. **Core-feature identification**  
+   Determine the smallest physically interpretable subset that preserves nearly full performance.
 
 ---
 
 ## 2. Branch status
 
-### Phase-2 Tier-1 goal
+### Phase-2 Tier-2 goal
 
-Build a fully owned and scientifically interpretable preprocessing and modeling pipeline for SPCC data.
+Quantify the physical importance of compact photometric features using systematic ablation experiments.
 
-### Phase-2 Tier-1 outcome
+### Phase-2 Tier-2 outcome
 
-This goal has been achieved in this branch through three experimental feature configurations:
+This branch performs controlled ablation experiments on the 16-feature compact baseline obtained in Phase-2 Tier-1.
 
-| Configuration | Feature Count | Purpose |
-|---|---:|---|
-| Full baseline | 31 | Initial engineered feature pool |
-| Working set | 30 | Removal of clearly redundant features |
-| Compact baseline | 16 | Final interpretable Tier-1 baseline |
+| Model | Description | F1 | PR-AUC |
+|---|---|---:|---:|
+| Compact baseline | 16 features | 0.844 | 0.928 |
+| Core subset | ~10 features | ~0.83 | ~0.92 |
+| Brightness only | brightness features only | ~0.75 | ~0.83 |
+| Full ablation | single-feature removal | see paper | see paper |
 
-### Final compact baseline metrics
-
-| Metric | Value |
-|---|---:|
-| F1 | **0.844230** |
-| ROC-AUC | **0.976588** |
-| PR-AUC | **0.927761** |
-
-### Comparison across Phase-2 Tier-1 configurations
-
-| Configuration | F1 | ROC-AUC | PR-AUC |
-|---|---:|---:|---:|
-| 31-feature full baseline | 0.836717 | 0.976449 | 0.928071 |
-| 30-feature working set | 0.840529 | 0.976398 | 0.928204 |
-| 16-feature compact baseline | **0.844230** | **0.976588** | 0.927761 |
-
-The compact baseline preserves ranking performance while improving thresholded classification performance and reducing the feature count by almost half.
+The results show that temporal features produce the largest performance drop, while color and brightness provide complementary information.
 
 ---
 
 ## 3. Scientific result of this branch
 
-The main scientific result of Phase-2 Tier-1 is that a **compact 16-feature representation** is sufficient to capture the dominant photometric information needed for Type Ia classification on SPCC.
+The main scientific result of Phase-2 Tier-2 is that the compact 16-feature representation can be reduced to a smaller core set of physically meaningful features with only minor loss in classification performance. The ablation analysis shows that temporal evolution provides the dominant discriminating signal, while brightness, color, and variability features refine the decision boundary.
 
 The retained features span four physically meaningful groups:
 
@@ -303,14 +286,15 @@ Phase-2 Tier-1 extends that direction by reconstructing a native preprocessing a
 
 ## 11. Branch deliverables
 
-This branch should be considered complete when interpreted as a **Phase-2 Tier-1 research branch**. Its main deliverables are:
+The main deliverables of this branch are:
 
-- a native SPCC preprocessing pipeline,
-- a compact 16-feature interpretable baseline,
-- comparison tables across feature configurations,
-- compact-baseline robustness evaluation,
-- permutation importance and SHAP analysis,
-- and a paper-length summary (`phase2_tier1_paper.pdf`).
+- compact 16-feature baseline from Phase-2 Tier-1
+- single-feature ablation results
+- subset growth experiments
+- core-feature subset identification
+- performance comparison tables
+- figures used in the Phase-2 Tier-2 paper
+- Phase-2 Tier-2 manuscript
 
 ---
 
