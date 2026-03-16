@@ -2,32 +2,30 @@
 
 ## 1. Domain Swap Results
 
-Train on one dataset, test on another.
-
 | Train | Test | F1 | PR-AUC | ROC-AUC |
 |--------|--------|--------|--------|--------|
-| SPCC | SPCC | 0.844230 | 0.927761 | 0.976588 |
-| SPCC | noise | 0.8267 | 0.9130 | 0.9702 |
-| SPCC | flux_scale | 0.7687 | 0.8619 | 0.9501 |
-| SPCC | short_span | 0.7038 | 0.8095 | 0.9214 |
-| SPCC | no_z | 0.6052 | 0.7064 | 0.8743 |
-| SPCC | no_i | 0.6122 | 0.7119 | 0.8780 |
-| SPCC | PLAsTiCC | 0.3909 | 0.4218 | 0.6054 |
-| SPCC + PLAsTiCC | PLAsTiCC | 0.6903 | 0.7204 | 0.8803 |
-| SPCC + PLAsTiCC | SPCC | 0.8228 | 0.9034 | 0.9705 |
+| SPCC | SPCC | 0.840747 | 0.912002 | 0.973911 |
+| SPCC | noise | 0.826299 | 0.905817 | 0.971004 |
+| SPCC | flux_scale | 0.772947 | 0.837949 | 0.951203 |
+| SPCC | short_span | 0.819421 | 0.902578 | 0.969842 |
+| SPCC | no_z | 0.692105 | 0.683592 | 0.915440 |
+| SPCC | no_i | 0.652222 | 0.725259 | 0.908337 |
+| SPCC | PLAsTiCC | 0.516821 | 0.548993 | 0.736502 |
+| SPCC + PLAsTiCC | PLAsTiCC | 0.690312 | 0.720417 | 0.880317 |
+| SPCC + PLAsTiCC | SPCC | 0.822431 | 0.903002 | 0.971228 |
 
 
 ## 2. Mixed Training Summary
 
 | Training set | Mean F1 | Mean PR-AUC |
 |-------------|---------|------------|
-| spcc | 0.678809 | 0.755224 |
-| spcc + noise | 0.689321 | 0.764880 |
-| spcc + flux_scale | 0.695442 | 0.771932 |
-| spcc + short_span | 0.701228 | 0.781105 |
-| spcc + no_i | 0.704556 | 0.789445 |
-| spcc + no_z | 0.681992 | 0.758210 |
-| spcc + plasticc | 0.718287 | 0.806011 |
+| spcc | 0.702118 | 0.780441 |
+| spcc + noise | 0.709332 | 0.789554 |
+| spcc + flux_scale | 0.707992 | 0.784331 |
+| spcc + short_span | 0.695004 | 0.748992 |
+| spcc + no_i | 0.709881 | 0.763442 |
+| spcc + no_z | 0.698774 | 0.770552 |
+| spcc + plasticc | 0.746827 | 0.799876 |
 
 
 ## 3. External Domain Transfer
@@ -42,11 +40,11 @@ Train on one dataset, test on another.
 
 | Variant | ΔF1 from baseline |
 |---------|------------------|
-| noise | small |
+| noise | very small |
+| short_span | very small |
 | flux_scale | moderate |
-| short_span | moderate-large |
 | no_z | large |
-| no_i | large |
+| no_i | largest |
 | plasticc | very large |
 
 
@@ -60,6 +58,9 @@ Train on one dataset, test on another.
 - Results in this table correspond to the **first parity upgrade** feature pipeline.
 - A stricter second upgrade using same-epoch color interpolation was tested but reduced the usable PLAsTiCC sample size from ~7800 to ~2700 events, which was considered too restrictive for the main Tier-4 evaluation.
 - The stricter pipeline improved parity but introduced strong sample-selection effects, so it is treated as a sensitivity test rather than the primary result.
+- Updated shift-test results show moderate degradation under flux scaling and missing-band conditions, with the largest drop for the `no_i` variant.
+- Feature-importance stability across domains is moderate rather than perfect, consistent with a stability score of ~0.46.
+- Mixed-domain training with PLAsTiCC gives the best overall cross-domain performance but does not imply full survey independence.
 
 
 ## 6. Possible Sources of Error

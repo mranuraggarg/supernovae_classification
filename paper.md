@@ -186,6 +186,8 @@ The final Tier 4 setup is stronger than the original one for three reasons:
 
 This does not make the two surveys perfectly identical, but it makes the comparison much more scientifically meaningful.
 
+Distribution-shift tests show that the compact representation remains stable under noise and reduced time span, shows moderate degradation under flux scaling, and larger but non-catastrophic degradation when entire bands are removed (largest drop for missing i band). These results indicate partial robustness rather than full survey invariance.
+
 ## What The Results Mean Under This Setup
 
 Under the final retained setup, Tier 4 no longer asks:
@@ -196,11 +198,14 @@ Instead it asks a better question:
 
 "Does the compact representation generalize across surveys once both surveys are mapped into a shared raw-observation compact feature space?"
 
+
 That is a substantially stronger scientific test.
+
+In the final Tier 4 evaluation, direct SPCC→PLAsTiCC transfer shows a clear performance drop, while mixed-domain training improves cross-survey performance, and distribution-shift tests produce moderate but not catastrophic degradation. This combination of results supports the interpretation that the compact representation captures physically meaningful structure but is not fully survey-independent.
 
 ## Remaining Limitation
 
-Even after the comparability upgrades, a residual parity mismatch can remain, most notably in `peak_color_i_minus_z`. The final retained Tier-4 pipeline therefore represents a substantially improved cross-survey comparison, but not a claim of perfect survey equivalence.
+Even after the comparability upgrades, a residual parity mismatch can remain, most notably in `peak_color_r_minus_i` and occasionally in other color features. The final retained Tier-4 pipeline therefore represents a substantially improved cross-survey comparison, but not a claim of perfect survey equivalence.
 
 This means the Tier 4 result should still be interpreted as:
 
