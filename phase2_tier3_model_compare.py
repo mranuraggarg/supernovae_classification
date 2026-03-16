@@ -473,6 +473,7 @@ def train_and_evaluate_model(
         "model_name": model_name,
         "model_label": model_label(model_name),
         "metrics": metrics,
+        "model_bundle": model_bundle,
         "hyperparameters": hyperparams,
         "native_importance": rank_rows(native_rows, "score") if native_rows else [],
         "permutation_importance": rank_rows(permutation_rows, "mean_pr_auc_drop"),

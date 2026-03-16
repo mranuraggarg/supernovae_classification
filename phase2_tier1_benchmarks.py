@@ -129,7 +129,7 @@ def stratified_split_indices(labels: np.ndarray, test_size: float, random_state:
         test_count = min(max(test_count, 1), len(shuffled) - 1)
         test_indices.extend(shuffled[:test_count])
         train_indices.extend(shuffled[test_count:])
-    return np.array(sorted(train_indices)), np.array(sorted(test_indices))
+    return np.array(sorted(train_indices), dtype=np.int32), np.array(sorted(test_indices), dtype=np.int32)
 
 
 def standardize(train_x: np.ndarray, other_x: np.ndarray) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
