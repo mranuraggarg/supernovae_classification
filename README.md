@@ -1,6 +1,14 @@
-# Supernovae Type Ia Classification — Phase 2 Tier-2 (Compact Feature Ablation Branch)
+# Supernovae Type Ia Classification — Phase 2 Tier-3 (Compact Feature Robustness and Generalization Branch)
 
-This branch, `phase2-tier2-compact-feature-ablation`, represents **Phase-2 Tier-2** of the project. The focus of this phase is the systematic ablation analysis of the compact feature model developed in Phase-2 Tier-1. The goal of this branch is to quantify the physical importance of individual photometric features and feature groups and to determine the minimum interpretable feature subset that preserves classification performance for Type Ia supernovae.
+This branch, `phase2-tier2-compact-feature-ablation`, now contains the complete Phase‑2 workflow including Tier‑1, Tier‑2, and Tier‑3.
+
+Phase‑2 Tier‑1 constructed a compact interpretable feature representation for Type Ia supernova classification from SPCC/SNPhotCC light‑curve data.
+
+Phase‑2 Tier‑2 performed systematic ablation experiments to quantify the physical importance of the compact photometric features.
+
+Phase‑2 Tier‑3 extends the study by testing robustness, stability, and generalization of the compact feature representation across models, data splits, noise conditions, and reduced feature subsets.
+
+The goal of the current branch is therefore not only feature ablation, but verification that the compact representation captures stable astrophysical signal rather than dataset‑specific correlations.
 
 The outcome of this branch is a reproducible Tier-1 experimental pipeline that:
 
@@ -38,20 +46,15 @@ Phase-2 Tier-2 consists of four linked tasks:
 
 ## 2. Branch status
 
-### Phase-2 Tier-2 goal
+### Phase‑2 Tier‑3 outcome
 
-Quantify the physical importance of compact photometric features using systematic ablation experiments.
-
-### Phase-2 Tier-2 outcome
-
-This branch performs controlled ablation experiments on the 16-feature compact baseline obtained in Phase-2 Tier-1.
-
-| Model | Description | F1 | PR-AUC |
-|---|---|---:|---:|
-| Compact baseline | 16 features | 0.844 | 0.928 |
-| Core subset | ~10 features | ~0.83 | ~0.92 |
-| Brightness only | brightness features only | ~0.75 | ~0.83 |
-| Full ablation | single-feature removal | see paper | see paper |
+| Experiment | Result | Interpretation |
+|----------|---------|--------------|
+| Model comparison | XGBoost best, ΔF1 ≈ 0 | compact features not model‑dependent |
+| Split stability | F1 ≈ 0.845 ± small σ | stable across resampling |
+| Noise test | large drop without z‑band | band information is physical |
+| Importance comparison | SHAP / perm / gain agree | importance is consistent |
+| Minimal core | best ≈ 10 features | 16‑feature set near minimal stable |
 
 The results show that temporal features produce the largest performance drop, while color and brightness provide complementary information.
 
@@ -298,21 +301,115 @@ The main deliverables of this branch are:
 
 ---
 
-## 12. Future work
+## 11.1 Phase-2 Tier-3 extension in this branch
 
-The next logical directions after this branch are:
+This branch now also includes a **Phase-2 Tier-3 robustness and generalization workflow** built on top of the frozen 16-feature compact baseline from Tier-1 and the ablation findings from Tier-2.
 
-- **Feature Ablation Study (Phase-2 Tier-2)**  
-  Systematic removal of compact features to quantify astrophysical signal strength.
+The new Tier-3 scripts are:
 
-- **Early Classification**  
-  Study how early reliable Ia classification can be achieved from partial light curves.
+```text
+phase2_tier3_model_compare.py
+phase2_tier3_cv_stability.py
+phase2_tier3_noise_test.py
+phase2_tier3_importance_compare.py
+phase2_tier3_minimal_generalization.py
+phase2_tier3_summary.py
+phase2_tier3_plan.tex
+```
 
-- **Uncertainty / Abstention Framework**  
-  Allow the classifier to abstain on ambiguous events.
+These scripts evaluate:
 
-- **Modern Dataset Extension**  
-  Extend the preprocessing and feature-engineering framework beyond SPCC to newer datasets.
+- classifier robustness across XGBoost, Random Forest, Logistic Regression, and SVM,
+- stability under alternate cross-validation and random split protocols,
+- compact-feature robustness under noise and missing-data proxy perturbations,
+- consistency between gain, permutation, SHAP, and Tier-2 ablation importance views,
+- and generalization of Tier-2 minimal-core subsets under new conditions.
+
+Tier-3 outputs are written to:
+
+```text
+results/phase2_tier3/
+plots/phase2_tier3/
+```
+
+---
+
+## 11.2 Tier‑3 results summary
+
+Results from the Tier‑3 scripts:
+
+### Model comparison
+
+| Model | PR‑AUC | Notes |
+|------|--------|------|
+| XGBoost | 0.928 | best performance |
+| RandomForest | ~0.92 | similar behaviour |
+| SVM | ~0.90 | slightly weaker |
+| Logistic | lower | linear model insufficient |
+
+### CV stability
+
+| Protocol | Mean F1 | Std |
+|----------|---------|-----|
+| random_split | 0.845 | small |
+| kfold | ~0.84 | small |
+| repeated | ~0.84 | small |
+
+### Noise / missing data
+
+| Test | ΔF1 |
+|------|------|
+| remove z proxies | large drop |
+| noise injection | moderate drop |
+| reduced span | moderate drop |
+
+### Importance consistency
+
+Top consensus features:
+
+- r_mean_flux
+- time_span
+- z_peak_flux
+- i_peak_flux
+- peak_color_r_minus_i
+
+### Minimal core generalization
+
+| subset | features | mean F1 |
+|--------|----------|----------|
+| top_5 | 5 | ~0.59 |
+| top_8 | 8 | ~0.67 |
+| top_10 | 10 | ~0.71 |
+| compact | 16 | ~0.84 |
+
+Conclusion: aggressive reduction weakens generalization.
+
+---
+
+## 12. Scientific scope after Tier-3
+
+Phase-2 Tier-1, Tier-2, and Tier-3 together define the current scientific scope of this branch.
+
+- Tier-1 established a compact, interpretable 16-feature baseline derived from SPCC/SNPhotCC light-curve data.
+- Tier-2 quantified the physical importance of individual features and feature groups using systematic ablation experiments.
+- Tier-3 tested whether the compact representation captures stable astrophysical information by evaluating robustness under changes in model, data split, noise, and feature reduction.
+
+The main conclusions of the current branch are:
+
+- The 16-feature compact representation preserves nearly all performance of the larger feature sets.
+- Feature importance rankings are consistent across gain, permutation, SHAP, and ablation analysis.
+- The compact feature model remains stable across different classifiers and resampling protocols.
+- Performance degrades under strong perturbations, indicating that the retained features encode real photometric signal.
+- Aggressive reduction below the compact baseline weakens generalization, suggesting that the 16-feature set is close to the minimal stable representation.
+
+This branch therefore represents a complete compact-feature robustness study for Type Ia supernova classification using SPCC/SNPhotCC photometric data.
+
+Future extensions may include:
+
+- cross-survey generalization tests,
+- training on mixed datasets and testing on single surveys,
+- early-time classification using partial light curves,
+- and application of the compact feature framework to newer transient datasets.
 
 ---
 

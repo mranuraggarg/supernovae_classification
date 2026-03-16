@@ -1,0 +1,210 @@
+\section*{Phase-2 Tier-3 Plan: Robustness and Generalization Study}
+
+\section*{Supernova Classification Project}
+
+\section{Objective}
+
+Phase-2 Tier-1 demonstrated that a compact set of interpretable photometric features
+can preserve nearly all classification performance for Type Ia supernova identification
+while improving interpretability and computational efficiency.
+
+Phase-2 Tier-2 analyzed the compact representation through controlled ablation
+experiments and identified which features and feature groups contribute most strongly
+to classification performance.
+
+The objective of Phase-2 Tier-3 is to test whether the compact feature representation
+captures real astrophysical information rather than dataset-specific correlations.
+This phase evaluates the robustness, stability, and generalization of the compact
+feature set across different models, data splits, and observational conditions.
+
+The central question addressed in this phase is:
+
+\textit{Does the compact feature representation remain reliable under changes in model,
+data sampling, and noise conditions, indicating that it encodes genuine physical
+information from supernova light curves?}
+
+\section{Scientific Questions}
+
+Phase-2 Tier-3 focuses on the following questions:
+
+\begin{enumerate}
+\item Do the same compact features remain important across different classifiers?
+\item Is the classification performance stable under different train-test splits?
+\item How sensitive is the compact representation to noise or missing observations?
+\item Do different feature-importance methods identify the same dominant features?
+\item Can the minimal core feature subset discovered in Tier-2 generalize to new conditions?
+\item Do the retained features correspond to known physical properties of supernova light curves?
+\end{enumerate}
+
+\section{Tier-1 Reference Baseline}
+
+All Tier-3 experiments are evaluated relative to the frozen compact Tier-1 baseline.
+
+\begin{center}
+\begin{tabular}{l c}
+\textbf{Metric} & \textbf{Value} \\
+Number of features & 16 \\
+F1 score & 0.8442 \\
+ROC-AUC & 0.9766 \\
+PR-AUC & 0.9278 \\
+\end{tabular}
+\end{center}
+
+\section{Compact Feature Representation}
+
+The compact feature set obtained in Tier-1 consists of sixteen interpretable
+photometric features organized into four physical groups.
+
+\subsection{Brightness Features}
+\begin{itemize}
+\item r mean flux
+\item g mean flux
+\item z peak flux
+\item i peak flux
+\item r peak flux
+\end{itemize}
+
+\subsection{Color Features}
+\begin{itemize}
+\item peak color g minus r
+\item peak color r minus i
+\item peak color i minus z
+\end{itemize}
+
+\subsection{Variability Features}
+\begin{itemize}
+\item i std flux
+\item z std flux
+\item r std flux
+\item i amplitude
+\end{itemize}
+
+\subsection{Temporal Features}
+\begin{itemize}
+\item r time of peak
+\item i time of peak
+\item z time of peak
+\item time span
+\end{itemize}
+
+\section{Experiments}
+
+\subsection{Experiment A: Model Robustness}
+
+The compact feature set is evaluated using multiple classifiers:
+\begin{itemize}
+\item XGBoost (baseline)
+\item Random Forest
+\item Logistic Regression
+\item Support Vector Machine
+\end{itemize}
+
+For each model the following metrics are recorded:
+\begin{itemize}
+\item F1 score
+\item ROC-AUC
+\item PR-AUC
+\end{itemize}
+
+\subsection{Experiment B: Cross-Validation Stability}
+
+Instead of a single train-test split, repeated cross-validation is performed:
+\begin{itemize}
+\item k-fold cross validation
+\item repeated random splits
+\end{itemize}
+
+For each run the mean and standard deviation of the metrics are recorded.
+
+\subsection{Experiment C: Noise and Missing Data Tests}
+
+Artificial perturbations are introduced to simulate realistic survey conditions:
+\begin{itemize}
+\item reduced number of observations
+\item added noise to flux values
+\item removal of selected bands
+\item shortened time coverage
+\end{itemize}
+
+Performance is compared with the baseline.
+
+\subsection{Experiment D: Feature Importance Consistency}
+
+Feature importance is computed using different methods:
+\begin{itemize}
+\item model gain importance
+\item permutation importance
+\item SHAP values
+\item ablation results from Tier-2
+\end{itemize}
+
+\subsection{Experiment E: Minimal Core Generalization}
+
+The minimal feature subsets identified in Tier-2 are tested again under
+new conditions using candidate subset sizes:
+\begin{itemize}
+\item top 5 features
+\item top 8 features
+\item top 10 features
+\end{itemize}
+
+\subsection{Experiment F: Physical Interpretation Check}
+
+The retained features are interpreted in terms of known supernova physics:
+\begin{itemize}
+\item color features $\rightarrow$ temperature evolution
+\item peak flux $\rightarrow$ luminosity scale
+\item time of peak $\rightarrow$ light-curve width
+\item variability $\rightarrow$ shape of the light curve
+\end{itemize}
+
+\section{Evaluation Metrics}
+
+The following metrics are used:
+\begin{itemize}
+\item F1 score
+\item Precision-Recall AUC
+\item ROC-AUC
+\end{itemize}
+
+F1 and PR-AUC are emphasized because they better reflect performance under
+class imbalance.
+
+\section{Repository Structure}
+
+New Tier-3 files:
+\begin{verbatim}
+phase2_tier3_model_compare.py
+phase2_tier3_cv_stability.py
+phase2_tier3_noise_test.py
+phase2_tier3_importance_compare.py
+phase2_tier3_minimal_generalization.py
+phase2_tier3_summary.py
+phase2_tier3_plan.tex
+\end{verbatim}
+
+Outputs:
+\begin{verbatim}
+results/phase2_tier3/
+plots/phase2_tier3/
+\end{verbatim}
+
+\section{Workflow}
+
+\begin{enumerate}
+\item Freeze Tier-1 compact baseline
+\item Run model robustness tests
+\item Run cross-validation stability tests
+\item Run noise and missing-data experiments
+\item Compare feature-importance methods
+\item Test minimal feature subsets
+\item Interpret results physically
+\item Document Tier-3 results
+\end{enumerate}
+
+\section{Final Goal}
+
+Phase-2 Tier-3 determines whether the compact interpretable feature set remains
+robust, stable, and physically meaningful under changes in model choice, data
+sampling, and observational quality. This phase establishes the scientific
+validity of the compact representation as more than a dataset-specific shortcut.
