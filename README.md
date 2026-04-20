@@ -13,9 +13,9 @@ Phase 2 Tier 2 is complete as a reproducible analysis branch. The branch now inc
 - generated CSV, JSON, Markdown, PNG, and PDF artifacts under `results/phase2_tier2/` and `plots/phase2_tier2/`,
 - corrected compact-baseline PR and ROC curves for the 16-feature model,
 - dataset, feature-dictionary, training-protocol, uncertainty, learning-curve, and artifact-index support files,
-- and a Zenodo v1 archive for the first released Tier 2 package.
+- and Zenodo archives for both the initial v1 package and the current v2 support package.
 
-The next release from this branch should be treated as **version 2** of the Phase 2 Tier 2 archive because the branch has been normalized after the v1 Zenodo release and now includes additional Phase 2 Tier 2 support artifacts.
+The current archived version of this branch is **phase2-tier2-v2.0**, which includes the normalized Phase 2 Tier 2 support package and updated branch documentation.
 
 ## Baseline Reference
 
@@ -206,15 +206,28 @@ Older Phase 1 and Phase 2 Tier 1 utilities remain in the repository for provenan
 
 ## Release And DOI
 
-The first Phase 2 Tier 2 Zenodo release is:
+The current Phase 2 Tier 2 Zenodo release is:
+
+- Version: `phase2-tier2-v2.0`
+- DOI: [10.5281/zenodo.19666153](https://doi.org/10.5281/zenodo.19666153)
+- Zenodo record: [https://zenodo.org/records/19666153](https://zenodo.org/records/19666153)
+- GitHub tag: `phase2-tier2-v2.0`
+
+Citation:
+
+```text
+Anurag Garg. (2026). mranuraggarg/supernovae_classification:
+Phase 2 Tier 2 v2: Compact Feature Ablation Support Package
+(phase2-tier2-v2.0). Zenodo. https://doi.org/10.5281/zenodo.19666153
+```
+
+The previous Phase 2 Tier 2 Zenodo release is:
 
 - Version: `phase2-tier2-v1.0`
 - DOI: [10.5281/zenodo.19665796](https://doi.org/10.5281/zenodo.19665796)
 - GitHub tag: `phase2-tier2-v1.0`
 
-This DOI should be cited only for the archived **v1** state of this branch. After this README update and normalized Phase 2 Tier 2 support package are released, Zenodo should mint a new DOI for **version 2**. Add the v2 DOI here after Zenodo creates it.
-
-For citing the project across all Zenodo versions, use the concept DOI:
+The DOI for all Zenodo versions of this project is:
 
 - Concept DOI: [10.5281/zenodo.15074652](https://doi.org/10.5281/zenodo.15074652)
 
