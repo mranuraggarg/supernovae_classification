@@ -1,0 +1,93 @@
+{
+  "artifact": "phase2_tier2_selected_compact_model",
+  "csv_path": "data/processed/phase2_tier1_compact_baseline.csv",
+  "seed": 42,
+  "test_split": 0.2,
+  "validation_split": 0.2,
+  "compact_feature_count": 16,
+  "compact_features": [
+    "z_peak_flux",
+    "r_mean_flux",
+    "peak_color_g_minus_r",
+    "i_peak_flux",
+    "peak_color_r_minus_i",
+    "peak_color_i_minus_z",
+    "g_mean_flux",
+    "r_peak_flux",
+    "z_std_flux",
+    "i_amplitude",
+    "i_std_flux",
+    "time_span",
+    "z_time_of_peak",
+    "i_time_of_peak",
+    "r_time_of_peak",
+    "r_std_flux"
+  ],
+  "selection_metric": "validation PR-AUC",
+  "num_boost_round": 400,
+  "early_stopping_rounds": 30,
+  "selected_model": {
+    "candidate": 2,
+    "params": {
+      "max_depth": 4,
+      "eta": 0.05,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "min_child_weight": 1.0,
+      "lambda": 1.0
+    },
+    "best_iteration": 400,
+    "validation_metrics": {
+      "accuracy": 0.9193784813837584,
+      "precision": 0.7798546209761164,
+      "recall": 0.9226044226044227,
+      "f1": 0.8452447945976366,
+      "roc_auc": 0.9751641234121019,
+      "pr_auc": 0.9197192697880011
+    }
+  },
+  "test_metrics": {
+    "accuracy": 0.9167448405253283,
+    "precision": 0.7628865979381443,
+    "recall": 0.9449901768172888,
+    "f1": 0.8442299254058797,
+    "roc_auc": 0.9765883838292134,
+    "pr_auc": 0.9277608810161283
+  },
+  "frozen_baseline_metrics": {
+    "f1": 0.8442299254,
+    "roc_auc": 0.9765883838,
+    "pr_auc": 0.927760881
+  },
+  "delta_from_frozen_baseline": {
+    "f1": 5.879741138414829e-12,
+    "roc_auc": 2.9213409469264207e-11,
+    "pr_auc": 1.612832090103211e-11
+  },
+  "split_summary": {
+    "train": {
+      "total": 13644,
+      "ia_count": 3256,
+      "non_ia_count": 10388
+    },
+    "validation": {
+      "total": 3411,
+      "ia_count": 814,
+      "non_ia_count": 2597
+    },
+    "trainval": {
+      "total": 17055,
+      "ia_count": 4070,
+      "non_ia_count": 12985
+    },
+    "test": {
+      "total": 4264,
+      "ia_count": 1018,
+      "non_ia_count": 3246
+    }
+  },
+  "notes": [
+    "This is the fixed submitted split selected-model artifact.",
+    "The model is selected on validation PR-AUC, refit on train+validation, and evaluated on the held-out test split."
+  ]
+}

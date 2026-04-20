@@ -45,3 +45,7 @@ models/
 # Allow phase1 repair result summaries to be tracked
 !results/phase1_repair/
 !results/phase1_repair/*.json
+
+# Allow Phase 2 Tier 2 evidence artifacts to be tracked
+!results/phase2_tier2/
+!results/phase2_tier2/*.json

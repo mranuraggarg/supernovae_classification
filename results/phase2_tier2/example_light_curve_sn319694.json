@@ -1,0 +1,27 @@
+{
+  "artifact": "phase2_tier2_example_light_curve",
+  "metadata": {
+    "source_file": "data/spcc/raw/DES_SN319694.DAT",
+    "snid": 319694,
+    "sim_type": "Ia",
+    "sim_redshift": 0.065,
+    "sim_peak_mjd": 56214.890625,
+    "nobs_header": 108,
+    "nobs_parsed": 108,
+    "bands": [
+      "g",
+      "i",
+      "r",
+      "z"
+    ],
+    "mjd_min": 56177.172,
+    "mjd_max": 56289.176,
+    "time_span_days": 112.00400000000081
+  },
+  "outputs": {
+    "png": "results/phase2_tier2/example_light_curve_sn319694.png",
+    "pdf": "results/phase2_tier2/example_light_curve_sn319694.pdf",
+    "csv": "results/phase2_tier2/example_light_curve_sn319694.csv"
+  },
+  "caption_note": "Example simulated SPCC Type Ia multi-band light curve. Points show observed FLUXCAL values with FLUXCALERR uncertainties in g, r, i, and z bands."
+}
