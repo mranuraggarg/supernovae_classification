@@ -1,216 +1,128 @@
-# Supernovae Type Ia Classification — Phase 2 Tier-2 (Compact Feature Ablation Branch)
+# Supernovae Type Ia Classification — Phase 2 Tier 2
 
-This branch, `phase2-tier2-compact-feature-ablation`, represents **Phase-2 Tier-2** of the project. The focus of this phase is the systematic ablation analysis of the compact feature model developed in Phase-2 Tier-1. The goal of this branch is to quantify the physical importance of individual photometric features and feature groups and to determine the minimum interpretable feature subset that preserves classification performance for Type Ia supernovae.
+This branch, `phase2-tier2-compact-feature-ablation`, is the canonical **Phase 2 Tier 2** branch for the project. It builds on the frozen Phase 2 Tier 1 compact 16-feature XGBoost baseline and explains why that compact model works through feature ablation, feature-block ablation, staged subset growth, reduced-core experiments, and supporting reproducibility artifacts.
 
-The outcome of this branch is a reproducible Tier-1 experimental pipeline that:
+The focus of this branch is not a new preprocessing pipeline. It reuses the Phase 2 Tier 1 processed SPCC/SNPhotCC feature table, compact feature set, fixed split protocol, and XGBoost evaluation setup so every Tier 2 result is directly comparable to the compact baseline.
 
-- ingests raw **SPCC / SNPhotCC** light-curve `.DAT` files,
-- constructs physically interpretable photometric features,
-- evaluates progressively reduced feature sets,
-- identifies a **compact 16-feature baseline**, and
-- explains classifier behavior using **permutation importance** and **SHAP analysis**.
+## Current Status
 
-A paper-length summary of this branch is included in:
+Phase 2 Tier 2 is complete as a reproducible analysis branch. The branch now includes:
 
-```text
-phase2_tier1_paper.pdf
-```
+- the Phase 2 Tier 1 compact 16-feature baseline reference,
+- Tier 2 ablation and subset-growth experiment scripts,
+- generated CSV, JSON, Markdown, PNG, and PDF artifacts under `results/phase2_tier2/` and `plots/phase2_tier2/`,
+- corrected compact-baseline PR and ROC curves for the 16-feature model,
+- dataset, feature-dictionary, training-protocol, uncertainty, learning-curve, and artifact-index support files,
+- and a Zenodo v1 archive for the first released Tier 2 package.
 
----
+The next release from this branch should be treated as **version 2** of the Phase 2 Tier 2 archive because the branch has been normalized after the v1 Zenodo release and now includes additional Phase 2 Tier 2 support artifacts.
 
-## 1. What this branch does
+## Baseline Reference
 
-Phase-2 Tier-2 consists of four linked tasks:
+The frozen compact baseline comes from Phase 2 Tier 1 and uses 16 physically interpretable features. It is the reference point for all Tier 2 deltas.
 
-1. **Load the compact 16-feature baseline from Phase-2 Tier-1**  
-   Use the frozen compact feature manifest as the reference model.
+| Metric | Compact 16-feature baseline |
+|---|---:|
+| F1 | 0.844230 |
+| ROC-AUC | 0.976588 |
+| PR-AUC | 0.927761 |
 
-2. **Single-feature ablation experiments**  
-   Remove each feature individually and measure the change in F1-score and PR-AUC.
-
-3. **Subset growth experiments**  
-   Evaluate staged feature groups (brightness, color, variability, temporal) to study how classification performance builds as physical information is added.
-
-4. **Core-feature identification**  
-   Determine the smallest physically interpretable subset that preserves nearly full performance.
-
----
-
-## 2. Branch status
-
-### Phase-2 Tier-2 goal
-
-Quantify the physical importance of compact photometric features using systematic ablation experiments.
-
-### Phase-2 Tier-2 outcome
-
-This branch performs controlled ablation experiments on the 16-feature compact baseline obtained in Phase-2 Tier-1.
-
-| Model | Description | F1 | PR-AUC |
-|---|---|---:|---:|
-| Compact baseline | 16 features | 0.844 | 0.928 |
-| Core subset | ~10 features | ~0.83 | ~0.92 |
-| Brightness only | brightness features only | ~0.75 | ~0.83 |
-| Full ablation | single-feature removal | see paper | see paper |
-
-The results show that temporal features produce the largest performance drop, while color and brightness provide complementary information.
-
----
-
-## 3. Scientific result of this branch
-
-The main scientific result of Phase-2 Tier-2 is that the compact 16-feature representation can be reduced to a smaller core set of physically meaningful features with only minor loss in classification performance. The ablation analysis shows that temporal evolution provides the dominant discriminating signal, while brightness, color, and variability features refine the decision boundary.
-
-The retained features span four physically meaningful groups:
-
-### Brightness features
-
-- `r_mean_flux`
-- `g_mean_flux`
-- `z_peak_flux`
-- `i_peak_flux`
-- `r_peak_flux`
-
-### Color features
-
-- `peak_color_g_minus_r`
-- `peak_color_r_minus_i`
-- `peak_color_i_minus_z`
-
-### Variability features
-
-- `i_std_flux`
-- `z_std_flux`
-- `r_std_flux`
-- `i_amplitude`
-
-### Temporal features
-
-- `r_time_of_peak`
-- `i_time_of_peak`
-- `z_time_of_peak`
-- `time_span`
-
-These features were selected after staged reduction, ablation-guided tightening, compact reruns, and interpretability review.
-
----
-
-## 4. Astrophysical interpretation
-
-Interpretability analysis shows that the compact model relies on three dominant physical signal families:
-
-1. **Brightness scale across bands**  
-   Captured by mean and peak flux features, especially in redder bands.
-
-2. **Color gradients across filters**  
-   Captured by peak color differences, which act as photometric proxies for spectral energy distribution evolution.
-
-3. **Temporal structure of the light curve**  
-   Captured by band-specific peak times and total time span, reflecting the ordering and evolution of emission across filters.
-
-In other words, the classifier is not functioning as an arbitrary black box. It is learning physically interpretable signatures associated with Type Ia supernovae.
-
----
-
-## 5. Interpretability analysis
-
-Two complementary methods were used to interpret the compact baseline:
-
-- **Permutation importance** — measures performance degradation when a feature is shuffled.
-- **SHAP values** — quantify how each feature contributes to individual predictions.
-
-The main interpretability outputs are located in:
+The corrected compact-baseline curve artifacts are:
 
 ```text
-results/phase2_tier1/
+results/phase2_tier1/phase2_tier1_compact_baseline_plots/phase2_tier1_compact_baseline_precision_recall_curve.png
+results/phase2_tier1/phase2_tier1_compact_baseline_plots/phase2_tier1_compact_baseline_roc_curve.png
 ```
+
+These curves belong to the **Phase 2 Tier 1 compact baseline model**, not the older original-paper model and not a separate Tier 2 model.
+
+## Compact Feature Set
+
+The compact model uses four physical feature families.
+
+| Group | Features |
+|---|---|
+| Brightness | `r_mean_flux`, `g_mean_flux`, `z_peak_flux`, `i_peak_flux`, `r_peak_flux` |
+| Color | `peak_color_g_minus_r`, `peak_color_r_minus_i`, `peak_color_i_minus_z` |
+| Variability | `i_std_flux`, `z_std_flux`, `r_std_flux`, `i_amplitude` |
+| Temporal | `r_time_of_peak`, `i_time_of_peak`, `z_time_of_peak`, `time_span` |
+
+## Tier 2 Results
+
+The main Tier 2 conclusion is that temporal information is the most decisive family for the compact classifier, while brightness, color, and variability provide complementary structure. The compact feature set can be reduced to a smaller interpretable core with only modest degradation, but the full compact set remains the strongest and most stable reference model.
+
+Key generated results:
+
+| Analysis | Main output | Interpretation |
+|---|---|---|
+| Single-feature ablation | `results/phase2_tier2/feature_ablation_metrics.csv` | `time_span` is the strongest individual feature by F1 loss when removed. |
+| Block ablation | `results/phase2_tier2/block_ablation_metrics.csv` | Removing temporal features causes the largest block-level degradation. |
+| Subset growth | `results/phase2_tier2/subset_growth_metrics.csv` | Performance grows as brightness, color, variability, and temporal information are added. |
+| Minimal core | `results/phase2_tier2/minimal_core_metrics.csv` | A 10-feature core retains most of the compact baseline performance. |
+| Master report | `results/phase2_tier2/phase2_tier2_report.md` | Human-readable summary of the Tier 2 ablation results. |
+
+Highlights from `results/phase2_tier2/phase2_tier2_report.md`:
+
+- Removing `time_span` gives the largest single-feature F1 drop: `delta F1 = -0.033952`.
+- Removing the temporal block gives the largest block-level drop: `delta F1 = -0.046596`, `delta PR-AUC = -0.054893`.
+- The best reduced core is the top-10 subset: `F1 = 0.838509`, `PR-AUC = 0.916900`.
+- The full compact model remains the preferred reference: `F1 = 0.844230`, `PR-AUC = 0.927761`.
+
+## Figures
+
+The primary Tier 2 figures are:
+
+```text
+plots/phase2_tier2/feature_ablation_delta_f1.png
+plots/phase2_tier2/block_ablation_delta_f1.png
+plots/phase2_tier2/subset_growth_f1.png
+plots/phase2_tier2/subset_growth_paper_ready.png
+plots/phase2_tier2/minimal_core_tradeoff.png
+```
+
+The paper-ready subset-growth figure is:
+
+```text
+plots/phase2_tier2/subset_growth_paper_ready.png
+```
+
+It uses the four cumulative stages:
+
+1. brightness only,
+2. brightness + color,
+3. brightness + color + variability,
+4. full compact model.
+
+It plots both F1 and PR-AUC and is intended for the ablation/growth-of-information discussion.
+
+## Supporting Artifacts
+
+Additional Phase 2 Tier 2 support material is stored under `results/phase2_tier2/`.
 
 Important files include:
 
 ```text
-results/phase2_tier1/phase2_tier1_compact_baseline_importance.json
-results/phase2_tier1/phase2_tier1_compact_baseline_interpretation_table.md
-results/phase2_tier1/phase2_tier1_compact_baseline_metrics.json
-results/phase2_tier1/phase2_tier1_compact_baseline_robustness.json
-results/phase2_tier1/phase2_tier1_compact_baseline_comparison.md
+results/phase2_tier2/artifact_index.md
+results/phase2_tier2/dataset_summary.md
+results/phase2_tier2/training_protocol.md
+results/phase2_tier2/compact_feature_dictionary.md
+results/phase2_tier2/selected_compact_model.md
+results/phase2_tier2/uncertainty_summary.md
+results/phase2_tier2/learning_curve.md
+results/phase2_tier2/validation_logloss_curve.md
+results/phase2_tier2/tier2_experiment_audit.md
 ```
 
-The SHAP summary plot for the compact baseline is located at:
+The artifact index is the best entry point for the full support package:
 
 ```text
-results/phase2_tier1/phase2_tier1_compact_baseline_plots/phase2_tier1_compact_baseline_shap_summary.png
+results/phase2_tier2/artifact_index.md
+results/phase2_tier2/artifact_index.csv
 ```
 
-Additional dependence and probability plots for the top compact features are stored in the same plot directory.
+## Running The Workflow
 
----
-
-## 6. Robustness
-
-The compact baseline was also evaluated across multiple random seeds to ensure that the result is not an artifact of one favorable split.
-
-Compact-baseline robustness summary:
-
-- **F1 mean:** 0.842998 ± 0.001783
-- **ROC-AUC mean:** 0.976723 ± 0.000219
-- **PR-AUC mean:** 0.928472 ± 0.000985
-
-This stability supports the use of the compact feature set as the frozen Tier-1 baseline for future work.
-
----
-
-## 7. Repository structure for Phase-2 Tier-1
-
-```text
-supernovae_classification/
-├── README.md
-├── feature_pipeline/
-│   ├── config.py
-│   ├── policies.py
-│   ├── schemas.py
-│   ├── loaders/
-│   │   └── spcc_raw.py
-│   ├── cleaning/
-│   │   └── spcc_clean.py
-│   ├── interpolation/
-│   │   ├── spcc_legacy_reference.py
-│   │   └── spcc_native_reconstruct.py
-│   ├── extraction/
-│   │   ├── feature_registry.py
-│   │   └── spcc_features.py
-│   └── validation/
-│       └── checks.py
-├── data/
-│   └── spcc/
-│       └── raw/
-├── plots/
-│   └── phase2_tier1/
-├── results/
-│   └── phase2_tier1/
-├── notebooks/
-│   ├── colab_phase2_tier1_xgb_importance.ipynb
-│   └── colab_phase2_tier1_review_ablation.ipynb
-├── phase2_tier1_benchmarks.py
-├── phase2_tier1_build_feature_manifest.py
-├── phase2_tier1_xgb_importance.py
-├── phase2_tier1_review_ablation.py
-├── phase2_tier1_tighten_manifest.py
-├── phase2_tier1_compact_rerun.py
-├── phase2_tier1_finalize_compact_baseline.py
-├── phase2_tier1_interpretability.py
-├── phase2_tier1_paper.md
-└── phase2_tier1_paper.pdf
-```
-
-This structure reflects the actual work done in this branch. Older Phase-1 utilities are still in the repository history, but they are no longer the main focus of this branch README.
-
----
-
-## 8. Reproducing the Phase-2 Tier-1 workflow
-
-### 8.1 Environment
-
-Use the project Conda environment defined for this repository.
+Use the project environment defined by `environment.yml` or `astro-ml.yml`.
 
 Example:
 
@@ -219,103 +131,101 @@ conda env create -f environment.yml
 conda activate astro-ml
 ```
 
-Adjust the environment name if your local setup differs.
-
-### 8.2 Raw data
-
-This branch assumes availability of raw SPCC/SNPhotCC files under:
+The Tier 2 scripts expect the processed Phase 2 Tier 1 compact dataset to exist:
 
 ```text
-data/spcc/raw/
+data/processed/phase2_tier1_compact_baseline.csv
 ```
 
-### 8.3 Recommended execution order
-
-The Phase-2 Tier-1 workflow was developed through staged scripts rather than one monolithic entry point.
-
-A practical execution order is:
+The core Tier 2 experiment order is:
 
 ```bash
-python phase2_tier1_benchmarks.py
-python phase2_tier1_build_feature_manifest.py
-python phase2_tier1_xgb_importance.py
-python phase2_tier1_review_ablation.py
-python phase2_tier1_tighten_manifest.py
-python phase2_tier1_compact_rerun.py
-python phase2_tier1_finalize_compact_baseline.py
-python phase2_tier1_interpretability.py
+python3 phase2_tier2_feature_ablation.py
+python3 phase2_tier2_block_ablation.py
+python3 phase2_tier2_subset_growth.py
+python3 phase2_tier2_minimal_core.py
+python3 phase2_tier2_summary.py
 ```
 
-The exact command-line options may depend on local file paths and runtime environment, especially for Colab-based experiments.
+The support-artifact scripts can be run after the compact dataset and Tier 2 outputs are available:
 
-### 8.4 Colab notebooks
+```bash
+python3 phase2_tier2_metadata.py
+python3 phase2_tier2_training_protocol.py
+python3 phase2_tier2_feature_dictionary.py
+python3 phase2_tier2_selected_model.py
+python3 phase2_tier2_uncertainty.py
+python3 phase2_tier2_learning_curves.py
+python3 phase2_tier2_example_light_curve.py
+python3 phase2_tier2_audit.py
+python3 phase2_tier2_artifact_index.py
+```
 
-Some heavier Phase-2 XGBoost experiments were also run using Colab notebooks:
+To regenerate the corrected compact-baseline PR and ROC curves:
+
+```bash
+python3 phase2_tier1_compact_curves.py
+```
+
+## Repository Structure
+
+The current Phase 2 Tier 2 branch centers on these files and folders:
 
 ```text
-notebooks/colab_phase2_tier1_xgb_importance.ipynb
-notebooks/colab_phase2_tier1_review_ablation.ipynb
+supernovae_classification/
+├── README.md
+├── data/
+│   └── processed/
+│       ├── phase2_tier1_compact_baseline.csv
+│       └── spcc_features_tier1.csv
+├── feature_pipeline/
+├── plots/
+│   └── phase2_tier2/
+├── results/
+│   ├── phase2_tier1/
+│   └── phase2_tier2/
+├── phase2_tier1_compact_curves.py
+├── phase2_tier2_common.py
+├── phase2_tier2_feature_ablation.py
+├── phase2_tier2_block_ablation.py
+├── phase2_tier2_subset_growth.py
+├── phase2_tier2_minimal_core.py
+├── phase2_tier2_summary.py
+├── phase2_tier2_metadata.py
+├── phase2_tier2_training_protocol.py
+├── phase2_tier2_feature_dictionary.py
+├── phase2_tier2_selected_model.py
+├── phase2_tier2_uncertainty.py
+├── phase2_tier2_learning_curves.py
+├── phase2_tier2_example_light_curve.py
+├── phase2_tier2_audit.py
+└── phase2_tier2_artifact_index.py
 ```
 
----
+Older Phase 1 and Phase 2 Tier 1 utilities remain in the repository for provenance, but this README documents the current Phase 2 Tier 2 branch state.
 
-## 9. Relation to Phase-1
+## Release And DOI
 
-Phase-1 focused on **repairing the original evaluation pipeline** and verifying the scientific integrity of the original results.
+The first Phase 2 Tier 2 Zenodo release is:
 
-Phase-2 Tier-1, by contrast, focuses on:
+- Version: `phase2-tier2-v1.0`
+- DOI: [10.5281/zenodo.19665796](https://doi.org/10.5281/zenodo.19665796)
+- GitHub tag: `phase2-tier2-v1.0`
 
-- raw SPCC preprocessing,
-- native feature engineering,
-- compact baseline construction,
-- and interpretability.
+This DOI should be cited only for the archived **v1** state of this branch. After this README update and normalized Phase 2 Tier 2 support package are released, Zenodo should mint a new DOI for **version 2**. Add the v2 DOI here after Zenodo creates it.
 
-Therefore this README intentionally emphasizes **Phase-2 Tier-1 outputs**, not the original six-model Phase-1 comparison table.
+For citing the project across all Zenodo versions, use the concept DOI:
 
----
+- Concept DOI: [10.5281/zenodo.15074652](https://doi.org/10.5281/zenodo.15074652)
 
-## 10. Data source and inspiration
+## Data Source And Inspiration
 
-This repository originally drew inspiration from Adam Moss’s supernova classification work and data organization:
+This repository originally drew inspiration from Adam Moss's supernova classification work and data organization:
 
-- [Adam Moss’s Supernovae Dataset](https://github.com/adammoss/supernovae)
+- [Adam Moss's Supernovae Dataset](https://github.com/adammoss/supernovae)
 
-Phase-2 Tier-1 extends that direction by reconstructing a native preprocessing and feature-engineering workflow for SPCC/SNPhotCC data and by emphasizing interpretability.
+Phase 2 extends that direction by reconstructing a native SPCC/SNPhotCC preprocessing and feature-engineering workflow, then using compact physically interpretable features for controlled model analysis.
 
----
-
-## 11. Branch deliverables
-
-The main deliverables of this branch are:
-
-- compact 16-feature baseline from Phase-2 Tier-1
-- single-feature ablation results
-- subset growth experiments
-- core-feature subset identification
-- performance comparison tables
-- figures used in the Phase-2 Tier-2 paper
-- Phase-2 Tier-2 manuscript
-
----
-
-## 12. Future work
-
-The next logical directions after this branch are:
-
-- **Feature Ablation Study (Phase-2 Tier-2)**  
-  Systematic removal of compact features to quantify astrophysical signal strength.
-
-- **Early Classification**  
-  Study how early reliable Ia classification can be achieved from partial light curves.
-
-- **Uncertainty / Abstention Framework**  
-  Allow the classifier to abstain on ambiguous events.
-
-- **Modern Dataset Extension**  
-  Extend the preprocessing and feature-engineering framework beyond SPCC to newer datasets.
-
----
-
-## 13. License
+## License
 
 This project is licensed under the **MIT License**.
