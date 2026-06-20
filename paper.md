@@ -201,7 +201,11 @@ Instead it asks a better question:
 
 That is a substantially stronger scientific test.
 
-In the final Tier 4 evaluation, direct SPCC→PLAsTiCC transfer shows a clear performance drop, while mixed-domain training improves cross-survey performance, and distribution-shift tests produce moderate but not catastrophic degradation. This combination of results supports the interpretation that the compact representation captures physically meaningful structure but is not fully survey-independent.
+In the final Tier 4 evaluation, direct SPCC→PLAsTiCC transfer still shows a measurable performance drop relative to within-survey evaluation, indicating that the compact representation is not fully survey-invariant.
+
+However, the window-harmonization study demonstrated that transfer performance improves when PLAsTiCC compact features are computed over transient-centered windows comparable to the characteristic duration scale of SPCC events. This result suggests that part of the observed cross-survey gap originates from differences in the effective temporal domain used during feature construction rather than from classifier failure alone.
+
+Mixed-domain training further improves transfer performance, while distribution-shift tests continue to show moderate but non-catastrophic degradation. Taken together, these results support the interpretation that the compact feature representation captures physically meaningful structure, but that survey-dependent feature distributions remain an important limitation.
 
 ## Remaining Limitation
 
@@ -214,6 +218,55 @@ This means the Tier 4 result should still be interpreted as:
 - but not a claim of perfect survey equivalence.
 
 That is an acceptable and honest limitation for the paper.
+
+## Tier-4 Window-Harmonization Investigation
+
+After the feature-definition audit, a second Tier-4 question emerged.
+
+Even when SPCC and PLAsTiCC used the same compact-feature formulas, the two surveys were still being summarized over very different effective temporal windows.
+
+The audit showed that SPCC compact features were typically derived from transient-scale event durations, whereas PLAsTiCC compact features often reflected much longer survey histories.
+
+This raised the possibility that identical feature names were still encoding different physical time domains.
+
+To test this hypothesis, PLAsTiCC compact features were rebuilt using transient-centered windows defined around the strongest detected flux measurement.
+
+A science-constrained sweep was then performed using:
+
+- ±60 days,
+- ±75 days,
+- ±90 days,
+- ±105 days,
+- ±120 days,
+- ±180 days.
+
+These values were not chosen through model tuning. Instead they were selected to bracket the characteristic duration scales observed in SPCC.
+
+The intent was to determine whether cross-survey transfer improves when PLAsTiCC compact features are computed over temporal windows comparable to those represented in SPCC.
+
+## Why The ±60 Day Window Was Retained
+
+The window sweep produced two particularly strong transfer regimes.
+
+The ±60 day and ±105 day windows both improved SPCC→PLAsTiCC transfer relative to the non-windowed baseline.
+
+However, the ±60 day window was retained as the primary Tier-4 configuration.
+
+The reason is scientific rather than purely performance-based.
+
+The median SPCC event duration is approximately 67 days, making the ±60 day window the closest representation of the central tendency of the training survey.
+
+By contrast, the ±105 day window more closely reflects the upper tail of the SPCC duration distribution and therefore assumes access to a substantially larger fraction of the transient evolution.
+
+For a realistic transfer-learning scenario, a newly released survey is unlikely to have complete transient histories available immediately. A compact representation based on the core transient behaviour is therefore more appropriate than one requiring near-complete light-curve evolution.
+
+The retained interpretation is therefore:
+
+- ±60 days represents the characteristic SPCC transient scale,
+- ±105 days serves as a sensitivity analysis demonstrating that the result is not unique to a single window size,
+- and improved transfer under both windows supports the broader conclusion that event-window harmonization is an important contributor to cross-survey comparability.
+
+This distinction is important because the goal of Tier-4 is not to optimize a benchmark metric, but to determine whether physically interpretable compact features can transfer to previously unseen survey data under scientifically defensible assumptions.
 
 ## Measurement Harmonization Versus Real Domain Shift
 

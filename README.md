@@ -1,12 +1,14 @@
-# Supernovae Type Ia Classification — Phase 2 Tier-3 (Compact Feature Robustness and Generalization Branch)
+# Supernovae Type Ia Classification — Phase 2 Compact Feature Robustness and Cross-Survey Transfer
 
-This branch, `phase2-tier2-compact-feature-ablation`, now contains the complete Phase‑2 workflow including Tier‑1, Tier‑2, and Tier‑3.
+This branch now contains the complete Phase‑2 workflow including Tier‑1, Tier‑2, Tier‑3, and the active Tier‑4 cross-survey transfer investigation.
 
 Phase‑2 Tier‑1 constructed a compact interpretable feature representation for Type Ia supernova classification from SPCC/SNPhotCC light‑curve data.
 
 Phase‑2 Tier‑2 performed systematic ablation experiments to quantify the physical importance of the compact photometric features.
 
 Phase‑2 Tier‑3 extends the study by testing robustness, stability, and generalization of the compact feature representation across models, data splits, noise conditions, and reduced feature subsets.
+
+Phase‑2 Tier‑4 extends the compact-feature study to cross-survey transfer between SPCC/SNPhotCC and PLAsTiCC. Tier‑4 tests whether the same compact, physically interpretable feature representation can be applied to a different simulated survey, and investigates why direct SPCC→PLAsTiCC transfer remains difficult even when the feature formulas are shared.
 
 The goal of the current branch is therefore not only feature ablation, but verification that the compact representation captures stable astrophysical signal rather than dataset‑specific correlations.
 
@@ -404,12 +406,81 @@ The main conclusions of the current branch are:
 
 This branch therefore represents a complete compact-feature robustness study for Type Ia supernova classification using SPCC/SNPhotCC photometric data.
 
-Future extensions may include:
+Future extensions beyond the current Tier‑4 work may include:
 
 - cross-survey generalization tests,
 - training on mixed datasets and testing on single surveys,
 - early-time classification using partial light curves,
 - and application of the compact feature framework to newer transient datasets.
+
+---
+
+## 12.1 Phase-2 Tier-4 cross-survey transfer investigation
+
+Phase‑2 Tier‑4 evaluates whether the compact 16-feature representation learned from SPCC/SNPhotCC can transfer to PLAsTiCC under controlled feature-construction assumptions.
+
+The Tier‑4 scripts include:
+
+```text
+phase2_tier4_make_variants.py
+phase2_tier4_domain_swap.py
+phase2_tier4_shift_test.py
+phase2_tier4_plasticc_audit.py
+phase2_tier4_feature_definition_audit.py
+phase2_tier4_trial_lightcurve_normalization.py
+phase2_tier4_windowed_plasticc_audit.py
+phase2_tier4_windowed_plasticc.py
+phase2_tier4_window_sweep.py
+```
+
+Tier‑4 outputs are written to:
+
+```text
+results/phase2_tier4/
+results/phase2_tier4_windowed_plasticc/
+results/phase2_tier4_windowed_plasticc_audit/
+results/phase2_tier4_window_sweep/
+plots/phase2_tier4/
+```
+
+### Tier‑4 retained baseline
+
+The retained Tier‑4 baseline uses a shared compact-feature builder for SPCC and PLAsTiCC. Earlier inconsistencies in PLAsTiCC peak-time definitions were corrected, and the audit now checks time consistency, feature-scale parity, label counts, and remaining median-scale mismatches before interpreting transfer results.
+
+Under the retained non-windowed Tier‑4 setup, direct SPCC→PLAsTiCC transfer remains limited compared with SPCC→SPCC evaluation. This shows that compact physical features are meaningful but not automatically survey-invariant.
+
+### Tier‑4 diagnostic experiments
+
+Several diagnostic trials were run to isolate the source of the cross-survey gap:
+
+| Diagnostic | Result | Interpretation |
+|-----------|--------|----------------|
+| ratio/log-ratio color trial | degraded robustness and did not solve transfer | color scaling alone is not the bottleneck |
+| temporal-offset trial | reduced transfer performance | simple relative peak-time offsets do not solve the gap |
+| PCA alignment trial | dominant axes were already aligned | the issue is not a simple linear rotation of feature space |
+| event-level light-curve normalization | degraded SPCC and PLAsTiCC performance | amplitude normalization removes useful signal without fixing color mismatch |
+| feature-definition audit | identified major PLAsTiCC full-history window mismatch | same formulas can have different effective meaning across surveys |
+| PLAsTiCC transient-window sweep | improved transfer when using SPCC-scale transient windows | event-window parity is a real contributor to cross-survey transfer |
+
+### Windowed PLAsTiCC transfer result
+
+The feature-definition audit showed that PLAsTiCC compact features were originally computed over much longer raw survey histories than SPCC. A science-constrained window sweep therefore tested PLAsTiCC transient-centered windows chosen to bracket SPCC event-duration scales:
+
+```text
+±60, ±75, ±90, ±105, ±120, ±180 days
+```
+
+The strongest transfer result came from the ±60 day window, which closely matches the central tendency of the SPCC transient duration. The ±105 day window also performed well and is retained as a sensitivity result because it approximates a broader, near-full transient-evolution regime.
+
+The current interpretation is therefore:
+
+- the compact 16-feature set remains physically meaningful,
+- direct cross-survey transfer is limited by survey-dependent feature distributions,
+- PLAsTiCC full-history feature extraction is not comparable to SPCC event-scale feature extraction,
+- restricting PLAsTiCC to SPCC-like transient windows improves transfer,
+- and remaining mismatch is dominated by color behaviour, especially `peak_color_i_minus_z`.
+
+The Tier‑4 result should therefore be read as evidence for **partial cross-survey transfer after event-window harmonization**, not as proof of a fully universal classifier.
 
 ---
 
