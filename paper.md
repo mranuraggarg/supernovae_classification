@@ -215,6 +215,62 @@ This means the Tier 4 result should still be interpreted as:
 
 That is an acceptable and honest limitation for the paper.
 
+## Measurement Harmonization Versus Real Domain Shift
+
+An important Tier-4 principle is that not every survey difference should be treated in the same way.
+
+Some differences are removable representation mismatches introduced by preprocessing choices. Others are genuine domain differences produced by the surveys themselves.
+
+This distinction is central to the scientific meaning of Tier 4.
+
+### Removable representation mismatch
+
+These are differences that should be harmonized before cross-survey comparison because they are analogous to measuring the same quantity in different units.
+
+Examples include:
+
+- different feature-construction rules,
+- different time-origin conventions,
+- different compression or normalization conventions,
+- different calibration representations,
+- different preprocessing logic for colors or event windows.
+
+If these are left uncorrected, the classifier can fail for procedural reasons rather than scientific ones. In that sense, representation mismatch behaves like a base-measurement error that propagates into the downstream classification model.
+
+The Tier-4 comparability work is therefore intended to reduce this removable mismatch.
+
+### Genuine domain difference
+
+These are differences that should remain in the experiment because they are the real content of cross-survey generalization.
+
+Examples include:
+
+- survey cadence,
+- missing bands,
+- noise level,
+- photometric depth,
+- class composition,
+- redshift distribution,
+- instrument throughput differences that remain after consistent feature definition.
+
+These are not pipeline bugs. They are the actual observational conditions under which the compact representation must generalize.
+
+### Practical Tier-4 rule
+
+The correct strategy is therefore:
+
+- harmonize differences caused by the feature pipeline,
+- preserve differences caused by the surveys themselves.
+
+This is why Tier 4 uses shared feature semantics across surveys while still allowing realized feature values to differ from one survey to another.
+
+For example, `r_peak_flux` should mean the same mathematical quantity in both surveys, even though its observed distribution may still differ because the instruments and observing conditions differ. The definition should be invariant; the measured values need not be.
+
+This framework gives Tier 4 a defensible scientific interpretation:
+
+- poor transfer after harmonization suggests genuine domain shift,
+- poor transfer before harmonization may only reflect pipeline mismatch.
+
 ## Practical Summary
 
 The final retained Tier 4 comparability workflow is:
