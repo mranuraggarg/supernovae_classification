@@ -201,11 +201,64 @@ Instead it asks a better question:
 
 That is a substantially stronger scientific test.
 
+
 In the final Tier 4 evaluation, direct SPCC→PLAsTiCC transfer still shows a measurable performance drop relative to within-survey evaluation, indicating that the compact representation is not fully survey-invariant.
 
 However, the window-harmonization study demonstrated that transfer performance improves when PLAsTiCC compact features are computed over transient-centered windows comparable to the characteristic duration scale of SPCC events. This result suggests that part of the observed cross-survey gap originates from differences in the effective temporal domain used during feature construction rather than from classifier failure alone.
 
 Mixed-domain training further improves transfer performance, while distribution-shift tests continue to show moderate but non-catastrophic degradation. Taken together, these results support the interpretation that the compact feature representation captures physically meaningful structure, but that survey-dependent feature distributions remain an important limitation.
+
+## Class-Conditional Centroid Analysis
+
+To determine whether the remaining transfer limitation originated from classifier behaviour or from the feature representation itself, a class-conditional centroid analysis was performed using the final compact 16-feature space.
+
+The analysis measured four standardized centroids:
+
+- SPCC Ia,
+- PLAsTiCC Ia,
+- SPCC non-Ia,
+- PLAsTiCC non-Ia.
+
+The resulting distances were:
+
+| Quantity | Distance |
+|----------|----------|
+| SPCC Ia → PLAsTiCC Ia | 6.125 |
+| SPCC non-Ia → PLAsTiCC non-Ia | 7.175 |
+| SPCC Ia → SPCC non-Ia | 1.710 |
+| PLAsTiCC Ia → PLAsTiCC non-Ia | 2.448 |
+
+A useful comparison is the ratio between the cross-survey Ia shift and the intrinsic class separation inside each survey:
+
+| Metric | Value |
+|---------|-------|
+| Ia shift / SPCC class separation | 3.58× |
+| Ia shift / PLAsTiCC class separation | 2.50× |
+
+This result is important because the same astrophysical class should ideally occupy a similar region of feature space across surveys if direct transfer is to succeed.
+
+Instead, the SPCC Ia and PLAsTiCC Ia centroids are separated by a distance substantially larger than the Ia/non-Ia separation within either survey.
+
+This indicates that the dominant limitation is not merely a classifier-boundary problem. The compact feature representation itself is not fully survey invariant.
+
+The centroid result therefore strengthens the interpretation of the window-harmonization study. Event-window harmonization improves transfer because it reduces one source of mismatch, but it does not completely align the feature distributions of the two surveys.
+
+The Tier-4 conclusion is therefore not that compact features fail. Rather, the compact representation remains physically meaningful and useful within a survey, while direct SPCC→PLAsTiCC transfer remains limited by residual domain shift in the compact feature space.
+
+
+## Revised Tier-4 Scientific Interpretation
+
+The original Tier-4 question was whether a compact physically interpretable model trained on SPCC could transfer directly to PLAsTiCC.
+
+The combined evidence from feature-definition audits, window-harmonization experiments, distribution-shift tests, mixed-domain training, and centroid analysis suggests a more nuanced conclusion.
+
+The compact feature representation captures physically meaningful transient structure and remains reasonably robust under a range of perturbations. However, the representation is not fully survey invariant.
+
+After harmonizing feature definitions and temporal windows, substantial class-conditional separation between SPCC and PLAsTiCC still remains. The observed transfer gap therefore reflects genuine survey-domain differences rather than a simple preprocessing artifact.
+
+A more defensible interpretation is that compact physically interpretable features provide a useful common representation across surveys, but successful deployment on unseen survey domains may require feature-space harmonization, domain adaptation, or restriction to a smaller set of survey-stable features.
+
+This distinction is scientifically important because it separates the value of interpretability from the stronger claim of survey universality.
 
 ## Remaining Limitation
 

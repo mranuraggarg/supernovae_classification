@@ -431,6 +431,7 @@ phase2_tier4_trial_lightcurve_normalization.py
 phase2_tier4_windowed_plasticc_audit.py
 phase2_tier4_windowed_plasticc.py
 phase2_tier4_window_sweep.py
+phase2_tier4_centroid_analysis.py
 ```
 
 Tier‑4 outputs are written to:
@@ -440,7 +441,9 @@ results/phase2_tier4/
 results/phase2_tier4_windowed_plasticc/
 results/phase2_tier4_windowed_plasticc_audit/
 results/phase2_tier4_window_sweep/
+results/phase2_tier4_centroid_analysis/
 plots/phase2_tier4/
+plots/phase2_tier4_centroid_analysis/
 ```
 
 ### Tier‑4 retained baseline
@@ -461,6 +464,7 @@ Several diagnostic trials were run to isolate the source of the cross-survey gap
 | event-level light-curve normalization | degraded SPCC and PLAsTiCC performance | amplitude normalization removes useful signal without fixing color mismatch |
 | feature-definition audit | identified major PLAsTiCC full-history window mismatch | same formulas can have different effective meaning across surveys |
 | PLAsTiCC transient-window sweep | improved transfer when using SPCC-scale transient windows | event-window parity is a real contributor to cross-survey transfer |
+| class-conditional centroid analysis | SPCC and PLAsTiCC Ia centroids remain strongly separated | direct transfer is limited by feature-space domain shift, not only classifier choice |
 
 ### Windowed PLAsTiCC transfer result
 
@@ -474,13 +478,64 @@ The strongest transfer result came from the ±60 day window, which closely match
 
 The current interpretation is therefore:
 
-- the compact 16-feature set remains physically meaningful,
+- the compact 16-feature set remains physically meaningful within SPCC and remains useful as an interpretable diagnostic representation,
 - direct cross-survey transfer is limited by survey-dependent feature distributions,
 - PLAsTiCC full-history feature extraction is not comparable to SPCC event-scale feature extraction,
-- restricting PLAsTiCC to SPCC-like transient windows improves transfer,
-- and remaining mismatch is dominated by color behaviour, especially `peak_color_i_minus_z`.
+- restricting PLAsTiCC to SPCC-like transient windows improves transfer but does not fully align the surveys,
+- class-conditional centroid analysis shows that the SPCC Ia and PLAsTiCC Ia populations do not occupy the same compact-feature region,
+- the Ia centroid shift is larger than the within-survey Ia/non-Ia separation, indicating that transfer is fundamentally limited in the current compact feature space,
+- and remaining mismatch is especially important in color and temporal/scale-sensitive features, including `peak_color_i_minus_z`.
 
 The Tier‑4 result should therefore be read as evidence for **partial cross-survey transfer after event-window harmonization**, not as proof of a fully universal classifier.
+
+### Tier‑4 class-conditional centroid result
+
+The highest-priority Tier‑4 diagnostic was the class-conditional centroid comparison between SPCC and PLAsTiCC in the shared compact 16-feature space. The analysis measured four standardized centroids:
+
+- SPCC Ia,
+- PLAsTiCC Ia,
+- SPCC non-Ia,
+- PLAsTiCC non-Ia.
+
+The key result is that the cross-survey Ia centroid shift is much larger than the class separation inside either survey:
+
+| Quantity | Distance / Ratio |
+|----------|------------------|
+| SPCC Ia → PLAsTiCC Ia centroid distance | 6.125 |
+| SPCC non-Ia → PLAsTiCC non-Ia centroid distance | 7.175 |
+| SPCC Ia → SPCC non-Ia separation | 1.710 |
+| PLAsTiCC Ia → PLAsTiCC non-Ia separation | 2.448 |
+| Ia shift / SPCC class separation | 3.58× |
+| Ia shift / PLAsTiCC class separation | 2.50× |
+
+This result shows that the same astrophysical class, Type Ia, is not numerically aligned between SPCC and PLAsTiCC in the current compact feature representation. Therefore the SPCC→PLAsTiCC transfer limitation is not only a classifier-boundary problem; it is a feature-space alignment problem.
+
+The Tier‑4 conclusion is therefore revised as follows:
+
+> Compact physically interpretable features are useful within a survey and provide a strong diagnostic framework, but direct cross-survey transfer requires feature-space harmonization or domain adaptation. Interpretability alone is not sufficient for survey invariance.
+
+This closes Tier‑4 as a domain-shift diagnosis rather than a failed transfer attempt.
+
+## 12.2 Planned Phase‑2 Tier‑5 invariant-feature and harmonized-transfer study
+
+Before claiming cross-survey portability, the next phase will identify which compact features are stable across surveys and test whether transfer improves after harmonization.
+
+The Tier‑5 working question is:
+
+> Which physically interpretable compact features are survey-invariant, and can a smaller harmonized subset improve SPCC→PLAsTiCC transfer?
+
+Planned Tier‑5 tasks:
+
+1. Rank compact features by class-conditional centroid shift.
+2. Identify features whose Ia centroids are stable across SPCC and PLAsTiCC.
+3. Remove or down-weight unstable features.
+4. Test robust per-survey normalization and class-blind distribution alignment.
+5. Compare direct transfer, harmonized transfer, and invariant-core transfer.
+6. Decide whether the final claim should be partial portability, invariant-core portability, or survey-specific interpretability only.
+
+The project hypothesis is therefore refined from direct universality to conditional portability:
+
+> A compact physically interpretable feature model can support cross-survey Type Ia classification only when the retained features are both astrophysically meaningful and distributionally stable across survey domains.
 
 ---
 

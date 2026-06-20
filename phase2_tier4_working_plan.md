@@ -1,5 +1,11 @@
 # Phase 2 Tier 4 Working Plan
 
+> Status: COMPLETED
+>
+> Completion date: June 2026
+>
+> Final Tier-4 conclusion: The compact 16-feature representation remains physically meaningful and useful within a survey, but direct SPCC→PLAsTiCC transfer is limited by survey-dependent feature distributions. Event-window harmonization improves transfer, yet class-conditional centroid analysis demonstrates that the SPCC and PLAsTiCC Ia populations are not aligned in the shared compact feature space. Tier-4 is therefore closed as a domain-shift diagnosis phase, with follow-up work deferred to a future Tier-5 invariant-feature and harmonized-transfer study.
+
 Branch: `phase2-tier4-domain-generalization`  
 Date: March 16, 2026
 
@@ -58,6 +64,13 @@ Code:
 - `phase2_tier4_minimal_domain.py`
 - `phase2_tier4_shift_test.py`
 - `phase2_tier4_summary.py`
+- `phase2_tier4_plasticc_audit.py`
+- `phase2_tier4_feature_definition_audit.py`
+- `phase2_tier4_trial_lightcurve_normalization.py`
+- `phase2_tier4_windowed_plasticc.py`
+- `phase2_tier4_windowed_plasticc_audit.py`
+- `phase2_tier4_window_sweep.py`
+- `phase2_tier4_centroid_analysis.py`
 
 Results:
 
@@ -79,33 +92,60 @@ Plots:
 
 ## 5. Experiment Mapping
 
-Experiment A:
-Train on SPCC compact features and test on each shifted domain.
+Experiment A (completed):
+Class-conditional centroid analysis comparing SPCC and PLAsTiCC Ia/non-Ia populations in the compact feature space.
 
-Experiment B:
-Train on mixed-domain training sets and compare mean cross-domain performance.
+Result:
+Cross-survey Ia centroid shift exceeded within-survey class separation, indicating that direct transfer is fundamentally limited by feature-space domain shift.
 
-Experiment C:
-Compare gain, permutation, SHAP when available, and ablation ranks across domains.
+Experiment B (completed):
+Direct SPCC→PLAsTiCC transfer and mixed-domain evaluation.
 
-Experiment D:
-Retest `top_5`, `top_8`, `top_10`, and `compact` subsets across domains.
+Result:
+Transfer degradation was measurable but not catastrophic.
 
-Experiment E:
-Measure F1 drop under the five named on-disk SPCC shifts.
+Experiment C (completed):
+Feature-definition audit and PLAsTiCC compact-feature reconstruction review.
 
-## 6. Interpretation Rules
+Result:
+Several features had different effective meanings because PLAsTiCC compact features were initially extracted from full-history light curves.
 
-- Stable cross-domain F1 with stable feature rankings suggests survey-independent astrophysical signal.
-- Stable rankings with lower F1 suggests partial calibration or domain-calibration mismatch.
-- Unstable rankings and large F1 drop suggest dataset-specific dependence.
+Experiment D (completed):
+Event-window harmonization and transient-window sweep.
 
-## 7. Execution Order
+Result:
+SPCC-scale transient windows improved transfer performance, demonstrating that temporal-domain mismatch contributes significantly to the observed gap.
 
-1. `phase2_tier4_make_variants.py`
-2. `phase2_tier4_domain_swap.py`
-3. `phase2_tier4_mixed_training.py`
-4. `phase2_tier4_importance_domain.py`
-5. `phase2_tier4_minimal_domain.py`
-6. `phase2_tier4_shift_test.py`
-7. `phase2_tier4_summary.py`
+Experiment E (completed):
+Synthetic domain-shift perturbation studies and normalization trials.
+
+Result:
+Feature-space robustness was generally preserved, but normalization alone did not resolve survey mismatch.
+
+## 6. Final Tier-4 Interpretation
+
+- The compact 16-feature representation remains scientifically meaningful and interpretable.
+- Direct SPCC→PLAsTiCC transfer is limited by survey-dependent feature distributions.
+- Event-window harmonization reduces, but does not eliminate, cross-survey mismatch.
+- The dominant limitation is feature-space alignment rather than classifier instability.
+- Class-conditional centroid analysis demonstrates that Type Ia populations occupy substantially different regions of the compact feature space across surveys.
+- The Tier-4 outcome supports conditional portability rather than full survey universality.
+
+
+## 7. Completion Summary
+
+Completed analyses:
+
+1. Domain-shift perturbation study
+2. Mixed-domain training study
+3. Feature-importance stability analysis
+4. Minimal-feature transfer analysis
+5. Distribution-shift diagnostics
+6. Feature-definition audit
+7. Event-window harmonization study
+8. PLAsTiCC transient-window sweep
+9. Class-conditional centroid analysis
+
+Tier-4 is complete.
+
+Future work will proceed under a separate Tier-5 phase focused on invariant-feature discovery, feature-space harmonization, and cross-survey transfer using survey-stable compact features.
