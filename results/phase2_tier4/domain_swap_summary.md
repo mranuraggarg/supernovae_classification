@@ -10,6 +10,6 @@ Train on frozen SPCC compact data and evaluate on Tier 4 variant tables plus PLA
 | spcc | no_i | 0.652222 | 0.725259 | 0.918069 | -0.192008 |
 | spcc | short_span | 0.819421 | 0.902578 | 0.970567 | -0.024809 |
 | spcc | flux_scale | 0.772947 | 0.837949 | 0.946018 | -0.071283 |
-| spcc | plasticc | 0.551205 | 0.614908 | 0.688369 | -0.293025 |
+| spcc | plasticc | 0.537911 | 0.621234 | 0.707968 | -0.306319 |
 
 Plot: `plots/phase2_tier4/phase2_tier4_domain_swap.png`
