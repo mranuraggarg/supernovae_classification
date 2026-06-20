@@ -49,3 +49,5 @@ models/
 # Large survey datasets
 data/PLAsTiCC/
 data/SNE/
+data/phase2_tier4_trial_lc_norm/
+data/PLAsTiCC/features/

@@ -13,7 +13,10 @@ than a transient-scale event window.
 
 Outputs
 -------
+data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm60.csv
+data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm75.csv
 data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm90.csv
+data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm105.csv
 data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm120.csv
 data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm180.csv
 
@@ -46,7 +49,7 @@ FEATURE_DIR = Path("data/PLAsTiCC/features/windowed")
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 FEATURE_DIR.mkdir(parents=True, exist_ok=True)
 
-WINDOW_HALFWIDTHS_DAYS = [90.0, 120.0, 180.0]
+WINDOW_HALFWIDTHS_DAYS = [60.0, 75.0, 90.0, 105.0, 120.0, 180.0]
 ANCHOR_METHOD = "detected_max_flux"
 
 
@@ -368,7 +371,21 @@ def write_report(manifest: dict[str, Any]) -> None:
     (OUT_DIR / "windowed_plasticc_report.md").write_text("\n".join(lines))
 
 
-def main() -> None:
+
+def build_windowed_plasticc_tables(
+    window_halfwidths_days: list[float] | None = None,
+) -> dict[str, Any]:
+    """Build windowed PLAsTiCC compact-feature tables and return the manifest.
+
+    This function is intentionally callable from a separate sweep/evaluation
+    driver. It only builds the windowed feature tables. It does not overwrite
+    the active PLAsTiCC compact feature table and does not run audits or domain
+    swap evaluations.
+    """
+
+    if window_halfwidths_days is None:
+        window_halfwidths_days = list(WINDOW_HALFWIDTHS_DAYS)
+
     print("[INFO] Loading PLAsTiCC light curves and metadata...")
     lightcurves = pd.read_csv(PLASTICC_LIGHTCURVE_PATH)
     metadata = pd.read_csv(PLASTICC_METADATA_PATH)
@@ -379,10 +396,11 @@ def main() -> None:
         "source_lightcurve_path": PLASTICC_LIGHTCURVE_PATH,
         "source_metadata_path": PLASTICC_METADATA_PATH,
         "compact_features": list(COMPACT_FEATURES),
+        "window_halfwidths_days": list(window_halfwidths_days),
         "outputs": {},
     }
 
-    for halfwidth_days in WINDOW_HALFWIDTHS_DAYS:
+    for halfwidth_days in window_halfwidths_days:
         tag = f"{ANCHOR_METHOD}_pm{int(halfwidth_days)}"
         print(f"[INFO] Building {tag}...")
 
@@ -419,6 +437,8 @@ def main() -> None:
         )
     )
 
+    return manifest
 
-if __name__ == "__main__":
-    main()
+
+def main() -> None:
+    build_windowed_plasticc_tables()
