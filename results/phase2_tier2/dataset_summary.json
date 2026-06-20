@@ -1,0 +1,363 @@
+{
+  "artifact": "phase2_tier2_dataset_summary",
+  "sources": {
+    "compact_source_csv": "data/processed/phase2_tier1_compact_baseline.csv",
+    "full_tier1_csv": "data/processed/spcc_features_tier1.csv"
+  },
+  "binary_class_balance": {
+    "total": 21319,
+    "ia_count": 5088,
+    "non_ia_count": 16231,
+    "ia_fraction": 0.23866034992260424,
+    "non_ia_fraction": 0.7613396500773958
+  },
+  "original_label_balance": [
+    {
+      "label_name": "II",
+      "count": 12027,
+      "fraction": 0.5641446596932314
+    },
+    {
+      "label_name": "IIL",
+      "count": 425,
+      "fraction": 0.01993526900886533
+    },
+    {
+      "label_name": "IIP",
+      "count": 189,
+      "fraction": 0.0088653313945307
+    },
+    {
+      "label_name": "IIn",
+      "count": 789,
+      "fraction": 0.03700924058351705
+    },
+    {
+      "label_name": "Ia",
+      "count": 5088,
+      "fraction": 0.23866034992260424
+    },
+    {
+      "label_name": "Ib",
+      "count": 1438,
+      "fraction": 0.06745156902293728
+    },
+    {
+      "label_name": "Ibc",
+      "count": 259,
+      "fraction": 0.012148787466579108
+    },
+    {
+      "label_name": "Ic",
+      "count": 1104,
+      "fraction": 0.05178479290773488
+    }
+  ],
+  "split_balance": [
+    {
+      "split": "train",
+      "total": 13644,
+      "ia_count": 3256,
+      "non_ia_count": 10388,
+      "ia_fraction": 0.23863969510407504,
+      "non_ia_fraction": 0.761360304895925
+    },
+    {
+      "split": "validation",
+      "total": 3411,
+      "ia_count": 814,
+      "non_ia_count": 2597,
+      "ia_fraction": 0.23863969510407504,
+      "non_ia_fraction": 0.761360304895925
+    },
+    {
+      "split": "trainval",
+      "total": 17055,
+      "ia_count": 4070,
+      "non_ia_count": 12985,
+      "ia_fraction": 0.23863969510407504,
+      "non_ia_fraction": 0.761360304895925
+    },
+    {
+      "split": "test",
+      "total": 4264,
+      "ia_count": 1018,
+      "non_ia_count": 3246,
+      "ia_fraction": 0.23874296435272044,
+      "non_ia_fraction": 0.7612570356472795
+    },
+    {
+      "split": "all_rows",
+      "total": 21319,
+      "ia_count": 5088,
+      "non_ia_count": 16231,
+      "ia_fraction": 0.23866034992260424,
+      "non_ia_fraction": 0.7613396500773958
+    }
+  ],
+  "split_protocol": {
+    "random_state": 42,
+    "test_split": 0.2,
+    "validation_split_within_trainval": 0.2,
+    "selection_split": "train/validation",
+    "final_evaluation_split": "held-out test"
+  },
+  "compact_feature_count": 16,
+  "compact_features": [
+    "z_peak_flux",
+    "r_mean_flux",
+    "peak_color_g_minus_r",
+    "i_peak_flux",
+    "peak_color_r_minus_i",
+    "peak_color_i_minus_z",
+    "g_mean_flux",
+    "r_peak_flux",
+    "z_std_flux",
+    "i_amplitude",
+    "i_std_flux",
+    "time_span",
+    "z_time_of_peak",
+    "i_time_of_peak",
+    "r_time_of_peak",
+    "r_std_flux"
+  ],
+  "compact_feature_ranges": [
+    {
+      "feature": "z_peak_flux",
+      "count": 21319,
+      "min": 0.0,
+      "q25": 1.3259259557714662,
+      "median": 1.4985862088175177,
+      "mean": 1.5348929834587037,
+      "q75": 1.7005739263303243,
+      "max": 4.225851810818157,
+      "std": 0.3028971281083582
+    },
+    {
+      "feature": "r_mean_flux",
+      "count": 21319,
+      "min": -0.38206055585014004,
+      "q25": 0.26368775651152576,
+      "median": 0.4135419903224036,
+      "mean": 0.48215945830479884,
+      "q75": 0.6278813058932969,
+      "max": 3.3299222850419326,
+      "std": 0.3148996906704603
+    },
+    {
+      "feature": "peak_color_g_minus_r",
+      "count": 21319,
+      "min": -4.311089851535105,
+      "q25": -0.3081152097989577,
+      "median": 0.09553046813498876,
+      "mean": 0.10164638599250798,
+      "q75": 0.5776690681691216,
+      "max": 5.0,
+      "std": 0.725676370060166
+    },
+    {
+      "feature": "i_peak_flux",
+      "count": 21319,
+      "min": 0.4034637013453175,
+      "q25": 1.3160752221751852,
+      "median": 1.4848690327204024,
+      "mean": 1.5344735913963643,
+      "q75": 1.687707279624819,
+      "max": 4.018742095762382,
+      "std": 0.31418648319273795
+    },
+    {
+      "feature": "peak_color_r_minus_i",
+      "count": 21319,
+      "min": -2.5864690518194386,
+      "q25": -0.06348746753202342,
+      "median": 0.15556343342717027,
+      "mean": 0.2187414897398103,
+      "q75": 0.45583805242709946,
+      "max": 3.5191404353358196,
+      "std": 0.43918884667702685
+    },
+    {
+      "feature": "peak_color_i_minus_z",
+      "count": 21319,
+      "min": -5.0,
+      "q25": -0.18971179216229253,
+      "median": 0.010484954616383223,
+      "mean": 0.001418474242215109,
+      "q75": 0.21252362601308336,
+      "max": 2.9586584608573565,
+      "std": 0.3687813570058747
+    },
+    {
+      "feature": "g_mean_flux",
+      "count": 21319,
+      "min": -0.5883716394017363,
+      "q25": 0.03739583132764263,
+      "median": 0.19430638876099873,
+      "mean": 0.2604925602853961,
+      "q75": 0.40732211805646124,
+      "max": 3.12205196263325,
+      "std": 0.3396340207643675
+    },
+    {
+      "feature": "r_peak_flux",
+      "count": 21319,
+      "min": 0.4060289449636151,
+      "q25": 1.2185355052165279,
+      "median": 1.408748606184244,
+      "mean": 1.4513008587775391,
+      "q75": 1.6165280219872258,
+      "max": 4.13484620892477,
+      "std": 0.34106400974127704
+    },
+    {
+      "feature": "z_std_flux",
+      "count": 21319,
+      "min": 0.2962879561623056,
+      "q25": 0.7297503015968549,
+      "median": 0.8951267751785257,
+      "mean": 0.9384951943077063,
+      "q75": 1.0841387182086444,
+      "max": 3.686155130778472,
+      "std": 0.2910534514299739
+    },
+    {
+      "feature": "i_amplitude",
+      "count": 21319,
+      "min": 0.7512791039833423,
+      "q25": 1.4449265484226397,
+      "median": 1.5986810989071634,
+      "mean": 1.6421754280366925,
+      "q75": 1.7887020685182011,
+      "max": 4.018742095762382,
+      "std": 0.2835526428209127
+    },
+    {
+      "feature": "i_std_flux",
+      "count": 21319,
+      "min": 0.25311231831428666,
+      "q25": 0.7115049759608962,
+      "median": 0.8773276457550013,
+      "mean": 0.9282524091843768,
+      "q75": 1.059098536332927,
+      "max": 3.5093082027168716,
+      "std": 0.3009535199170941
+    },
+    {
+      "feature": "time_span",
+      "count": 21319,
+      "min": 30.0,
+      "q25": 95.1050000000032,
+      "median": 125.85200000000623,
+      "mean": 122.23241502884719,
+      "q75": 146.98400000000402,
+      "max": 174.90699999999924,
+      "std": 33.731346099583064
+    },
+    {
+      "feature": "z_time_of_peak",
+      "count": 21319,
+      "min": 0.0,
+      "q25": 44.10599999999977,
+      "median": 58.93399999999383,
+      "mean": 56.300105539659405,
+      "q75": 69.9059999999954,
+      "max": 174.90699999999924,
+      "std": 27.471202234903632
+    },
+    {
+      "feature": "i_time_of_peak",
+      "count": 21319,
+      "min": 0.0,
+      "q25": 42.020000000004075,
+      "median": 54.0,
+      "mean": 51.526696702472066,
+      "q75": 67.0,
+      "max": 157.8640000000014,
+      "std": 25.85842114039307
+    },
+    {
+      "feature": "r_time_of_peak",
+      "count": 21319,
+      "min": 0.0,
+      "q25": 37.07600000000457,
+      "median": 52.85599999999977,
+      "mean": 47.35720090060499,
+      "q75": 61.85199999999895,
+      "max": 171.79300000000512,
+      "std": 23.608784507603254
+    },
+    {
+      "feature": "r_std_flux",
+      "count": 21319,
+      "min": 0.18843063595576837,
+      "q25": 0.6103146417339166,
+      "median": 0.7867176931524436,
+      "mean": 0.841297185690996,
+      "q75": 0.9918632308363854,
+      "max": 3.591276453293221,
+      "std": 0.3243548675396786
+    }
+  ],
+  "dataset_context_ranges": [
+    {
+      "feature": "sim_z",
+      "count": 21319,
+      "min": 0.023,
+      "q25": 0.4852,
+      "median": 0.6655,
+      "mean": 0.6675357896711853,
+      "q75": 0.85775,
+      "max": 1.1,
+      "std": 0.23639511525825632
+    },
+    {
+      "feature": "observation_count",
+      "count": 21319,
+      "min": 16.0,
+      "q25": 67.0,
+      "median": 101.0,
+      "mean": 96.2925090295042,
+      "q75": 123.0,
+      "max": 161.0,
+      "std": 35.35942372653862
+    },
+    {
+      "feature": "observed_band_count",
+      "count": 21319,
+      "min": 4.0,
+      "q25": 4.0,
+      "median": 4.0,
+      "mean": 4.0,
+      "q75": 4.0,
+      "max": 4.0,
+      "std": 0.0
+    },
+    {
+      "feature": "time_span",
+      "count": 21319,
+      "min": 30.0,
+      "q25": 95.1050000000032,
+      "median": 125.85200000000623,
+      "mean": 122.23241502884719,
+      "q75": 146.98400000000402,
+      "max": 174.90699999999924,
+      "std": 33.731346099583064
+    },
+    {
+      "feature": "total_snr",
+      "count": 21319,
+      "min": 1.3977728949004555,
+      "q25": 2.1724215305175534,
+      "median": 2.3349539873371303,
+      "mean": 2.377809099679501,
+      "q75": 2.550481820412678,
+      "max": 3.7038512870509313,
+      "std": 0.3267744201227342
+    }
+  ],
+  "notes": [
+    "Split statistics use the existing Phase 2 Tier 2 stratified split protocol.",
+    "Feature ranges are computed from engineered processed features, not raw survey magnitude limits."
+  ]
+}

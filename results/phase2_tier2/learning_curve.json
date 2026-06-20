@@ -1,0 +1,98 @@
+{
+  "artifact": "phase2_tier2_learning_curve",
+  "protocol": {
+    "seed": 42,
+    "test_split": 0.2,
+    "validation_split": 0.2,
+    "train_fractions": [
+      0.1,
+      0.2,
+      0.4,
+      0.6,
+      0.8,
+      1.0
+    ],
+    "selected_params": {
+      "max_depth": 4,
+      "eta": 0.05,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "min_child_weight": 1.0,
+      "lambda": 1.0
+    },
+    "boosting_rounds": 400
+  },
+  "rows": [
+    {
+      "train_fraction": 0.1,
+      "train_size": 1365,
+      "validation_size": 3411,
+      "train_f1": 0.9984686064318529,
+      "validation_f1": 0.773286467486819,
+      "train_pr_auc": 1.0,
+      "validation_pr_auc": 0.8547883144952639,
+      "train_roc_auc": 1.0,
+      "validation_roc_auc": 0.946648892740537
+    },
+    {
+      "train_fraction": 0.2,
+      "train_size": 2729,
+      "validation_size": 3411,
+      "train_f1": 0.9651593773165308,
+      "validation_f1": 0.8099941894247531,
+      "train_pr_auc": 0.9985510179576769,
+      "validation_pr_auc": 0.8866407539377593,
+      "train_roc_auc": 0.9995645996608461,
+      "validation_roc_auc": 0.9624604651558829
+    },
+    {
+      "train_fraction": 0.4,
+      "train_size": 5457,
+      "validation_size": 3411,
+      "train_f1": 0.9371841155234657,
+      "validation_f1": 0.8352668213457076,
+      "train_pr_auc": 0.9885694349508547,
+      "validation_pr_auc": 0.9060969655718117,
+      "train_roc_auc": 0.9967823269209085,
+      "validation_roc_auc": 0.9686275697057368
+    },
+    {
+      "train_fraction": 0.6,
+      "train_size": 8187,
+      "validation_size": 3411,
+      "train_f1": 0.9124380457871134,
+      "validation_f1": 0.8491428571428572,
+      "train_pr_auc": 0.9787847737830389,
+      "validation_pr_auc": 0.913639268732701,
+      "train_roc_auc": 0.9940457902198175,
+      "validation_roc_auc": 0.9727383420105792
+    },
+    {
+      "train_fraction": 0.8,
+      "train_size": 10915,
+      "validation_size": 3411,
+      "train_f1": 0.9025677101653183,
+      "validation_f1": 0.8393665158371041,
+      "train_pr_auc": 0.9730892648948402,
+      "validation_pr_auc": 0.9136493772254,
+      "train_roc_auc": 0.9920517102397269,
+      "validation_roc_auc": 0.9727478029364822
+    },
+    {
+      "train_fraction": 1.0,
+      "train_size": 13644,
+      "validation_size": 3411,
+      "train_f1": 0.8928571428571429,
+      "validation_f1": 0.8452447945976366,
+      "train_pr_auc": 0.9662126853160196,
+      "validation_pr_auc": 0.9197192697880011,
+      "train_roc_auc": 0.9900978697306191,
+      "validation_roc_auc": 0.9751641234121019
+    }
+  ],
+  "outputs": {
+    "png": "results/phase2_tier2/learning_curve.png",
+    "pdf": "results/phase2_tier2/learning_curve.pdf",
+    "csv": "results/phase2_tier2/learning_curve.csv"
+  }
+}

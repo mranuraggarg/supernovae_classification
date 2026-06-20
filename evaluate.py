@@ -1,206 +1,149 @@
 import os
 import json
 import numpy as np
-import torch
 import pandas as pd
-import xgboost as xgb
-from joblib import load
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import precision_score, recall_score, roc_auc_score, precision_recall_curve, auc
-from sklearn.metrics import f1_score
+import torch
 from torch import nn
+from joblib import load
+from sklearn.metrics import precision_score, recall_score, f1_score, roc_auc_score, precision_recall_curve, auc
+from sklearn.ensemble import RandomForestClassifier
+import xgboost as xgb
 
-
-# ✅ Load Best Hyperparameters from JSON Results
-def load_best_params(result_dirs):
-    best_params_dict = {}
-    for model_name, result_path in result_dirs.items():
-        if os.path.exists(result_path):
-            with open(result_path, "r") as f:
-                saved_result = json.load(f)
-                best_params_dict[model_name] = saved_result.get("best_params", {})
-        else:
-            print(f"⚠️ {result_path} not found! Skipping best parameters.")
-
-    return best_params_dict
-
-# ✅ Main Evaluation Function
-def evaluate(X_test, Y_test):
-    # ✅ Define Paths for Models & Results
-    model_dirs = {
-        "linear_without_SMOTE": "models/linear/linear_without_SMOTE.pt",
-        "linear_with_SMOTE": "models/linear/linear_with_SMOTE.pt",
-        "xgboost_without_SMOTE": "models/xgboost/xgboost_without_SMOTE.json",
-        "xgboost_with_SMOTE": "models/xgboost/xgboost_with_SMOTE.json",
-        "xgboost_optimized": "models/xgboost_optimized/xgboost_optimized.json",
-        "random_forest_without_SMOTE": "models/random_forest/random_forest_without_SMOTE.pkl",
-        "random_forest_with_SMOTE": "models/random_forest/random_forest_with_SMOTE.pkl"
+# Fully synced directory structure (match your actual filesystem)
+MODEL_PATHS = {
+    "linear_without_SMOTE": {
+        "model": "models/linear/linear_without_SMOTE.pt",
+        "results": "models/linear/linear_without_SMOTE_results.json",
+        "scaler": "models/linear/linear_without_SMOTE_scaler.pkl"
+    },
+    "linear_with_SMOTE": {
+        "model": "models/linear/linear_with_SMOTE.pt",
+        "results": "models/linear/linear_with_SMOTE_results.json",
+        "scaler": "models/linear/linear_with_SMOTE_scaler.pkl"
+    },
+    "random_forest_without_SMOTE": {
+        "model": "models/random_forest/without_SMOTE/model.pkl",
+        "results": "models/random_forest/without_SMOTE/results.json",
+        "scaler": "models/random_forest/without_SMOTE/scaler.pkl"
+    },
+    "random_forest_with_SMOTE": {
+        "model": "models/random_forest/with_SMOTE/model.pkl",
+        "results": "models/random_forest/with_SMOTE/results.json",
+        "scaler": "models/random_forest/with_SMOTE/scaler.pkl"
+    },
+    "xgboost_without_SMOTE": {
+        "model": "models/xgboost/without_SMOTE/model.pkl",
+        "results": "models/xgboost/without_SMOTE/results.json",
+        "scaler": "models/xgboost/without_SMOTE/scaler.pkl"
+    },
+    "xgboost_with_SMOTE": {
+        "model": "models/xgboost/with_SMOTE/model.pkl",
+        "results": "models/xgboost/with_SMOTE/results.json",
+        "scaler": "models/xgboost/with_SMOTE/scaler.pkl"
     }
+}
 
-    result_dirs = {
-        "linear_without_SMOTE": "models/linear/linear_without_SMOTE_results.json",
-        "linear_with_SMOTE": "models/linear/linear_SMOTE_results.json",
-        "xgboost_without_SMOTE": "models/xgboost/xgboost_without_SMOTE_results.json",
-        "xgboost_with_SMOTE": "models/xgboost/xgboost_with_SMOTE_results.json",
-        "xgboost_optimized": "models/xgboost_optimized/xgboost_optimized_results.json",
-        "random_forest_without_SMOTE": "models/random_forest/random_forest_without_SMOTE_results.json",
-        "random_forest_with_SMOTE": "models/random_forest/random_forest_with_SMOTE_results.json"
-    }
+# Bootstrap confidence interval calculation
+def bootstrap(model_func, X_test, Y_test, n_iterations=1000, random_state=42):
+    np.random.seed(random_state)
+    metrics_list = []
+    for _ in range(n_iterations):
+        indices = np.random.choice(len(X_test), len(X_test), replace=True)
+        X_sample = X_test[indices]
+        Y_sample = Y_test[indices]
+        metrics = model_func(X_sample, Y_sample)
+        metrics_list.append(metrics)
 
-    scaler_paths = {
-        "xgboost_without_SMOTE": "models/xgboost/xgboost_scaler_without_SMOTE.pkl",
-        "xgboost_with_SMOTE": "models/xgboost/xgboost_scaler_with_SMOTE.pkl",
-        "xgboost_optimized": "models/xgboost_optimized/xgboost_scaler.pkl",
-        "random_forest_without_SMOTE": "models/random_forest/random_forest_without_SMOTE_scaler.pkl",
-        "random_forest_with_SMOTE": "models/random_forest/random_forest_with_SMOTE_scaler.pkl"
-    }
+    df = pd.DataFrame(metrics_list, columns=['precision', 'recall', 'f1', 'roc_auc', 'pr_auc'])
+    
+    summary = pd.DataFrame({
+        'mean': df.mean(),
+        'lower': df.apply(lambda x: np.percentile(x, 2.5)),
+        'upper': df.apply(lambda x: np.percentile(x, 97.5))
+    })
+    
+    return summary
 
-    X_test_flat = X_test.reshape(X_test.shape[0], -1)  # Flatten for consistency
+# Evaluation metrics calculation
+def metrics(y_true, y_pred, y_probs):
+    precision = precision_score(y_true, y_pred, average='weighted')
+    recall = recall_score(y_true, y_pred, average='weighted')
+    f1 = f1_score(y_true, y_pred, average='weighted')
+    roc_auc = roc_auc_score(y_true, y_probs)
+    p, r, _ = precision_recall_curve(y_true, y_probs)
+    pr_auc = auc(r, p)
+    return precision, recall, f1, roc_auc, pr_auc
+
+# Linear model class (PyTorch)
+class LinearClassifier(nn.Module):
+    def __init__(self, input_size, num_classes):
+        super().__init__()
+        self.linear = nn.Linear(input_size, num_classes)
+    def forward(self, x):
+        return self.linear(x)
+
+# Linear evaluation
+def evaluate_linear(model_path, scaler_path, X_test, Y_test):
+    scaler = load(scaler_path)
+    X_scaled = scaler.transform(X_test)
+    model = LinearClassifier(X_scaled.shape[1], 2)
+    state_dict = torch.load(model_path, map_location=torch.device('cpu'))
+    model.load_state_dict(state_dict)
+    model.eval()
+    with torch.no_grad():
+        X_tensor = torch.tensor(X_scaled, dtype=torch.float32)
+        probs = model(X_tensor).softmax(1)[:, 1].numpy()
+    preds = (probs >= 0.5).astype(int)
+    return metrics(Y_test, preds, probs)
+
+# Random Forest evaluation
+def evaluate_random_forest(model_path, scaler_path, X_test, Y_test):
+    scaler = load(scaler_path)
+    X_scaled = scaler.transform(X_test)
+    model = load(model_path)
+    probs = model.predict_proba(X_scaled)[:, 1]
+    preds = (probs >= 0.5).astype(int)
+    return metrics(Y_test, preds, probs)
+
+# XGBoost evaluation
+def evaluate_xgboost(model_path, scaler_path, X_test, Y_test):
+    scaler = load(scaler_path)
+    X_scaled = scaler.transform(X_test)
+    # Updated XGBoost model definition with optimized hyperparameters
+    model = xgb.XGBClassifier(
+        n_estimators=300, 
+        max_depth=7, 
+        learning_rate=0.04, 
+        subsample=0.85, 
+        colsample_bytree=0.8,
+        gamma=0, 
+        reg_alpha=0.01, 
+        reg_lambda=1
+    )
+    model = load(model_path)
+    probs = model.predict_proba(X_scaled)[:, 1]
+    preds = (probs >= 0.5).astype(int)
+    return metrics(Y_test, preds, probs)
+
+# Master evaluation function
+def evaluate_all(X_test, Y_test):
+    results = {}
+    X_test_flat = X_test.reshape(len(X_test), -1)
     Y_test_labels = np.argmax(Y_test, axis=1)
 
-    # ✅ Load Scalers
-    scalers = {}
-    for model_name, scaler_path in scaler_paths.items():
-        if os.path.exists(scaler_path):
-            scalers[model_name] = load(scaler_path)
-            print(f"✅ Loaded Scaler for {model_name} from: {scaler_path}")
-        else:
-            print(f"⚠️ Scaler for {model_name} not found. Proceeding without scaling.")
+    for model_key, paths in MODEL_PATHS.items():
+        print(f"\n🚀 Evaluating: {model_key}")
 
-    # ✅ Scale X_test for applicable models
-    X_test_scaled = {model: scalers[model].transform(X_test_flat) if model in scalers else X_test_flat for model in scalers}
+        if "linear" in model_key:
+            evaluator = lambda X, Y: evaluate_linear(paths['model'], paths['scaler'], X, np.argmax(Y, 1))
+        elif "random_forest" in model_key:
+            evaluator = lambda X, Y: evaluate_random_forest(paths['model'], paths['scaler'], X, np.argmax(Y, 1))
+        elif "xgboost" in model_key:
+            evaluator = lambda X, Y: evaluate_xgboost(paths['model'], paths['scaler'], X, np.argmax(Y, 1))
 
-    # ✅ Load Linear Model Class
-    class LinearClassifier(nn.Module):
-        def __init__(self, input_size, num_classes):
-            super(LinearClassifier, self).__init__()
-            self.fc = nn.Linear(input_size, num_classes)
+        bootstrap_summary = bootstrap(evaluator, X_test_flat, Y_test)
+        print(bootstrap_summary)
 
-        def forward(self, x):
-            return self.fc(x)
+        results[model_key] = bootstrap_summary
 
-    # ✅ Load and Evaluate Linear Models
-    def evaluate_linear_model(model_path, X_test, Y_test):
-        device = torch.device("mps" if torch.backends.mps.is_available() else "cuda" if torch.cuda.is_available() else "cpu")
-        
-        # Load Model
-        model = LinearClassifier(X_test.shape[1], Y_test.shape[1]).to(device)
-        model.load_state_dict(torch.load(model_path, weights_only=True))
-        model.eval()
-
-        # Convert to PyTorch Tensor
-        X_test_tensor = torch.tensor(X_test, dtype=torch.float32).to(device)
-        Y_test_tensor = torch.tensor(np.argmax(Y_test, axis=1), dtype=torch.long).to(device)
-
-        with torch.no_grad():
-            Y_probs = model(X_test_tensor).softmax(dim=1)[:, 1].cpu().numpy()
-            Y_pred = (Y_probs >= 0.5).astype(int)
-
-        # Compute Metrics
-        p, r, thresholds = precision_recall_curve(Y_test_tensor.cpu().numpy(), Y_probs)
-        return {
-            "precision": precision_score(Y_test_tensor.cpu().numpy(), Y_pred, average="weighted"),
-            "recall": recall_score(Y_test_tensor.cpu().numpy(), Y_pred, average="weighted"),
-            "f1_score": f1_score(Y_test_tensor.cpu().numpy(), Y_pred, average="weighted"),
-            "roc_auc": roc_auc_score(Y_test_tensor.cpu().numpy(), Y_probs),
-            "pr_auc": auc(r, p)
-        }
-
-    # ✅ Load and Evaluate XGBoost Models
-    def evaluate_xgboost_model(model_path, X_test, Y_test):
-        model = xgb.Booster()
-        model.load_model(model_path)
-
-        # Convert test data to DMatrix
-        dtest = xgb.DMatrix(X_test)
-        
-        # Predict probabilities
-        Y_pred_probs = model.predict(dtest)
-
-        # Convert Probabilities to Class Labels
-        Y_pred = (Y_pred_probs >= 0.5).astype(int)
-
-        # Compute Metrics
-        p, r, thresholds = precision_recall_curve(Y_test, Y_pred_probs)
-        return {
-            "precision": precision_score(Y_test, Y_pred, average="weighted"),
-            "recall": recall_score(Y_test, Y_pred, average="weighted"),
-            "f1_score": f1_score(Y_test, Y_pred, average="weighted"),
-            "roc_auc": roc_auc_score(Y_test, Y_pred_probs),
-            "pr_auc": auc(r, p)
-        }
-
-    # ✅ Load and Evaluate Random Forest Models
-    def evaluate_random_forest_model(model_path, X_test, Y_test):
-        model = load(model_path)
-        Y_pred = model.predict(X_test)
-        Y_probs = model.predict_proba(X_test)[:, 1]
-
-        # Compute Metrics
-        p, r, thresholds = precision_recall_curve(Y_test, Y_probs)
-        return {
-            "precision": precision_score(Y_test, Y_pred, average="weighted"),
-            "recall": recall_score(Y_test, Y_pred, average="weighted"),
-            "f1_score": f1_score(Y_test, Y_pred, average="weighted"),
-            "roc_auc": roc_auc_score(Y_test, Y_probs),
-            "pr_auc": auc(r, p)
-        }
-
-    # ✅ Gather All Model Results
-    all_results = {}
-
-    for model_name, model_path in model_dirs.items():
-        print(f"\n🚀 Evaluating {model_name}...")
-
-        if "linear" in model_name:
-            all_results[model_name] = evaluate_linear_model(model_path, X_test_flat, Y_test)
-        elif "xgboost" in model_name:
-            # ✅ Identify correct scaler for each XGBoost variant
-            if "optimized" in model_name:
-                scaler_key = "xgboost_optimized"
-            elif "with_SMOTE" in model_name:
-                scaler_key = "xgboost_with_SMOTE"
-            else:
-                scaler_key = "xgboost_without_SMOTE"
-            
-            scaled_X_test = X_test_scaled.get(scaler_key, X_test_flat)  # Use the correct scaler if available
-            all_results[model_name] = evaluate_xgboost_model(model_path, scaled_X_test, Y_test_labels)
-        elif "random_forest" in model_name:
-            scaler_key = "random_forest_with_SMOTE" if "with_SMOTE" in model_name else "random_forest_without_SMOTE"
-            scaled_X_test = X_test_scaled.get(scaler_key, X_test_flat)  # Use the correct scaler if available
-            all_results[model_name] = evaluate_random_forest_model(model_path, scaled_X_test, Y_test_labels)
-
-    # ✅ Load Best Hyperparameters
-    best_params_dict = load_best_params(result_dirs)
-
-    # ✅ Add Best Parameters to Results
-    for model_name in all_results:
-        all_results[model_name]["best_params"] = best_params_dict.get(model_name, "N/A")
-
-    # ✅ Create Final Comparison Table
-    df_final_results = pd.DataFrame.from_dict(all_results, orient="index")
-    df_final_results.reset_index(inplace=True)
-    df_final_results.rename(columns={"index": "Model"}, inplace=True)
-
-    import textwrap
-
-    # ✅ Function to format best_params with word wrapping
-    def format_best_params(params, width=60):
-        if isinstance(params, dict):
-            formatted_params = ", ".join([f"{k}: {round(v, 6) if isinstance(v, float) else v}" for k, v in params.items()])
-            return "\n".join(textwrap.wrap(formatted_params, width))  # Wrap text
-        return params
-
-    # ✅ Apply formatting
-    df_final_results["best_params"] = df_final_results["best_params"].apply(lambda x: format_best_params(x, width=50))
-
-    # ✅ Adjust display settings
-    pd.set_option("display.max_colwidth", None)  # Ensure full text visibility
-    pd.set_option("display.float_format", "{:.4f}".format)  # Format floats for uniformity
-
-    # ✅ Print Final Table with improved formatting
-    print("\n📊 **Final Model Comparison Table**\n")
-    print(df_final_results.to_markdown(index=False, tablefmt="grid"))  # `grid` improves readability
-
-    # ✅ Return Final Results as Dictionary
-    return all_results
+    return results

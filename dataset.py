@@ -120,7 +120,7 @@ def load_data(path="data/unblind_nohostz", classifier=sn1a_classifier, test_frac
 
 	np.random.seed(seed)
 	
-	with open(path+'_1.csv', 'rb') as csvfile:
+	with open(path+'_1.csv', 'r', newline='') as csvfile:
 		reader = csv.reader(csvfile)
 		for row in reader:
 			id = int(row[0])
@@ -152,8 +152,7 @@ def load_data(path="data/unblind_nohostz", classifier=sn1a_classifier, test_frac
 
 		last_id = None
 		first_time = True
-
-		with open(path+'_'+str(i)+'.csv', 'rb') as csvfile:
+		with open(path+'_'+str(i)+'.csv', 'r', newline='') as csvfile:
 			reader = csv.reader(csvfile)
 			for row in reader:
 				id = int(row[0])

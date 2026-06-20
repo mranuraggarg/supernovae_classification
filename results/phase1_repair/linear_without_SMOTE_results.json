@@ -1,0 +1,11 @@
+{
+    "model": "linear_without_SMOTE",
+    "device": "mps",
+    "precision": 0.7446003173331825,
+    "recall": 0.7253108139807647,
+    "f1_score": 0.7334327544775433,
+    "roc_auc": 0.7223389136685705,
+    "pr_auc": 0.8872757445515509,
+    "best_epoch": 100,
+    "best_val_f1": 0.719157990164542
+}

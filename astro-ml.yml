@@ -1,0 +1,27 @@
+name: astro-ml
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - numpy=1.26.4
+  - pandas
+  - scikit-learn
+  - xgboost
+  - matplotlib
+  - seaborn
+  - tqdm
+  - joblib
+  - jupyterlab
+  - ipython
+  - imbalanced-learn
+  - optuna
+  - shap
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pip
+  - pip:
+      - datasets
+      - tabulate

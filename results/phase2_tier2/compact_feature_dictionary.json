@@ -1,0 +1,208 @@
+{
+  "artifact": "phase2_tier2_compact_feature_dictionary",
+  "source_files": {
+    "tier2_common": "phase2_tier2_common.py",
+    "feature_registry": "feature_pipeline/extraction/feature_registry.py",
+    "interpretation_table": "results/phase2_tier1/phase2_tier1_compact_baseline_interpretation_table.csv"
+  },
+  "feature_count": 16,
+  "rows": [
+    {
+      "order": 1,
+      "feature": "z_peak_flux",
+      "feature_group": "brightness",
+      "definition": "Log-compressed maximum reconstructed z-band flux stored as log10(1 + peak flux).",
+      "formula_or_computation": "log10(1 + max(reconstructed z-band flux, 0))",
+      "physical_interpretation": "Band-specific peak brightness is a strong classifier signal, consistent with transient luminosity structure.",
+      "directional_interpretation": "higher values increase Ia probability",
+      "importance_label": "dominant",
+      "shap_rank": "2",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 2,
+      "feature": "r_mean_flux",
+      "feature_group": "brightness",
+      "definition": "Signed-log mean reconstructed r-band flux stored as sign(value) * log10(1 + abs(value)).",
+      "formula_or_computation": "sign(mean r-band flux) * log10(1 + abs(mean r-band flux))",
+      "physical_interpretation": "Average r-band brightness encodes scale information beyond a single peak snapshot.",
+      "directional_interpretation": "higher values decrease Ia probability",
+      "importance_label": "dominant",
+      "shap_rank": "1",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 3,
+      "feature": "peak_color_g_minus_r",
+      "feature_group": "color",
+      "definition": "Magnitude-style color proxy computed as -2.5 * log10(g-band peak flux / r-band peak flux), then clipped to [-5, 5].",
+      "formula_or_computation": "-2.5 * log10(g_peak_flux / r_peak_flux), clipped to [-5, 5]",
+      "physical_interpretation": "Color near peak captures temperature or spectral-slope differences characteristic of Ia evolution.",
+      "directional_interpretation": "higher values increase Ia probability",
+      "importance_label": "strong",
+      "shap_rank": "7",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 4,
+      "feature": "i_peak_flux",
+      "feature_group": "brightness",
+      "definition": "Log-compressed maximum reconstructed i-band flux stored as log10(1 + peak flux).",
+      "formula_or_computation": "log10(1 + max(reconstructed i-band flux, 0))",
+      "physical_interpretation": "i-band peak brightness contributes strongly to separating Ia from non-Ia events.",
+      "directional_interpretation": "higher values increase Ia probability",
+      "importance_label": "strong",
+      "shap_rank": "6",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 5,
+      "feature": "peak_color_r_minus_i",
+      "feature_group": "color",
+      "definition": "Magnitude-style color proxy computed as -2.5 * log10(r-band peak flux / i-band peak flux), then clipped to [-5, 5].",
+      "formula_or_computation": "-2.5 * log10(r_peak_flux / i_peak_flux), clipped to [-5, 5]",
+      "physical_interpretation": "r-i color acts as a spectral-slope proxy near peak.",
+      "directional_interpretation": "See dependence plot.",
+      "importance_label": "moderate",
+      "shap_rank": "11",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 6,
+      "feature": "peak_color_i_minus_z",
+      "feature_group": "color",
+      "definition": "Magnitude-style color proxy computed as -2.5 * log10(i-band peak flux / z-band peak flux), then clipped to [-5, 5].",
+      "formula_or_computation": "-2.5 * log10(i_peak_flux / z_peak_flux), clipped to [-5, 5]",
+      "physical_interpretation": "i-z color contributes to distinguishing redder or later-phase light-curve behavior.",
+      "directional_interpretation": "See dependence plot.",
+      "importance_label": "moderate",
+      "shap_rank": "13",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 7,
+      "feature": "g_mean_flux",
+      "feature_group": "brightness",
+      "definition": "Signed-log mean reconstructed g-band flux stored as sign(value) * log10(1 + abs(value)).",
+      "formula_or_computation": "sign(mean g-band flux) * log10(1 + abs(mean g-band flux))",
+      "physical_interpretation": "Mean g-band brightness adds complementary information to peak-only brightness proxies.",
+      "directional_interpretation": "higher values decrease Ia probability",
+      "importance_label": "strong",
+      "shap_rank": "3",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 8,
+      "feature": "r_peak_flux",
+      "feature_group": "brightness",
+      "definition": "Log-compressed maximum reconstructed r-band flux stored as log10(1 + peak flux).",
+      "formula_or_computation": "log10(1 + max(reconstructed r-band flux, 0))",
+      "physical_interpretation": "r-band peak brightness remains informative even after compact pruning.",
+      "directional_interpretation": "See dependence plot.",
+      "importance_label": "moderate",
+      "shap_rank": "12",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 9,
+      "feature": "z_std_flux",
+      "feature_group": "variability",
+      "definition": "Log-compressed standard deviation of reconstructed z-band flux stored as log10(1 + std).",
+      "formula_or_computation": "log10(1 + standard deviation of reconstructed z-band flux)",
+      "physical_interpretation": "Spread in z-band flux captures shape or variability around peak.",
+      "directional_interpretation": "See dependence plot.",
+      "importance_label": "moderate",
+      "shap_rank": "10",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 10,
+      "feature": "i_amplitude",
+      "feature_group": "variability",
+      "definition": "Log-compressed reconstructed i-band amplitude stored as log10(1 + max peak-to-trough amplitude).",
+      "formula_or_computation": "log10(1 + max peak-to-trough reconstructed i-band amplitude)",
+      "physical_interpretation": "i-band amplitude captures reconstructed peak-to-trough flux contrast as a light-curve-shape proxy.",
+      "directional_interpretation": "See dependence plot.",
+      "importance_label": "weaker",
+      "shap_rank": "16",
+      "manuscript_caution": "This is a reconstructed i-band peak-to-trough amplitude proxy, not a direct bolometric amplitude."
+    },
+    {
+      "order": 11,
+      "feature": "i_std_flux",
+      "feature_group": "variability",
+      "definition": "Log-compressed standard deviation of reconstructed i-band flux stored as log10(1 + std).",
+      "formula_or_computation": "log10(1 + standard deviation of reconstructed i-band flux)",
+      "physical_interpretation": "i-band variability helps capture light-curve shape, not just scale.",
+      "directional_interpretation": "higher values increase Ia probability",
+      "importance_label": "strong",
+      "shap_rank": "4",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 12,
+      "feature": "time_span",
+      "feature_group": "temporal",
+      "definition": "Maximum normalized observation time minus minimum normalized observation time.",
+      "formula_or_computation": "max(normalized observation time) - min(normalized observation time)",
+      "physical_interpretation": "Observed temporal coverage contributes because different classes occupy different effective time windows.",
+      "directional_interpretation": "higher values increase Ia probability",
+      "importance_label": "strong",
+      "shap_rank": "5",
+      "manuscript_caution": "This is observational time coverage, not a measured rise time or decline time."
+    },
+    {
+      "order": 13,
+      "feature": "z_time_of_peak",
+      "feature_group": "temporal",
+      "definition": "Normalized time at which reconstructed z-band flux reaches its maximum.",
+      "formula_or_computation": "normalized time coordinate at maximum reconstructed z-band flux",
+      "physical_interpretation": "Inter-band timing helps capture peak-lag structure in the transient.",
+      "directional_interpretation": "higher values decrease Ia probability",
+      "importance_label": "moderate",
+      "shap_rank": "8",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 14,
+      "feature": "i_time_of_peak",
+      "feature_group": "temporal",
+      "definition": "Normalized time at which reconstructed i-band flux reaches its maximum.",
+      "formula_or_computation": "normalized time coordinate at maximum reconstructed i-band flux",
+      "physical_interpretation": "Peak timing in i band contributes to the time-evolution signature of Ia light curves.",
+      "directional_interpretation": "See dependence plot.",
+      "importance_label": "moderate",
+      "shap_rank": "9",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 15,
+      "feature": "r_time_of_peak",
+      "feature_group": "temporal",
+      "definition": "Normalized time at which reconstructed r-band flux reaches its maximum.",
+      "formula_or_computation": "normalized time coordinate at maximum reconstructed r-band flux",
+      "physical_interpretation": "Peak timing in r band reflects band-lag physics and phase structure.",
+      "directional_interpretation": "See dependence plot.",
+      "importance_label": "moderate",
+      "shap_rank": "14",
+      "manuscript_caution": ""
+    },
+    {
+      "order": 16,
+      "feature": "r_std_flux",
+      "feature_group": "variability",
+      "definition": "Log-compressed standard deviation of reconstructed r-band flux stored as log10(1 + std).",
+      "formula_or_computation": "log10(1 + standard deviation of reconstructed r-band flux)",
+      "physical_interpretation": "r-band spread adds another light-curve-shape cue after pruning redundant amplitudes.",
+      "directional_interpretation": "See dependence plot.",
+      "importance_label": "weaker",
+      "shap_rank": "15",
+      "manuscript_caution": ""
+    }
+  ],
+  "notes": [
+    "time_span is observational time coverage, not a rise-time or decline-time feature.",
+    "Color features are peak-flux-ratio proxies clipped to [-5, 5].",
+    "Definitions are derived from the existing feature registry and compact interpretation table."
+  ]
+}

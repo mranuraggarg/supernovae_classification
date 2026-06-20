@@ -1,0 +1,15 @@
+{
+    "model": "random_forest_with_SMOTE",
+    "precision": 0.9239491718233633,
+    "recall": 0.9209476894205958,
+    "f1_score": 0.9220151513743691,
+    "roc_auc": 0.9679196659895188,
+    "pr_auc": 0.9905394112414753,
+    "best_params": {
+        "n_estimators": 600,
+        "max_depth": 41,
+        "min_samples_split": 3,
+        "min_samples_leaf": 2,
+        "max_features": "sqrt"
+    }
+}

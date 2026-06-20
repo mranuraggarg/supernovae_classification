@@ -1,0 +1,91 @@
+{
+  "experiment": "minimal_core",
+  "baseline_reference": {
+    "baseline_metrics": {
+      "f1": 0.8442299254,
+      "roc_auc": 0.9765883838,
+      "pr_auc": 0.927760881
+    },
+    "baseline_manifest_found": false,
+    "baseline_metrics_found": false,
+    "compact_feature_count": 16,
+    "compact_features": [
+      "z_peak_flux",
+      "r_mean_flux",
+      "peak_color_g_minus_r",
+      "i_peak_flux",
+      "peak_color_r_minus_i",
+      "peak_color_i_minus_z",
+      "g_mean_flux",
+      "r_peak_flux",
+      "z_std_flux",
+      "i_amplitude",
+      "i_std_flux",
+      "time_span",
+      "z_time_of_peak",
+      "i_time_of_peak",
+      "r_time_of_peak",
+      "r_std_flux"
+    ],
+    "source_csv": "data/processed/phase2_tier1_compact_baseline.csv",
+    "split_manifest": {
+      "random_state": 42,
+      "train_count": 13644,
+      "validation_count": 3411,
+      "trainval_count": 17055,
+      "test_count": 4264
+    }
+  },
+  "baseline_parity_check": {
+    "metrics": {
+      "accuracy": 0.9167448405253283,
+      "precision": 0.7628865979381443,
+      "recall": 0.9449901768172888,
+      "f1": 0.8442299254058797,
+      "roc_auc": 0.9765883838292134,
+      "pr_auc": 0.9277608810161283
+    },
+    "delta_f1": 5.879741138414829e-12,
+    "delta_roc_auc": 2.9213409469264207e-11,
+    "delta_pr_auc": 1.612832090103211e-11
+  },
+  "feature_ablation_dependency": "results/phase2_tier2/feature_ablation_metrics.csv",
+  "rows": [
+    {
+      "subset_name": "top_5",
+      "selection_rule": "ablation-plus-importance with minimum one feature per physical family when possible",
+      "feature_count": 5,
+      "feature_list": "z_peak_flux, peak_color_i_minus_z, z_std_flux, time_span, peak_color_r_minus_i",
+      "f1": 0.7069729947601773,
+      "roc_auc": 0.9116788140035129,
+      "pr_auc": 0.7459031823458526,
+      "delta_f1": -0.1372569306398227,
+      "delta_roc_auc": -0.0649095697964871,
+      "delta_pr_auc": -0.18185769865414736
+    },
+    {
+      "subset_name": "top_8",
+      "selection_rule": "ablation-plus-importance with minimum one feature per physical family when possible",
+      "feature_count": 8,
+      "feature_list": "z_peak_flux, peak_color_i_minus_z, z_std_flux, time_span, peak_color_r_minus_i, r_time_of_peak, i_time_of_peak, r_mean_flux",
+      "f1": 0.7963994856408058,
+      "roc_auc": 0.9611436533039909,
+      "pr_auc": 0.8743605319171213,
+      "delta_f1": -0.04783043975919421,
+      "delta_roc_auc": -0.01544473049600914,
+      "delta_pr_auc": -0.05340034908287872
+    },
+    {
+      "subset_name": "top_10",
+      "selection_rule": "ablation-plus-importance with minimum one feature per physical family when possible",
+      "feature_count": 10,
+      "feature_list": "z_peak_flux, peak_color_i_minus_z, z_std_flux, time_span, peak_color_r_minus_i, r_time_of_peak, i_time_of_peak, r_mean_flux, peak_color_g_minus_r, z_time_of_peak",
+      "f1": 0.8385093167701864,
+      "roc_auc": 0.9731647958436377,
+      "pr_auc": 0.9168996508123186,
+      "delta_f1": -0.005720608629813606,
+      "delta_roc_auc": -0.0034235879563623284,
+      "delta_pr_auc": -0.01086123018768137
+    }
+  ]
+}

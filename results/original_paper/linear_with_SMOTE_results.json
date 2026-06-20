@@ -1,0 +1,7 @@
+{
+    "model": "linear_with_SMOTE",
+    "precision": 0.6272577996715928,
+    "recall": 0.6272577996715928,
+    "f1_score": 0.6272577996715928,
+    "roc_auc": 0
+}

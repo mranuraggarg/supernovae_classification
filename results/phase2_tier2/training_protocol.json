@@ -1,0 +1,137 @@
+{
+  "artifact": "phase2_tier2_training_protocol",
+  "source_files": {
+    "tier1_benchmarks": "phase2_tier1_benchmarks.py",
+    "tier1_xgb_importance": "phase2_tier1_xgb_importance.py",
+    "tier2_common": "phase2_tier2_common.py"
+  },
+  "compact_feature_count": 16,
+  "compact_features": [
+    "z_peak_flux",
+    "r_mean_flux",
+    "peak_color_g_minus_r",
+    "i_peak_flux",
+    "peak_color_r_minus_i",
+    "peak_color_i_minus_z",
+    "g_mean_flux",
+    "r_peak_flux",
+    "z_std_flux",
+    "i_amplitude",
+    "i_std_flux",
+    "time_span",
+    "z_time_of_peak",
+    "i_time_of_peak",
+    "r_time_of_peak",
+    "r_std_flux"
+  ],
+  "split_protocol": {
+    "random_state": 42,
+    "test_split": 0.2,
+    "validation_split_within_trainval": 0.2,
+    "split_type": "stratified by binary Ia/non-Ia label",
+    "model_selection_partitions": [
+      "train",
+      "validation"
+    ],
+    "final_fit_partition": "trainval",
+    "final_evaluation_partition": "test"
+  },
+  "split_balance": [
+    {
+      "split": "train",
+      "total": 13644,
+      "ia_count": 3256,
+      "non_ia_count": 10388,
+      "ia_fraction": 0.23863969510407504,
+      "non_ia_fraction": 0.761360304895925
+    },
+    {
+      "split": "validation",
+      "total": 3411,
+      "ia_count": 814,
+      "non_ia_count": 2597,
+      "ia_fraction": 0.23863969510407504,
+      "non_ia_fraction": 0.761360304895925
+    },
+    {
+      "split": "trainval",
+      "total": 17055,
+      "ia_count": 4070,
+      "non_ia_count": 12985,
+      "ia_fraction": 0.23863969510407504,
+      "non_ia_fraction": 0.761360304895925
+    },
+    {
+      "split": "test",
+      "total": 4264,
+      "ia_count": 1018,
+      "non_ia_count": 3246,
+      "ia_fraction": 0.23874296435272044,
+      "non_ia_fraction": 0.7612570356472795
+    },
+    {
+      "split": "all_rows",
+      "total": 21319,
+      "ia_count": 5088,
+      "non_ia_count": 16231,
+      "ia_fraction": 0.23866034992260424,
+      "non_ia_fraction": 0.7613396500773958
+    }
+  ],
+  "model_protocol": {
+    "model": "XGBoost binary logistic classifier",
+    "base_xgb_params": {
+      "objective": "binary:logistic",
+      "eval_metric": "logloss",
+      "tree_method": "hist",
+      "verbosity": 0,
+      "seed": 42,
+      "scale_pos_weight": "negative_count / positive_count, computed from the current training partition"
+    },
+    "num_boost_round": 400,
+    "early_stopping_rounds": 30,
+    "selection_metric": "validation PR-AUC",
+    "threshold_for_class_metrics": 0.5,
+    "standardization": "feature-wise z-score using the training partition mean and standard deviation; the same transform is applied to validation/test data",
+    "class_weighting": "scale_pos_weight is computed as non-Ia count divided by Ia count in the current training partition",
+    "final_refit": "after validation selection, refit on train+validation using the selected parameter set and best iteration, then evaluate on held-out test"
+  },
+  "xgboost_hyperparameter_grid": [
+    {
+      "candidate": 1,
+      "max_depth": 3,
+      "eta": 0.05,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "min_child_weight": 1.0,
+      "lambda": 1.0
+    },
+    {
+      "candidate": 2,
+      "max_depth": 4,
+      "eta": 0.05,
+      "subsample": 0.9,
+      "colsample_bytree": 0.9,
+      "min_child_weight": 1.0,
+      "lambda": 1.0
+    },
+    {
+      "candidate": 3,
+      "max_depth": 5,
+      "eta": 0.03,
+      "subsample": 0.8,
+      "colsample_bytree": 0.8,
+      "min_child_weight": 2.0,
+      "lambda": 1.5
+    }
+  ],
+  "frozen_compact_baseline_metrics": {
+    "f1": 0.8442299254,
+    "roc_auc": 0.9765883838,
+    "pr_auc": 0.927760881
+  },
+  "notes": [
+    "This export reads source constants without importing XGBoost.",
+    "Per-run selected parameters and best iterations are not present in checked-in Tier 2 CSV/Markdown outputs and should be regenerated with the Tier 2 scripts after XGBoost is installed."
+  ]
+}
