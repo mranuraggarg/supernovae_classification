@@ -40,6 +40,51 @@ PLASTICC_PASSBANDS = {"g": 1, "r": 2, "i": 3, "z": 4}
 SPCC_BANDS = ("g", "r", "i", "z")
 SNR_ACTIVE_THRESHOLD = 3.0
 MIN_COLOR_FLUX_THRESHOLD = 0.0
+LC_NORMALIZATION_MODES = ("none", "event_peak", "event_p95", "band_peak")
+def _safe_scale(value: float, eps: float = 1e-6) -> float:
+    if not math.isfinite(float(value)) or abs(float(value)) < eps:
+        return 1.0
+    return float(value)
+
+
+def _normalize_observations(
+    observations: list[dict[str, float | str | int]],
+    mode: str,
+) -> list[dict[str, float | str | int]]:
+    if mode == "none":
+        return [dict(obs) for obs in observations]
+    if mode not in LC_NORMALIZATION_MODES:
+        raise ValueError(f"Unknown light-curve normalization mode: {mode}")
+
+    normalized = [dict(obs) for obs in observations]
+
+    if mode == "event_peak":
+        scale = _safe_scale(max(abs(float(obs["flux"])) for obs in normalized) if normalized else 1.0)
+        for obs in normalized:
+            obs["flux"] = float(obs["flux"]) / scale
+            obs["flux_err"] = float(obs["flux_err"]) / scale
+        return normalized
+
+    if mode == "event_p95":
+        flux_values = np.array([abs(float(obs["flux"])) for obs in normalized], dtype=float)
+        scale = _safe_scale(float(np.nanpercentile(flux_values, 95)) if len(flux_values) else 1.0)
+        for obs in normalized:
+            obs["flux"] = float(obs["flux"]) / scale
+            obs["flux_err"] = float(obs["flux_err"]) / scale
+        return normalized
+
+    if mode == "band_peak":
+        for band_name in SPCC_BANDS:
+            band_indices = [index for index, obs in enumerate(normalized) if obs["band"] == band_name]
+            if not band_indices:
+                continue
+            scale = _safe_scale(max(abs(float(normalized[index]["flux"])) for index in band_indices))
+            for index in band_indices:
+                normalized[index]["flux"] = float(normalized[index]["flux"]) / scale
+                normalized[index]["flux_err"] = float(normalized[index]["flux_err"]) / scale
+        return normalized
+
+    raise ValueError(f"Unhandled light-curve normalization mode: {mode}")
 
 
 def _positive_log10_1p(value: float) -> float:
@@ -160,7 +205,7 @@ def _build_compact_row_from_observations(
     return _compress_feature_row(feature_row)
 
 
-def build_spcc_rows() -> list[dict[str, Any]]:
+def build_spcc_rows(normalization_mode: str = "none") -> list[dict[str, Any]]:
     rows = []
     for path in iter_spcc_files(SPCC_RAW_GLOB):
         cleaning_result = clean_event(load_spcc_raw_event(path), min_observations_per_event=1)
@@ -175,6 +220,7 @@ def build_spcc_rows() -> list[dict[str, Any]]:
             }
             for obs in cleaning_result.event.observations
         ]
+        observations = _normalize_observations(observations, normalization_mode)
         row = _build_compact_row_from_observations(
             snid=int(cleaning_result.event.snid),
             label_name=str(cleaning_result.event.sim_type),
@@ -186,7 +232,7 @@ def build_spcc_rows() -> list[dict[str, Any]]:
     return rows
 
 
-def build_plasticc_rows(lightcurve_path: str, metadata_path: str) -> list[dict[str, Any]]:
+def build_plasticc_rows(lightcurve_path: str, metadata_path: str, normalization_mode: str = "none") -> list[dict[str, Any]]:
     try:
         import pandas as pd
     except ModuleNotFoundError as exc:
@@ -221,6 +267,7 @@ def build_plasticc_rows(lightcurve_path: str, metadata_path: str) -> list[dict[s
             for _, row in group.iterrows()
             if int(row["passband"]) in PLASTICC_PASSBANDS.values()
         ]
+        observations = _normalize_observations(observations, normalization_mode)
         row = _build_compact_row_from_observations(
             snid=int(object_id),
             label_name="Ia" if int(meta["target"]) == 90 else "non-Ia",
@@ -240,12 +287,18 @@ def main() -> None:
         action="store_true",
         help="Build SPCC variants only and skip PLAsTiCC compact feature export.",
     )
+    parser.add_argument(
+        "--lc-norm-mode",
+        choices=LC_NORMALIZATION_MODES,
+        default="none",
+        help="Apply optional per-event light-curve normalization before compact-feature extraction.",
+    )
     args = parser.parse_args()
 
     ensure_variant_dirs()
     os.makedirs("results/phase2_tier4", exist_ok=True)
 
-    base_rows = build_spcc_rows()
+    base_rows = build_spcc_rows(normalization_mode=args.lc_norm_mode)
     variant_rows = build_spcc_variant_rows(base_rows)
 
     write_feature_rows(SPCC_COMPACT_CSV_PATH, variant_rows["spcc"])
@@ -263,12 +316,17 @@ def main() -> None:
         "test_labels_available": False,
     }
     if not args.skip_plasticc:
-        plasticc_train_rows = build_plasticc_rows(PLASTICC_LIGHTCURVE_PATH, PLASTICC_METADATA_PATH)
+        plasticc_train_rows = build_plasticc_rows(
+            PLASTICC_LIGHTCURVE_PATH,
+            PLASTICC_METADATA_PATH,
+            normalization_mode=args.lc_norm_mode,
+        )
         write_feature_rows(PLASTICC_TRAIN_COMPACT_CSV_PATH, plasticc_train_rows)
         plasticc_status["train_built"] = True
         plasticc_status["train_row_count"] = len(plasticc_train_rows)
 
     payload = {
+        "lightcurve_normalization_mode": args.lc_norm_mode,
         "spcc_row_count": len(base_rows),
         "compact_features": list(COMPACT_FEATURES),
         "spcc_outputs": {
