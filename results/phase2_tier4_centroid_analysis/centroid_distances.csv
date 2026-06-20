@@ -1,0 +1,7 @@
+comparison,left,right,euclidean_distance,cosine_distance,interpretation
+cross_survey_ia_shift,SPCC_Ia,PLAsTiCC_Ia,6.125135728942437,0.5536035398773717,Distance between Ia centroids across surveys
+cross_survey_non_ia_shift,SPCC_non_Ia,PLAsTiCC_non_Ia,7.174960144191584,1.4290942959193722,Distance between non-Ia centroids across surveys
+spcc_class_separation,SPCC_Ia,SPCC_non_Ia,1.7100095259198929,2.0,Within-SPCC Ia vs non-Ia separation
+plasticc_class_separation,PLAsTiCC_Ia,PLAsTiCC_non_Ia,2.4479702240206933,0.06329833589128386,Within-PLAsTiCC Ia vs non-Ia separation
+spcc_ia_to_plasticc_non_ia,SPCC_Ia,PLAsTiCC_non_Ia,6.538348419205372,0.5709057040806278,SPCC Ia centroid vs PLAsTiCC non-Ia centroid
+plasticc_ia_to_spcc_non_ia,PLAsTiCC_Ia,SPCC_non_Ia,6.786501922060864,1.446396460122628,PLAsTiCC Ia centroid vs SPCC non-Ia centroid
