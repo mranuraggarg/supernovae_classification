@@ -49,3 +49,7 @@ models/
 # Allow Phase 2 Tier 2 evidence artifacts to be tracked
 !results/phase2_tier2/
 !results/phase2_tier2/*.json
+
+# Large external survey datasets
+data/PLAsTiCC/
+data/SNE/
