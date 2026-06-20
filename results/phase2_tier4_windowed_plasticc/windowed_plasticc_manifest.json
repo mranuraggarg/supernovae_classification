@@ -1,0 +1,634 @@
+{
+  "trial": "windowed_plasticc",
+  "anchor_method": "detected_max_flux",
+  "source_lightcurve_path": "data/PLAsTiCC/training_set.csv",
+  "source_metadata_path": "data/PLAsTiCC/training_set_metadata.csv",
+  "compact_features": [
+    "z_peak_flux",
+    "r_mean_flux",
+    "peak_color_g_minus_r",
+    "i_peak_flux",
+    "peak_color_r_minus_i",
+    "peak_color_i_minus_z",
+    "g_mean_flux",
+    "r_peak_flux",
+    "z_std_flux",
+    "i_amplitude",
+    "i_std_flux",
+    "time_span",
+    "z_time_of_peak",
+    "i_time_of_peak",
+    "r_time_of_peak",
+    "r_std_flux"
+  ],
+  "window_halfwidths_days": [
+    60.0,
+    75.0,
+    90.0,
+    105.0,
+    120.0,
+    180.0
+  ],
+  "outputs": {
+    "detected_max_flux_pm60": {
+      "halfwidth_days": 60.0,
+      "feature_path": "data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm60.csv",
+      "summary": {
+        "object_count": 7848,
+        "feature_row_count": 4772,
+        "label_counts": {
+          "non-Ia": 5535,
+          "Ia": 2313
+        },
+        "built_label_counts": {
+          "non-Ia": 3104,
+          "Ia": 1668
+        },
+        "raw_obs_count": {
+          "min": 29.0,
+          "p25": 80.0,
+          "p50": 87.0,
+          "p75": 180.0,
+          "p95": 232.0,
+          "max": 232.0
+        },
+        "window_obs_count": {
+          "min": 1.0,
+          "p25": 11.0,
+          "p50": 17.0,
+          "p75": 25.0,
+          "p95": 60.0,
+          "max": 80.0
+        },
+        "active_obs_count": {
+          "min": 0.0,
+          "p25": 3.0,
+          "p50": 8.0,
+          "p75": 14.0,
+          "p95": 40.0,
+          "max": 76.0
+        },
+        "raw_time_span": {
+          "min": 748.8080000000045,
+          "p25": 853.8344999999972,
+          "p50": 887.5979000000007,
+          "p75": 1070.0023249999977,
+          "p95": 1084.8884850000009,
+          "max": 1092.847099999999
+        },
+        "window_time_span": {
+          "min": 0.0,
+          "p25": 58.895400000001246,
+          "p50": 80.77794999999969,
+          "p75": 102.58700000000499,
+          "p95": 114.8441750000009,
+          "max": 119.92190000000119
+        },
+        "anchor_relative_time": {
+          "min": 0.0,
+          "p25": 200.33347499999945,
+          "p50": 439.29349999999977,
+          "p75": 745.8408750000035,
+          "p95": 982.2867650000014,
+          "max": 1092.7792999999947
+        },
+        "g_window_count": {
+          "min": 0.0,
+          "p25": 1.0,
+          "p50": 3.0,
+          "p75": 6.0,
+          "p95": 15.0,
+          "max": 20.0
+        },
+        "g_zero_window_count": 768,
+        "r_window_count": {
+          "min": 0.0,
+          "p25": 3.0,
+          "p50": 5.0,
+          "p75": 8.0,
+          "p95": 15.0,
+          "max": 20.0
+        },
+        "r_zero_window_count": 514,
+        "i_window_count": {
+          "min": 0.0,
+          "p25": 3.0,
+          "p50": 5.0,
+          "p75": 8.0,
+          "p95": 15.0,
+          "max": 20.0
+        },
+        "i_zero_window_count": 319,
+        "z_window_count": {
+          "min": 0.0,
+          "p25": 3.0,
+          "p50": 5.0,
+          "p75": 8.0,
+          "p95": 15.0,
+          "max": 20.0
+        },
+        "z_zero_window_count": 72
+      }
+    },
+    "detected_max_flux_pm75": {
+      "halfwidth_days": 75.0,
+      "feature_path": "data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm75.csv",
+      "summary": {
+        "object_count": 7848,
+        "feature_row_count": 4996,
+        "label_counts": {
+          "non-Ia": 5535,
+          "Ia": 2313
+        },
+        "built_label_counts": {
+          "non-Ia": 3274,
+          "Ia": 1722
+        },
+        "raw_obs_count": {
+          "min": 29.0,
+          "p25": 80.0,
+          "p50": 87.0,
+          "p75": 180.0,
+          "p95": 232.0,
+          "max": 232.0
+        },
+        "window_obs_count": {
+          "min": 1.0,
+          "p25": 14.0,
+          "p50": 20.0,
+          "p75": 32.0,
+          "p95": 64.0,
+          "max": 88.0
+        },
+        "active_obs_count": {
+          "min": 0.0,
+          "p25": 3.0,
+          "p50": 9.0,
+          "p75": 16.0,
+          "p95": 44.0,
+          "max": 84.0
+        },
+        "raw_time_span": {
+          "min": 748.8080000000045,
+          "p25": 853.8344999999972,
+          "p50": 887.5979000000007,
+          "p75": 1070.0023249999977,
+          "p95": 1084.8884850000009,
+          "max": 1092.847099999999
+        },
+        "window_time_span": {
+          "min": 0.0,
+          "p25": 74.72742500000095,
+          "p50": 95.82879999999932,
+          "p75": 120.82779999999912,
+          "p95": 141.67934499999757,
+          "max": 149.8703999999998
+        },
+        "anchor_relative_time": {
+          "min": 0.0,
+          "p25": 200.33347499999945,
+          "p50": 439.29349999999977,
+          "p75": 745.8408750000035,
+          "p95": 982.2867650000014,
+          "max": 1092.7792999999947
+        },
+        "g_window_count": {
+          "min": 0.0,
+          "p25": 2.0,
+          "p50": 3.0,
+          "p75": 8.0,
+          "p95": 16.0,
+          "max": 22.0
+        },
+        "g_zero_window_count": 557,
+        "r_window_count": {
+          "min": 0.0,
+          "p25": 4.0,
+          "p50": 6.0,
+          "p75": 9.0,
+          "p95": 16.0,
+          "max": 22.0
+        },
+        "r_zero_window_count": 437,
+        "i_window_count": {
+          "min": 0.0,
+          "p25": 3.0,
+          "p50": 5.0,
+          "p75": 9.0,
+          "p95": 16.0,
+          "max": 22.0
+        },
+        "i_zero_window_count": 182,
+        "z_window_count": {
+          "min": 0.0,
+          "p25": 4.0,
+          "p50": 6.0,
+          "p75": 9.0,
+          "p95": 16.0,
+          "max": 22.0
+        },
+        "z_zero_window_count": 35
+      }
+    },
+    "detected_max_flux_pm90": {
+      "halfwidth_days": 90.0,
+      "feature_path": "data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm90.csv",
+      "summary": {
+        "object_count": 7848,
+        "feature_row_count": 5141,
+        "label_counts": {
+          "non-Ia": 5535,
+          "Ia": 2313
+        },
+        "built_label_counts": {
+          "non-Ia": 3392,
+          "Ia": 1749
+        },
+        "raw_obs_count": {
+          "min": 29.0,
+          "p25": 80.0,
+          "p50": 87.0,
+          "p75": 180.0,
+          "p95": 232.0,
+          "max": 232.0
+        },
+        "window_obs_count": {
+          "min": 1.0,
+          "p25": 16.0,
+          "p50": 22.0,
+          "p75": 44.0,
+          "p95": 72.0,
+          "max": 88.0
+        },
+        "active_obs_count": {
+          "min": 0.0,
+          "p25": 3.0,
+          "p50": 9.0,
+          "p75": 17.0,
+          "p95": 48.0,
+          "max": 88.0
+        },
+        "raw_time_span": {
+          "min": 748.8080000000045,
+          "p25": 853.8344999999972,
+          "p50": 887.5979000000007,
+          "p75": 1070.0023249999977,
+          "p95": 1084.8884850000009,
+          "max": 1092.847099999999
+        },
+        "window_time_span": {
+          "min": 0.0,
+          "p25": 88.94222500000433,
+          "p50": 107.79694999999992,
+          "p75": 136.63330000000133,
+          "p95": 167.80273000000162,
+          "max": 179.75239999999758
+        },
+        "anchor_relative_time": {
+          "min": 0.0,
+          "p25": 200.33347499999945,
+          "p50": 439.29349999999977,
+          "p75": 745.8408750000035,
+          "p95": 982.2867650000014,
+          "max": 1092.7792999999947
+        },
+        "g_window_count": {
+          "min": 0.0,
+          "p25": 2.0,
+          "p50": 3.0,
+          "p75": 11.0,
+          "p95": 18.0,
+          "max": 22.0
+        },
+        "g_zero_window_count": 425,
+        "r_window_count": {
+          "min": 0.0,
+          "p25": 4.0,
+          "p50": 7.0,
+          "p75": 11.0,
+          "p95": 18.0,
+          "max": 22.0
+        },
+        "r_zero_window_count": 384,
+        "i_window_count": {
+          "min": 0.0,
+          "p25": 4.0,
+          "p50": 6.0,
+          "p75": 11.0,
+          "p95": 18.0,
+          "max": 22.0
+        },
+        "i_zero_window_count": 130,
+        "z_window_count": {
+          "min": 0.0,
+          "p25": 5.0,
+          "p50": 7.0,
+          "p75": 11.0,
+          "p95": 18.0,
+          "max": 22.0
+        },
+        "z_zero_window_count": 21
+      }
+    },
+    "detected_max_flux_pm105": {
+      "halfwidth_days": 105.0,
+      "feature_path": "data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm105.csv",
+      "summary": {
+        "object_count": 7848,
+        "feature_row_count": 5252,
+        "label_counts": {
+          "non-Ia": 5535,
+          "Ia": 2313
+        },
+        "built_label_counts": {
+          "non-Ia": 3493,
+          "Ia": 1759
+        },
+        "raw_obs_count": {
+          "min": 29.0,
+          "p25": 80.0,
+          "p50": 87.0,
+          "p75": 180.0,
+          "p95": 232.0,
+          "max": 232.0
+        },
+        "window_obs_count": {
+          "min": 1.0,
+          "p25": 18.0,
+          "p50": 24.0,
+          "p75": 52.0,
+          "p95": 76.0,
+          "max": 88.0
+        },
+        "active_obs_count": {
+          "min": 0.0,
+          "p25": 4.0,
+          "p50": 9.0,
+          "p75": 18.0,
+          "p95": 53.0,
+          "max": 88.0
+        },
+        "raw_time_span": {
+          "min": 748.8080000000045,
+          "p25": 853.8344999999972,
+          "p50": 887.5979000000007,
+          "p75": 1070.0023249999977,
+          "p95": 1084.8884850000009,
+          "max": 1092.847099999999
+        },
+        "window_time_span": {
+          "min": 0.0,
+          "p25": 103.77249999999913,
+          "p50": 119.85310000000027,
+          "p75": 150.61122500000056,
+          "p95": 191.63305,
+          "max": 209.68329999999696
+        },
+        "anchor_relative_time": {
+          "min": 0.0,
+          "p25": 200.33347499999945,
+          "p50": 439.29349999999977,
+          "p75": 745.8408750000035,
+          "p95": 982.2867650000014,
+          "max": 1092.7792999999947
+        },
+        "g_window_count": {
+          "min": 0.0,
+          "p25": 2.0,
+          "p50": 4.0,
+          "p75": 13.0,
+          "p95": 19.0,
+          "max": 22.0
+        },
+        "g_zero_window_count": 340,
+        "r_window_count": {
+          "min": 0.0,
+          "p25": 5.0,
+          "p50": 7.0,
+          "p75": 13.0,
+          "p95": 19.0,
+          "max": 22.0
+        },
+        "r_zero_window_count": 351,
+        "i_window_count": {
+          "min": 0.0,
+          "p25": 4.0,
+          "p50": 7.0,
+          "p75": 13.0,
+          "p95": 19.0,
+          "max": 22.0
+        },
+        "i_zero_window_count": 85,
+        "z_window_count": {
+          "min": 0.0,
+          "p25": 5.0,
+          "p50": 7.0,
+          "p75": 13.0,
+          "p95": 19.0,
+          "max": 22.0
+        },
+        "z_zero_window_count": 8
+      }
+    },
+    "detected_max_flux_pm120": {
+      "halfwidth_days": 120.0,
+      "feature_path": "data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm120.csv",
+      "summary": {
+        "object_count": 7848,
+        "feature_row_count": 5318,
+        "label_counts": {
+          "non-Ia": 5535,
+          "Ia": 2313
+        },
+        "built_label_counts": {
+          "non-Ia": 3553,
+          "Ia": 1765
+        },
+        "raw_obs_count": {
+          "min": 29.0,
+          "p25": 80.0,
+          "p50": 87.0,
+          "p75": 180.0,
+          "p95": 232.0,
+          "max": 232.0
+        },
+        "window_obs_count": {
+          "min": 1.0,
+          "p25": 20.0,
+          "p50": 26.0,
+          "p75": 56.0,
+          "p95": 76.0,
+          "max": 88.0
+        },
+        "active_obs_count": {
+          "min": 0.0,
+          "p25": 4.0,
+          "p50": 10.0,
+          "p75": 19.0,
+          "p95": 56.0,
+          "max": 88.0
+        },
+        "raw_time_span": {
+          "min": 748.8080000000045,
+          "p25": 853.8344999999972,
+          "p50": 887.5979000000007,
+          "p75": 1070.0023249999977,
+          "p95": 1084.8884850000009,
+          "max": 1092.847099999999
+        },
+        "window_time_span": {
+          "min": 0.0,
+          "p25": 115.88132500000393,
+          "p50": 131.6971500000036,
+          "p75": 165.6760749999994,
+          "p95": 209.65532999999996,
+          "max": 239.08510000000388
+        },
+        "anchor_relative_time": {
+          "min": 0.0,
+          "p25": 200.33347499999945,
+          "p50": 439.29349999999977,
+          "p75": 745.8408750000035,
+          "p95": 982.2867650000014,
+          "max": 1092.7792999999947
+        },
+        "g_window_count": {
+          "min": 0.0,
+          "p25": 3.0,
+          "p50": 4.0,
+          "p75": 14.0,
+          "p95": 19.0,
+          "max": 22.0
+        },
+        "g_zero_window_count": 276,
+        "r_window_count": {
+          "min": 0.0,
+          "p25": 6.0,
+          "p50": 8.0,
+          "p75": 14.0,
+          "p95": 19.0,
+          "max": 22.0
+        },
+        "r_zero_window_count": 329,
+        "i_window_count": {
+          "min": 0.0,
+          "p25": 5.0,
+          "p50": 7.0,
+          "p75": 14.0,
+          "p95": 19.0,
+          "max": 22.0
+        },
+        "i_zero_window_count": 75,
+        "z_window_count": {
+          "min": 0.0,
+          "p25": 6.0,
+          "p50": 8.0,
+          "p75": 14.0,
+          "p95": 19.0,
+          "max": 22.0
+        },
+        "z_zero_window_count": 5
+      }
+    },
+    "detected_max_flux_pm180": {
+      "halfwidth_days": 180.0,
+      "feature_path": "data/PLAsTiCC/features/windowed/compact_features_window_detected_max_flux_pm180.csv",
+      "summary": {
+        "object_count": 7848,
+        "feature_row_count": 5468,
+        "label_counts": {
+          "non-Ia": 5535,
+          "Ia": 2313
+        },
+        "built_label_counts": {
+          "non-Ia": 3681,
+          "Ia": 1787
+        },
+        "raw_obs_count": {
+          "min": 29.0,
+          "p25": 80.0,
+          "p50": 87.0,
+          "p75": 180.0,
+          "p95": 232.0,
+          "max": 232.0
+        },
+        "window_obs_count": {
+          "min": 2.0,
+          "p25": 26.0,
+          "p50": 31.0,
+          "p75": 60.0,
+          "p95": 84.0,
+          "max": 88.0
+        },
+        "active_obs_count": {
+          "min": 0.0,
+          "p25": 4.0,
+          "p50": 10.0,
+          "p75": 20.0,
+          "p95": 57.0,
+          "max": 88.0
+        },
+        "raw_time_span": {
+          "min": 748.8080000000045,
+          "p25": 853.8344999999972,
+          "p50": 887.5979000000007,
+          "p75": 1070.0023249999977,
+          "p95": 1084.8884850000009,
+          "max": 1092.847099999999
+        },
+        "window_time_span": {
+          "min": 6.913400000004913,
+          "p25": 132.71659999999974,
+          "p50": 185.65509999999995,
+          "p75": 233.6322500000042,
+          "p95": 348.1480550000011,
+          "max": 359.1281999999992
+        },
+        "anchor_relative_time": {
+          "min": 0.0,
+          "p25": 200.33347499999945,
+          "p50": 439.29349999999977,
+          "p75": 745.8408750000035,
+          "p95": 982.2867650000014,
+          "max": 1092.7792999999947
+        },
+        "g_window_count": {
+          "min": 0.0,
+          "p25": 3.0,
+          "p50": 4.0,
+          "p75": 15.0,
+          "p95": 21.0,
+          "max": 22.0
+        },
+        "g_zero_window_count": 163,
+        "r_window_count": {
+          "min": 0.0,
+          "p25": 7.0,
+          "p50": 9.0,
+          "p75": 15.0,
+          "p95": 21.0,
+          "max": 22.0
+        },
+        "r_zero_window_count": 222,
+        "i_window_count": {
+          "min": 0.0,
+          "p25": 6.0,
+          "p50": 8.0,
+          "p75": 15.0,
+          "p95": 21.0,
+          "max": 22.0
+        },
+        "i_zero_window_count": 40,
+        "z_window_count": {
+          "min": 1.0,
+          "p25": 8.0,
+          "p50": 10.0,
+          "p75": 15.0,
+          "p95": 21.0,
+          "max": 22.0
+        },
+        "z_zero_window_count": 0
+      }
+    }
+  }
+}

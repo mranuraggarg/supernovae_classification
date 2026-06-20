@@ -1,0 +1,143 @@
+{
+  "experiment": "domain_swap",
+  "reference": {
+    "baseline_reference": {
+      "baseline_metrics": {
+        "f1": 0.8442299254,
+        "roc_auc": 0.9765883838,
+        "pr_auc": 0.927760881
+      },
+      "baseline_manifest_found": false,
+      "baseline_metrics_found": false,
+      "compact_feature_count": 16,
+      "compact_features": [
+        "z_peak_flux",
+        "r_mean_flux",
+        "peak_color_g_minus_r",
+        "i_peak_flux",
+        "peak_color_r_minus_i",
+        "peak_color_i_minus_z",
+        "g_mean_flux",
+        "r_peak_flux",
+        "z_std_flux",
+        "i_amplitude",
+        "i_std_flux",
+        "time_span",
+        "z_time_of_peak",
+        "i_time_of_peak",
+        "r_time_of_peak",
+        "r_std_flux"
+      ],
+      "source_csv": "data/processed/phase2_tier1_compact_baseline.csv",
+      "split_manifest": {
+        "random_state": 42,
+        "train_count": 13644,
+        "validation_count": 3411,
+        "trainval_count": 17055,
+        "test_count": 4264
+      }
+    },
+    "baseline_parity_check": {
+      "metrics": {
+        "accuracy": 0.9167448405253283,
+        "precision": 0.7628865979381443,
+        "recall": 0.9449901768172888,
+        "f1": 0.8442299254058797,
+        "roc_auc": 0.9765883838292134,
+        "pr_auc": 0.9277608810161283
+      },
+      "delta_f1": 5.879741138414829e-12,
+      "delta_roc_auc": 2.9213409469264207e-11,
+      "delta_pr_auc": 1.612832090103211e-11
+    },
+    "variant_paths": {
+      "spcc": "data/spcc/features/compact_features.csv",
+      "noise": "data/spcc/tier4_variants/noise/compact_features_noise.csv",
+      "no_z": "data/spcc/tier4_variants/no_z/compact_features_no_z.csv",
+      "no_i": "data/spcc/tier4_variants/no_i/compact_features_no_i.csv",
+      "short_span": "data/spcc/tier4_variants/short_span/compact_features_short_span.csv",
+      "flux_scale": "data/spcc/tier4_variants/flux_scale/compact_features_scaled_flux.csv"
+    },
+    "domain_strategy": "SPCC compact baseline plus on-disk Tier 4 variants and optional PLAsTiCC compact features"
+  },
+  "rows": [
+    {
+      "train_domain": "spcc",
+      "test_domain": "spcc",
+      "feature_count": 16,
+      "f1": 0.8407473309608541,
+      "pr_auc": 0.9119884460385523,
+      "roc_auc": 0.9737442925939331,
+      "delta_f1": -0.003482594439145892,
+      "delta_pr_auc": -0.015772434961447646,
+      "delta_roc_auc": -0.002844091206066879
+    },
+    {
+      "train_domain": "spcc",
+      "test_domain": "noise",
+      "feature_count": 16,
+      "f1": 0.8262994224788982,
+      "pr_auc": 0.9058173724694655,
+      "roc_auc": 0.9707750829976526,
+      "delta_f1": -0.017930502921101765,
+      "delta_pr_auc": -0.021943508530534506,
+      "delta_roc_auc": -0.005813300802347432
+    },
+    {
+      "train_domain": "spcc",
+      "test_domain": "no_z",
+      "feature_count": 16,
+      "f1": 0.6921052631578948,
+      "pr_auc": 0.6835915525337841,
+      "roc_auc": 0.9082589807816441,
+      "delta_f1": -0.1521246622421052,
+      "delta_pr_auc": -0.24416932846621586,
+      "delta_roc_auc": -0.06832940301835588
+    },
+    {
+      "train_domain": "spcc",
+      "test_domain": "no_i",
+      "feature_count": 16,
+      "f1": 0.6522222222222221,
+      "pr_auc": 0.7252585862348478,
+      "roc_auc": 0.918069426665863,
+      "delta_f1": -0.19200770317777782,
+      "delta_pr_auc": -0.20250229476515214,
+      "delta_roc_auc": -0.05851895713413702
+    },
+    {
+      "train_domain": "spcc",
+      "test_domain": "short_span",
+      "feature_count": 16,
+      "f1": 0.8194207836456558,
+      "pr_auc": 0.9025776643561251,
+      "roc_auc": 0.9705674132057377,
+      "delta_f1": -0.02480914175434412,
+      "delta_pr_auc": -0.025183216643874906,
+      "delta_roc_auc": -0.00602097059426232
+    },
+    {
+      "train_domain": "spcc",
+      "test_domain": "flux_scale",
+      "feature_count": 16,
+      "f1": 0.7729468599033816,
+      "pr_auc": 0.837949199086114,
+      "roc_auc": 0.9460180332327879,
+      "delta_f1": -0.07128306549661834,
+      "delta_pr_auc": -0.089811681913886,
+      "delta_roc_auc": -0.030570350567212135
+    },
+    {
+      "train_domain": "spcc",
+      "test_domain": "plasticc",
+      "feature_count": 16,
+      "f1": 0.593167701863354,
+      "pr_auc": 0.6578123013227054,
+      "roc_auc": 0.7511980869179515,
+      "delta_f1": -0.251062223536646,
+      "delta_pr_auc": -0.2699485796772946,
+      "delta_roc_auc": -0.22539029688204848
+    }
+  ],
+  "plot_path": "plots/phase2_tier4/phase2_tier4_domain_swap.png"
+}
