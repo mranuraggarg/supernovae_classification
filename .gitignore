@@ -51,3 +51,8 @@ data/PLAsTiCC/
 data/SNE/
 data/phase2_tier4_trial_lc_norm/
 data/PLAsTiCC/features/
+
+# Tier-4 temporary audit outputs
+results/phase2_tier4_baseline_audit/
+results/phase2_tier4_event_p95_audit/
+results/phase2_tier4_event_p95_backup/
