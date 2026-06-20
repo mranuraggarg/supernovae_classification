@@ -1,0 +1,8 @@
+test,f1,roc_auc,pr_auc,comment
+baseline,0.8442299254,0.9765883838,0.927760881,Tier-1 frozen 16-feature compact baseline.
+model compare,0.8442299254058797,0.9765883838292134,0.9277608810161284,Best Tier-3 model: XGBoost.
+CV,0.8450714840004359,0.9755739873890427,0.923225810223873,Best resampling protocol: random_split (mean over runs).
+noise,0.7821280515891295,0.9494623577817402,0.8467003900301784,Tier-3 moderate flux-noise perturbation (+0.25 sigma).
+reduced train,0.7281437125748502,0.8973188696107738,0.7669285866726187,"Parity-safe PLAsTiCC table (6235 rows); vs 7848 rows: delta F1 +0.023, delta ROC -0.009, delta PR -0.029."
+minimal features,0.8385093167701864,0.9731647958436376,0.9168996508123186,Best reduced subset: top_10 (10 features).
+shift,0.6522222222222221,0.918069426665863,0.7252585862348478,Hardest Tier-4 shift: no_i (F1 drop 0.192).

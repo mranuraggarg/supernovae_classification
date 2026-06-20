@@ -45,3 +45,7 @@ models/
 # Allow phase1 repair result summaries to be tracked
 !results/phase1_repair/
 !results/phase1_repair/*.json
+
+# Large survey datasets
+data/PLAsTiCC/
+data/SNE/
