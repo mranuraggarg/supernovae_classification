@@ -1,0 +1,37 @@
+dataset,class_group,stage,events,total_events,percent_of_dataset,accepted_events,rejected_events,rejection_percent
+SPCC,all,cleaning_rejection,0,21319,0.0,20992,327,1.533843050799756
+SPCC,all,class_exclusion,0,21319,0.0,20992,327,1.533843050799756
+SPCC,all,compact_feature_rejection_no_griz_observations,0,21319,0.0,20992,327,1.533843050799756
+SPCC,all,missing_band_rejection,86,21319,0.40339603170880434,20992,327,1.533843050799756
+SPCC,all,positive_flux_support_rejection,241,21319,1.1304470190909517,20992,327,1.533843050799756
+SPCC,all,accepted,20992,21319,98.46615694920024,20992,327,1.533843050799756
+SPCC,Ia,cleaning_rejection,0,5088,0.0,4975,113,2.2209119496855347
+SPCC,Ia,class_exclusion,0,5088,0.0,4975,113,2.2209119496855347
+SPCC,Ia,compact_feature_rejection_no_griz_observations,0,5088,0.0,4975,113,2.2209119496855347
+SPCC,Ia,missing_band_rejection,24,5088,0.4716981132075472,4975,113,2.2209119496855347
+SPCC,Ia,positive_flux_support_rejection,89,5088,1.7492138364779874,4975,113,2.2209119496855347
+SPCC,Ia,accepted,4975,5088,97.77908805031447,4975,113,2.2209119496855347
+SPCC,non-Ia,cleaning_rejection,0,16231,0.0,16017,214,1.318464666379151
+SPCC,non-Ia,class_exclusion,0,16231,0.0,16017,214,1.318464666379151
+SPCC,non-Ia,compact_feature_rejection_no_griz_observations,0,16231,0.0,16017,214,1.318464666379151
+SPCC,non-Ia,missing_band_rejection,62,16231,0.3819850902593802,16017,214,1.318464666379151
+SPCC,non-Ia,positive_flux_support_rejection,152,16231,0.9364795761197708,16017,214,1.318464666379151
+SPCC,non-Ia,accepted,16017,16231,98.68153533362084,16017,214,1.318464666379151
+PLAsTiCC training,all,cleaning_rejection,0,7848,0.0,6235,1613,20.553007135575942
+PLAsTiCC training,all,class_exclusion,0,7848,0.0,6235,1613,20.553007135575942
+PLAsTiCC training,all,compact_feature_rejection_no_griz_observations,0,7848,0.0,6235,1613,20.553007135575942
+PLAsTiCC training,all,missing_band_rejection,1340,7848,17.07441386340469,6235,1613,20.553007135575942
+PLAsTiCC training,all,positive_flux_support_rejection,273,7848,3.478593272171254,6235,1613,20.553007135575942
+PLAsTiCC training,all,accepted,6235,7848,79.44699286442406,6235,1613,20.553007135575942
+PLAsTiCC training,Ia,cleaning_rejection,0,2313,0.0,1852,461,19.930825767401643
+PLAsTiCC training,Ia,class_exclusion,0,2313,0.0,1852,461,19.930825767401643
+PLAsTiCC training,Ia,compact_feature_rejection_no_griz_observations,0,2313,0.0,1852,461,19.930825767401643
+PLAsTiCC training,Ia,missing_band_rejection,440,2313,19.022913964548206,1852,461,19.930825767401643
+PLAsTiCC training,Ia,positive_flux_support_rejection,21,2313,0.9079118028534371,1852,461,19.930825767401643
+PLAsTiCC training,Ia,accepted,1852,2313,80.06917423259836,1852,461,19.930825767401643
+PLAsTiCC training,non-Ia,cleaning_rejection,0,5535,0.0,4383,1152,20.8130081300813
+PLAsTiCC training,non-Ia,class_exclusion,0,5535,0.0,4383,1152,20.8130081300813
+PLAsTiCC training,non-Ia,compact_feature_rejection_no_griz_observations,0,5535,0.0,4383,1152,20.8130081300813
+PLAsTiCC training,non-Ia,missing_band_rejection,900,5535,16.260162601626018,4383,1152,20.8130081300813
+PLAsTiCC training,non-Ia,positive_flux_support_rejection,252,5535,4.5528455284552845,4383,1152,20.8130081300813
+PLAsTiCC training,non-Ia,accepted,4383,5535,79.1869918699187,4383,1152,20.8130081300813

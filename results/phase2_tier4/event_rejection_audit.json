@@ -1,0 +1,224 @@
+{
+  "audit_name": "phase2_tier4_event_rejection_audit",
+  "selection_logic": {
+    "cleaning": "SPCC clean_event(..., min_observations_per_event=1) removes events with invalid required metadata or insufficient finite observations.",
+    "class_exclusion": "SPCC class labels are checked against KEY_TYPES={'Ia': 1, 'II': 2, 'Ibc': 3, 'IIn': 21, 'IIP': 22, 'IIL': 23, 'Ib': 32, 'Ic': 33}; no exclusion is expected when all labels are known.",
+    "active_window": "Use observations with F > 0, sigma_F > 0, and F/sigma_F >= 3.0; if none exist, use all selected g/r/i/z observations.",
+    "strongest_positive_observations": "For each band, sort positive fluxes in descending order and average the first min(3, n_positive) values.",
+    "color_support": "Reject compact-feature rows when any of g/r/i/z lacks a strictly positive representative flux."
+  },
+  "outputs": {
+    "csv": "results/phase2_tier4/event_rejection_audit.csv",
+    "json": "results/phase2_tier4/event_rejection_audit.json",
+    "report": "results/phase2_tier4/event_rejection_audit_report.md"
+  },
+  "datasets": {
+    "SPCC": {
+      "total_events": 21319,
+      "accepted_events": 20992,
+      "rejected_events": 327,
+      "rejection_percent": 1.533843050799756,
+      "stage_counts": {
+        "cleaning_rejection": 0,
+        "class_exclusion": 0,
+        "compact_feature_rejection_no_griz_observations": 0,
+        "missing_band_rejection": 86,
+        "positive_flux_support_rejection": 241,
+        "accepted": 20992
+      },
+      "class_counts": {
+        "Ia": {
+          "total": 5088,
+          "accepted": 4975,
+          "rejected": 113,
+          "accepted_percent": 97.77908805031447,
+          "rejected_percent": 2.2209119496855347,
+          "stage_counts": {
+            "accepted": 4975,
+            "positive_flux_support_rejection": 89,
+            "missing_band_rejection": 24
+          }
+        },
+        "non-Ia": {
+          "total": 16231,
+          "accepted": 16017,
+          "rejected": 214,
+          "accepted_percent": 98.68153533362084,
+          "rejected_percent": 1.318464666379151,
+          "stage_counts": {
+            "accepted": 16017,
+            "positive_flux_support_rejection": 152,
+            "missing_band_rejection": 62
+          }
+        },
+        "unknown": {
+          "total": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "accepted_percent": 0.0,
+          "rejected_percent": 0.0,
+          "stage_counts": {}
+        }
+      },
+      "subtype_counts": {
+        "II": {
+          "total": 12027,
+          "accepted": 11916,
+          "rejected": 111,
+          "rejected_percent": 0.9229234222998254,
+          "stage_counts": {
+            "accepted": 11916,
+            "positive_flux_support_rejection": 76,
+            "missing_band_rejection": 35
+          }
+        },
+        "IIL": {
+          "total": 425,
+          "accepted": 408,
+          "rejected": 17,
+          "rejected_percent": 4.0,
+          "stage_counts": {
+            "accepted": 408,
+            "positive_flux_support_rejection": 8,
+            "missing_band_rejection": 9
+          }
+        },
+        "IIP": {
+          "total": 189,
+          "accepted": 185,
+          "rejected": 4,
+          "rejected_percent": 2.1164021164021163,
+          "stage_counts": {
+            "accepted": 185,
+            "positive_flux_support_rejection": 4
+          }
+        },
+        "IIn": {
+          "total": 789,
+          "accepted": 786,
+          "rejected": 3,
+          "rejected_percent": 0.38022813688212925,
+          "stage_counts": {
+            "accepted": 786,
+            "missing_band_rejection": 3
+          }
+        },
+        "Ia": {
+          "total": 5088,
+          "accepted": 4975,
+          "rejected": 113,
+          "rejected_percent": 2.2209119496855347,
+          "stage_counts": {
+            "accepted": 4975,
+            "positive_flux_support_rejection": 89,
+            "missing_band_rejection": 24
+          }
+        },
+        "Ib": {
+          "total": 1438,
+          "accepted": 1391,
+          "rejected": 47,
+          "rejected_percent": 3.2684283727399164,
+          "stage_counts": {
+            "accepted": 1391,
+            "positive_flux_support_rejection": 40,
+            "missing_band_rejection": 7
+          }
+        },
+        "Ibc": {
+          "total": 259,
+          "accepted": 253,
+          "rejected": 6,
+          "rejected_percent": 2.3166023166023164,
+          "stage_counts": {
+            "accepted": 253,
+            "positive_flux_support_rejection": 6
+          }
+        },
+        "Ic": {
+          "total": 1104,
+          "accepted": 1078,
+          "rejected": 26,
+          "rejected_percent": 2.3550724637681157,
+          "stage_counts": {
+            "accepted": 1078,
+            "positive_flux_support_rejection": 18,
+            "missing_band_rejection": 8
+          }
+        }
+      }
+    },
+    "PLAsTiCC training": {
+      "total_events": 7848,
+      "accepted_events": 6235,
+      "rejected_events": 1613,
+      "rejection_percent": 20.553007135575942,
+      "stage_counts": {
+        "cleaning_rejection": 0,
+        "class_exclusion": 0,
+        "compact_feature_rejection_no_griz_observations": 0,
+        "missing_band_rejection": 1340,
+        "positive_flux_support_rejection": 273,
+        "accepted": 6235
+      },
+      "class_counts": {
+        "Ia": {
+          "total": 2313,
+          "accepted": 1852,
+          "rejected": 461,
+          "accepted_percent": 80.06917423259836,
+          "rejected_percent": 19.930825767401643,
+          "stage_counts": {
+            "accepted": 1852,
+            "missing_band_rejection": 440,
+            "positive_flux_support_rejection": 21
+          }
+        },
+        "non-Ia": {
+          "total": 5535,
+          "accepted": 4383,
+          "rejected": 1152,
+          "accepted_percent": 79.1869918699187,
+          "rejected_percent": 20.8130081300813,
+          "stage_counts": {
+            "accepted": 4383,
+            "positive_flux_support_rejection": 252,
+            "missing_band_rejection": 900
+          }
+        },
+        "unknown": {
+          "total": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "accepted_percent": 0.0,
+          "rejected_percent": 0.0,
+          "stage_counts": {}
+        }
+      },
+      "subtype_counts": {
+        "Ia": {
+          "total": 2313,
+          "accepted": 1852,
+          "rejected": 461,
+          "rejected_percent": 19.930825767401643,
+          "stage_counts": {
+            "accepted": 1852,
+            "missing_band_rejection": 440,
+            "positive_flux_support_rejection": 21
+          }
+        },
+        "non-Ia": {
+          "total": 5535,
+          "accepted": 4383,
+          "rejected": 1152,
+          "rejected_percent": 20.8130081300813,
+          "stage_counts": {
+            "accepted": 4383,
+            "positive_flux_support_rejection": 252,
+            "missing_band_rejection": 900
+          }
+        }
+      }
+    }
+  }
+}
