@@ -56,3 +56,9 @@ data/PLAsTiCC/features/
 results/phase2_tier4_baseline_audit/
 results/phase2_tier4_event_p95_audit/
 results/phase2_tier4_event_p95_backup/
+
+# Generated outputs
+outputs/
+
+# Temporary files
+tmp/
