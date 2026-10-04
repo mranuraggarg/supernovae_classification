@@ -1,0 +1,19 @@
+survey,rule_order,rule,status,reason
+SDSS-II,1,Keep only canonical griz PHOT rows,FROZEN,Frozen feature representation uses griz only; separator '-' rows and SDSS u/U/G/R/I/Z auxiliary tokens are not compact-feature input.
+SDSS-II,2,Require finite MJD,FROZEN,Structural measurement validity.
+SDSS-II,3,Require finite FLUXCAL,FROZEN,Structural measurement validity.
+SDSS-II,4,Require finite FLUXCALERR,FROZEN,Structural measurement validity.
+SDSS-II,5,Require FLUXCALERR > 0,FROZEN,Non-positive uncertainty rows are SNANA structural/separator rows unless audit shows otherwise.
+SDSS-II,6,Retain negative and zero FLUXCAL measurements,FROZEN,Both releases are forced-photometry products. Flux sign is not an epoch-quality criterion.
+SDSS-II,7,No S/N threshold at quality-mask stage,FROZEN,"The S/N >= 3 rule belongs to the already frozen compact-feature builder, not release-quality filtering."
+SDSS-II,8,No detection/PHOTPROB threshold,FROZEN,No threshold may be introduced unless release documentation explicitly marks measurements invalid.
+SDSS-II,9,Do not reject PHOTFLAG values by empirical frequency,FROZEN_PENDING_DOCUMENTED_INVALID_BITS,Bit frequencies alone do not establish quality semantics. Only release-documented invalid-image/measurement bits may be excluded.
+DES-SN5YR,1,Keep only canonical griz PHOT rows,FROZEN,Frozen feature representation uses griz only; separator '-' rows and SDSS u/U/G/R/I/Z auxiliary tokens are not compact-feature input.
+DES-SN5YR,2,Require finite MJD,FROZEN,Structural measurement validity.
+DES-SN5YR,3,Require finite FLUXCAL,FROZEN,Structural measurement validity.
+DES-SN5YR,4,Require finite FLUXCALERR,FROZEN,Structural measurement validity.
+DES-SN5YR,5,Require FLUXCALERR > 0,FROZEN,Non-positive uncertainty rows are SNANA structural/separator rows unless audit shows otherwise.
+DES-SN5YR,6,Retain negative and zero FLUXCAL measurements,FROZEN,Both releases are forced-photometry products. Flux sign is not an epoch-quality criterion.
+DES-SN5YR,7,No S/N threshold at quality-mask stage,FROZEN,"The S/N >= 3 rule belongs to the already frozen compact-feature builder, not release-quality filtering."
+DES-SN5YR,8,No detection/PHOTPROB threshold,FROZEN,No threshold may be introduced unless release documentation explicitly marks measurements invalid.
+DES-SN5YR,9,Do not reject PHOTFLAG values by empirical frequency,FROZEN_PENDING_DOCUMENTED_INVALID_BITS,Bit frequencies alone do not establish quality semantics. Only release-documented invalid-image/measurement bits may be excluded.

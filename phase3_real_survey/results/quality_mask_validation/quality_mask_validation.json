@@ -1,0 +1,2413 @@
+{
+  "purpose": "Freeze label-blind PHOT-row structural quality handling before any compact-feature comparison.",
+  "sdss": {
+    "survey": "SDSS-II",
+    "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS_PHOT.FITS",
+    "rows_total": 1120566,
+    "columns": [
+      "MJD",
+      "FLT",
+      "FIELD",
+      "TELESCOPE",
+      "PHOTFLAG",
+      "PHOTPROB",
+      "FLUXCAL",
+      "FLUXCALERR",
+      "MAG",
+      "MAGERR",
+      "PSF_SIG1",
+      "PSF_SIG2",
+      "PSF_RATIO",
+      "SKY_SIG",
+      "SKY_SIG_T",
+      "RDNOISE",
+      "ZEROPT",
+      "ZEROPT_ERR",
+      "GAIN"
+    ],
+    "resolved_columns": {
+      "time": "MJD",
+      "band": "FLT",
+      "flux": "FLUXCAL",
+      "flux_error": "FLUXCALERR",
+      "photflag": "PHOTFLAG",
+      "photprob": "PHOTPROB"
+    },
+    "band_counts": {
+      "-": 10258,
+      "G": 7293,
+      "I": 7302,
+      "R": 7248,
+      "U": 7246,
+      "Z": 7380,
+      "g": 215230,
+      "i": 216402,
+      "r": 215512,
+      "u": 208468,
+      "z": 218227
+    },
+    "row_audit": {
+      "canonical_griz_rows": 894594,
+      "separator_dash_rows": 10258,
+      "finite_time_rows": 1120566,
+      "finite_flux_rows": 1120566,
+      "finite_error_rows": 1120566,
+      "positive_error_rows": 1110308,
+      "nonpositive_error_rows": 10258,
+      "structural_valid_rows": 894594
+    },
+    "flux_signs_all_rows": {
+      "negative": 232068,
+      "zero": 48,
+      "positive": 888450
+    },
+    "flux_signs_structural_valid_rows": {
+      "negative": 161158,
+      "zero": 48,
+      "positive": 733388
+    },
+    "separator_consistency": {
+      "nonpositive_error_and_dash_band": 10258,
+      "nonpositive_error_not_dash_band": 0,
+      "dash_band_with_positive_error": 0
+    },
+    "photflag_summary": {
+      "available": true,
+      "unique_value_count": 462,
+      "most_common_values": [
+        {
+          "value": 0,
+          "rows": 279688
+        },
+        {
+          "value": 32,
+          "rows": 277603
+        },
+        {
+          "value": 288,
+          "rows": 68907
+        },
+        {
+          "value": 1,
+          "rows": 65833
+        },
+        {
+          "value": 33,
+          "rows": 49970
+        },
+        {
+          "value": 256,
+          "rows": 46554
+        },
+        {
+          "value": 8,
+          "rows": 19687
+        },
+        {
+          "value": 128,
+          "rows": 16221
+        },
+        {
+          "value": 40,
+          "rows": 14835
+        },
+        {
+          "value": 34,
+          "rows": 14762
+        },
+        {
+          "value": 160,
+          "rows": 14525
+        },
+        {
+          "value": 289,
+          "rows": 14143
+        },
+        {
+          "value": 2,
+          "rows": 12843
+        },
+        {
+          "value": 257,
+          "rows": 11088
+        },
+        {
+          "value": 4,
+          "rows": 10655
+        },
+        {
+          "value": 36,
+          "rows": 7079
+        },
+        {
+          "value": 129,
+          "rows": 6526
+        },
+        {
+          "value": 3,
+          "rows": 6236
+        },
+        {
+          "value": 35,
+          "rows": 5478
+        },
+        {
+          "value": 9,
+          "rows": 5408
+        },
+        {
+          "value": 1156,
+          "rows": 4108
+        },
+        {
+          "value": 296,
+          "rows": 3944
+        },
+        {
+          "value": 1312,
+          "rows": 3929
+        },
+        {
+          "value": 161,
+          "rows": 3879
+        },
+        {
+          "value": 416,
+          "rows": 3441
+        }
+      ],
+      "bit_occurrence": {
+        "0": {
+          "mask_decimal": 1,
+          "rows_set": 219305
+        },
+        "1": {
+          "mask_decimal": 2,
+          "rows_set": 74722
+        },
+        "2": {
+          "mask_decimal": 4,
+          "rows_set": 74226
+        },
+        "3": {
+          "mask_decimal": 8,
+          "rows_set": 119801
+        },
+        "4": {
+          "mask_decimal": 16,
+          "rows_set": 45931
+        },
+        "5": {
+          "mask_decimal": 32,
+          "rows_set": 547715
+        },
+        "7": {
+          "mask_decimal": 128,
+          "rows_set": 121534
+        },
+        "8": {
+          "mask_decimal": 256,
+          "rows_set": 203580
+        },
+        "10": {
+          "mask_decimal": 1024,
+          "rows_set": 64152
+        }
+      }
+    },
+    "photprob_summary": {
+      "finite_rows": 1120566,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  "des": {
+    "survey": "DES-SN5YR",
+    "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/0_DATA/DES-SN5YR_DES/DES-SN5YR_DES_PHOT.FITS.gz",
+    "rows_total": 1798736,
+    "columns": [
+      "MJD",
+      "BAND",
+      "CCDNUM",
+      "IMGNUM",
+      "FIELD",
+      "PHOTFLAG",
+      "PHOTPROB",
+      "FLUXCAL",
+      "FLUXCALERR",
+      "PSF_SIG1",
+      "PSF_SIG2",
+      "PSF_RATIO",
+      "SKY_SIG",
+      "SKY_SIG_T",
+      "RDNOISE",
+      "ZEROPT",
+      "ZEROPT_ERR",
+      "GAIN",
+      "XPIX",
+      "YPIX"
+    ],
+    "resolved_columns": {
+      "time": "MJD",
+      "band": "BAND",
+      "flux": "FLUXCAL",
+      "flux_error": "FLUXCALERR",
+      "photflag": "PHOTFLAG",
+      "photprob": "PHOTPROB"
+    },
+    "band_counts": {
+      "-": 19706,
+      "g": 464944,
+      "i": 439681,
+      "r": 406589,
+      "z": 467816
+    },
+    "row_audit": {
+      "canonical_griz_rows": 1779030,
+      "separator_dash_rows": 19706,
+      "finite_time_rows": 1798736,
+      "finite_flux_rows": 1798736,
+      "finite_error_rows": 1798736,
+      "positive_error_rows": 1779030,
+      "nonpositive_error_rows": 19706,
+      "structural_valid_rows": 1779030
+    },
+    "flux_signs_all_rows": {
+      "negative": 537507,
+      "zero": 63,
+      "positive": 1261166
+    },
+    "flux_signs_structural_valid_rows": {
+      "negative": 517801,
+      "zero": 63,
+      "positive": 1261166
+    },
+    "separator_consistency": {
+      "nonpositive_error_and_dash_band": 19706,
+      "nonpositive_error_not_dash_band": 0,
+      "dash_band_with_positive_error": 0
+    },
+    "photflag_summary": {
+      "available": true,
+      "unique_value_count": 103,
+      "most_common_values": [
+        {
+          "value": 1,
+          "rows": 1039989
+        },
+        {
+          "value": 12288,
+          "rows": 217210
+        },
+        {
+          "value": 2049,
+          "rows": 172282
+        },
+        {
+          "value": 0,
+          "rows": 141544
+        },
+        {
+          "value": 1025,
+          "rows": 71410
+        },
+        {
+          "value": 4096,
+          "rows": 48430
+        },
+        {
+          "value": 2048,
+          "rows": 46041
+        },
+        {
+          "value": 28672,
+          "rows": 12932
+        },
+        {
+          "value": 2,
+          "rows": 6738
+        },
+        {
+          "value": 1024,
+          "rows": 4938
+        },
+        {
+          "value": 33,
+          "rows": 4548
+        },
+        {
+          "value": 13312,
+          "rows": 3819
+        },
+        {
+          "value": 4097,
+          "rows": 3196
+        },
+        {
+          "value": 513,
+          "rows": 2807
+        },
+        {
+          "value": 4098,
+          "rows": 2680
+        },
+        {
+          "value": 14336,
+          "rows": 2468
+        },
+        {
+          "value": 257,
+          "rows": 2212
+        },
+        {
+          "value": 2050,
+          "rows": 1567
+        },
+        {
+          "value": 12290,
+          "rows": 1394
+        },
+        {
+          "value": 1026,
+          "rows": 1267
+        },
+        {
+          "value": 2081,
+          "rows": 969
+        },
+        {
+          "value": 512,
+          "rows": 829
+        },
+        {
+          "value": 4608,
+          "rows": 803
+        },
+        {
+          "value": 5120,
+          "rows": 754
+        },
+        {
+          "value": 12800,
+          "rows": 696
+        }
+      ],
+      "bit_occurrence": {
+        "0": {
+          "mask_decimal": 1,
+          "rows_set": 1300995
+        },
+        "1": {
+          "mask_decimal": 2,
+          "rows_set": 15050
+        },
+        "3": {
+          "mask_decimal": 8,
+          "rows_set": 494
+        },
+        "5": {
+          "mask_decimal": 32,
+          "rows_set": 6449
+        },
+        "8": {
+          "mask_decimal": 256,
+          "rows_set": 4034
+        },
+        "9": {
+          "mask_decimal": 512,
+          "rows_set": 8332
+        },
+        "10": {
+          "mask_decimal": 1024,
+          "rows_set": 83622
+        },
+        "11": {
+          "mask_decimal": 2048,
+          "rows_set": 225522
+        },
+        "12": {
+          "mask_decimal": 4096,
+          "rows_set": 297585
+        },
+        "13": {
+          "mask_decimal": 8192,
+          "rows_set": 240566
+        },
+        "14": {
+          "mask_decimal": 16384,
+          "rows_set": 14054
+        }
+      }
+    },
+    "photprob_summary": {
+      "finite_rows": 1798736,
+      "min": 0.0,
+      "max": 0.0
+    }
+  },
+  "documentation_search": {
+    "sdss_hits": [
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS.README",
+        "line": 55,
+        "text": "Survey Quality     : 941   (QMASK bit 1)"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS.README",
+        "line": 56,
+        "text": "NOT Survey Quality : 599"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS.README",
+        "line": 61,
+        "text": "1 => epoch is survey quality (PSF<1.8 & Cloudsig<10.0 & no moon)."
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS.README",
+        "line": 185,
+        "text": "Survey Quality     : 23178   (QMASK bit 1)"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS.README",
+        "line": 186,
+        "text": "NOT Survey Quality : 62971"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS.README",
+        "line": 191,
+        "text": "1 => epoch is survey quality (PSF<1.8 & Cloudsig<10.0 & no moon)."
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS.README",
+        "line": 319,
+        "text": "Survey Quality     : 0   (QMASK bit 1)"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS.README",
+        "line": 320,
+        "text": "NOT Survey Quality : 100955"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS.README",
+        "line": 325,
+        "text": "1 => epoch is survey quality (PSF<1.8 & Cloudsig<10.0 & no moon)."
+      }
+    ],
+    "des_hits": [
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/0_DATA/README.md",
+        "line": 56,
+        "text": "* `PHOTFLAG`      :bit-mask of information (check data README)"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/0_DATA/README.md",
+        "line": 57,
+        "text": "* `PHOTPROB`      :float metric; e.g, RealBogus score, chi2, ..."
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/README.md",
+        "line": 83,
+        "text": "* `PHOTFLAG`      :bit-mask of information (check data README)"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/README.md",
+        "line": 84,
+        "text": "* `PHOTPROB`      :float metric; e.g, RealBogus score, chi2, ..."
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0001/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0001.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0001/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0001.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0001/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0001.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0002/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0002.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0002/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0002.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0002/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0002.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0003/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0003.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0003/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0003.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0003/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0003.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0004/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0004.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0004/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0004.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0004/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0004.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0005/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0005.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0005/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0005.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0005/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0005.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0006/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0006.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0006/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0006.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0006/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0006.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0007/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0007.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0007/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0007.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0007/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0007.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0008/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0008.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0008/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0008.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0008/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0008.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0009/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0009.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0009/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0009.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0009/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0009.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0010/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0010.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0010/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0010.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0010/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0010.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0011/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0011.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0011/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0011.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0011/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0011.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0012/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0012.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0012/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0012.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0012/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0012.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0013/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0013.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0013/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0013.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0013/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0013.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0014/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0014.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0014/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0014.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0014/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0014.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0015/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0015.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0015/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0015.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0015/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0015.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0016/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0016.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0016/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0016.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0016/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0016.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0017/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0017.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0017/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0017.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0017/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0017.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0018/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0018.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0018/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0018.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0018/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0018.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0019/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0019.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0019/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0019.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0019/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0019.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0020/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0020.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0020/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0020.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0020/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0020.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0021/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0021.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0021/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0021.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0021/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0021.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0022/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0022.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0022/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0022.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0022/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0022.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0023/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0023.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0023/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0023.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0023/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0023.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0024/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0024.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0024/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0024.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0024/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0024.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0025/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0025.README",
+        "line": 44,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0025/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0025.README",
+        "line": 45,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0025/PIP_D5YR_SIM_V2_DATADESSIM_4D_P21-0025.README",
+        "line": 84,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001/PIP_D5YR_SIM_V2_DATADESSIM_CC-0001.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002/PIP_D5YR_SIM_V2_DATADESSIM_CC-0002.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003/PIP_D5YR_SIM_V2_DATADESSIM_CC-0003.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004/PIP_D5YR_SIM_V2_DATADESSIM_CC-0004.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005/PIP_D5YR_SIM_V2_DATADESSIM_CC-0005.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006/PIP_D5YR_SIM_V2_DATADESSIM_CC-0006.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007/PIP_D5YR_SIM_V2_DATADESSIM_CC-0007.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008/PIP_D5YR_SIM_V2_DATADESSIM_CC-0008.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009/PIP_D5YR_SIM_V2_DATADESSIM_CC-0009.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010/PIP_D5YR_SIM_V2_DATADESSIM_CC-0010.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011/PIP_D5YR_SIM_V2_DATADESSIM_CC-0011.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012/PIP_D5YR_SIM_V2_DATADESSIM_CC-0012.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013/PIP_D5YR_SIM_V2_DATADESSIM_CC-0013.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014/PIP_D5YR_SIM_V2_DATADESSIM_CC-0014.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015/PIP_D5YR_SIM_V2_DATADESSIM_CC-0015.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016/PIP_D5YR_SIM_V2_DATADESSIM_CC-0016.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017/PIP_D5YR_SIM_V2_DATADESSIM_CC-0017.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018/PIP_D5YR_SIM_V2_DATADESSIM_CC-0018.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019/PIP_D5YR_SIM_V2_DATADESSIM_CC-0019.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020/PIP_D5YR_SIM_V2_DATADESSIM_CC-0020.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021/PIP_D5YR_SIM_V2_DATADESSIM_CC-0021.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022/PIP_D5YR_SIM_V2_DATADESSIM_CC-0022.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023/PIP_D5YR_SIM_V2_DATADESSIM_CC-0023.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024/PIP_D5YR_SIM_V2_DATADESSIM_CC-0024.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 42,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 43,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 85,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 126,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 127,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 169,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 232,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 233,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 275,
+        "text": "DEBUG_FLAG:              0"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 346,
+        "text": "SMEARFLAG_FLUX:      1  # 1->add Poisson noise"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 347,
+        "text": "SMEARFLAG_ZEROPT:    3  # +=1->apply scatter, +=2->add to FLUXERRCAL"
+      },
+      {
+        "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/1_SIMULATIONS/SNnonIa_SIMULATIONS/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025/PIP_D5YR_SIM_V2_DATADESSIM_CC-0025.README",
+        "line": 389,
+        "text": "DEBUG_FLAG:              0"
+      }
+    ]
+  },
+  "frozen_mask": {
+    "include_bands": [
+      "g",
+      "r",
+      "i",
+      "z"
+    ],
+    "require_finite_mjd": true,
+    "require_finite_flux": true,
+    "require_finite_flux_error": true,
+    "require_positive_flux_error": true,
+    "retain_negative_flux": true,
+    "retain_zero_flux": true,
+    "apply_sn_threshold_here": false,
+    "apply_detection_threshold": false,
+    "empirical_photflag_filter": false,
+    "photflag_policy": "Only release-documented invalid measurement/image bits may be excluded. No bit may be removed because of its effect on cross-survey feature alignment."
+  },
+  "gate": "PASS"
+}

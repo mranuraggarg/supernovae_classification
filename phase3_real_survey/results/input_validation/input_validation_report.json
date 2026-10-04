@@ -1,0 +1,343 @@
+{
+  "purpose": "Phase-3 input validation only; no compact-feature comparison",
+  "repo": "/Volumes/AstroSSD/share/github/supernovae_classification",
+  "sdss_root": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss",
+  "des_root": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des",
+  "checksums": {
+    "sdss_archive": {
+      "filename": "SDSS_dataRelease-snana.tar.gz",
+      "algorithm": "sha256",
+      "expected": "b0861ce0d8bd5ab138bc2e9f41dd5321912d76cb43c718789a7bc637d56e3dbd",
+      "status": "PASS",
+      "matches": [
+        {
+          "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_dataRelease-snana.tar.gz",
+          "digest": "b0861ce0d8bd5ab138bc2e9f41dd5321912d76cb43c718789a7bc637d56e3dbd",
+          "matches_expected": true
+        }
+      ]
+    },
+    "sdss_nested": {
+      "filename": "SDSS_allCandidates+BOSS.tar.gz",
+      "algorithm": "sha256",
+      "expected": "033992473b0dace08233bf9b4ef395a2267148f64ee021cc725a475d70d34d42",
+      "status": "PASS",
+      "matches": [
+        {
+          "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_dataRelease-snana/SDSS_allCandidates+BOSS.tar.gz",
+          "digest": "033992473b0dace08233bf9b4ef395a2267148f64ee021cc725a475d70d34d42",
+          "matches_expected": true
+        }
+      ]
+    },
+    "des_archive": {
+      "filename": "DES-SN5YR-1.2.zip",
+      "algorithm": "md5",
+      "expected": "9019a6ddc569553bc323e9e1b68a55bf",
+      "status": "PASS",
+      "matches": [
+        {
+          "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2.zip",
+          "digest": "9019a6ddc569553bc323e9e1b68a55bf",
+          "matches_expected": true
+        }
+      ]
+    },
+    "des_head": {
+      "filename": "DES-SN5YR_DES_HEAD.FITS.gz",
+      "algorithm": "sha256",
+      "expected": "08c1fb41dfe8b4e8a969f205144f94c9f6838a1a895a0fedc75b837fb87fd00a",
+      "status": "PASS",
+      "matches": [
+        {
+          "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/0_DATA/DES-SN5YR_DES/DES-SN5YR_DES_HEAD.FITS.gz",
+          "digest": "08c1fb41dfe8b4e8a969f205144f94c9f6838a1a895a0fedc75b837fb87fd00a",
+          "matches_expected": true
+        }
+      ]
+    },
+    "des_phot": {
+      "filename": "DES-SN5YR_DES_PHOT.FITS.gz",
+      "algorithm": "sha256",
+      "expected": "10248f0364e90f88626ef19cf5ecf052500bbcbfd27f14f8b94cf8ffbc7dd01c",
+      "status": "PASS",
+      "matches": [
+        {
+          "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/0_DATA/DES-SN5YR_DES/DES-SN5YR_DES_PHOT.FITS.gz",
+          "digest": "10248f0364e90f88626ef19cf5ecf052500bbcbfd27f14f8b94cf8ffbc7dd01c",
+          "matches_expected": true
+        }
+      ]
+    },
+    "des_readme": {
+      "filename": "DES-SN5YR_DES.README",
+      "algorithm": "sha256",
+      "expected": "75cd01a0786cbe983b71b154565c8158fcb97e4b7113633457b77350eb845544",
+      "status": "PASS",
+      "matches": [
+        {
+          "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/0_DATA/DES-SN5YR_DES/DES-SN5YR_DES.README",
+          "digest": "75cd01a0786cbe983b71b154565c8158fcb97e4b7113633457b77350eb845544",
+          "matches_expected": true
+        }
+      ]
+    }
+  },
+  "sdss": {
+    "head": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS_HEAD.FITS",
+      "hdu_name": "Header",
+      "rows": 10258,
+      "columns": [
+        "SNID",
+        "IAUC",
+        "FAKE",
+        "RA",
+        "DECL",
+        "PIXSIZE",
+        "NXPIX",
+        "NYPIX",
+        "SNTYPE",
+        "NOBS",
+        "PTROBS_MIN",
+        "PTROBS_MAX",
+        "MWEBV",
+        "MWEBV_ERR",
+        "REDSHIFT_HELIO",
+        "REDSHIFT_HELIO_ERR",
+        "REDSHIFT_FINAL",
+        "REDSHIFT_FINAL_ERR",
+        "REDSHIFT_SN",
+        "REDSHIFT_SN_ERR",
+        "HOSTGAL_OBJID",
+        "HOSTGAL_PHOTOZ",
+        "HOSTGAL_PHOTOZ_ERR",
+        "HOSTGAL_SPECZ",
+        "HOSTGAL_SPECZ_ERR",
+        "HOSTGAL_SNSEP",
+        "HOSTGAL_LOGMASS",
+        "HOSTGAL_LOGMASS_ERR",
+        "HOSTGAL_MAG_u",
+        "HOSTGAL_MAG_g",
+        "HOSTGAL_MAG_r",
+        "HOSTGAL_MAG_i",
+        "HOSTGAL_MAG_z",
+        "HOSTGAL_MAG_U",
+        "HOSTGAL_MAG_G",
+        "HOSTGAL_MAG_R",
+        "HOSTGAL_MAG_I",
+        "HOSTGAL_MAG_Z",
+        "HOSTGAL_SB_FLUXCAL_u",
+        "HOSTGAL_SB_FLUXCAL_g",
+        "HOSTGAL_SB_FLUXCAL_r",
+        "HOSTGAL_SB_FLUXCAL_i",
+        "HOSTGAL_SB_FLUXCAL_z",
+        "HOSTGAL_SB_FLUXCAL_U",
+        "HOSTGAL_SB_FLUXCAL_G",
+        "HOSTGAL_SB_FLUXCAL_R",
+        "HOSTGAL_SB_FLUXCAL_I",
+        "HOSTGAL_SB_FLUXCAL_Z",
+        "PEAKMJD",
+        "SEARCH_TYPE"
+      ],
+      "resolved": {
+        "class_label": "SNTYPE",
+        "heliocentric_redshift": "REDSHIFT_HELIO",
+        "mw_extinction": "MWEBV",
+        "nobs": "NOBS"
+      }
+    },
+    "phot": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/sdss/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS/SDSS_allCandidates+BOSS_PHOT.FITS",
+      "rows": 1120566,
+      "required_columns": {
+        "time": "MJD",
+        "band": "FLT",
+        "flux": "FLUXCAL",
+        "flux_error": "FLUXCALERR"
+      },
+      "expected_metadata_columns": {
+        "quality_flag": "PHOTFLAG",
+        "field": "FIELD",
+        "zeropoint": "ZEROPT",
+        "gain": "GAIN",
+        "psf": "PSF_SIG1",
+        "sky": "SKY_SIG",
+        "read_noise": "RDNOISE"
+      },
+      "missing_required": [],
+      "builder_schema_compatible": true,
+      "band_tokens": [
+        "-",
+        "G",
+        "I",
+        "R",
+        "U",
+        "Z",
+        "g",
+        "i",
+        "r",
+        "u",
+        "z"
+      ],
+      "band_token_status": "DIRECT_GRIZ",
+      "flux_sign_counts": {
+        "negative": 232068,
+        "zero": 48,
+        "positive": 888450
+      },
+      "nonpositive_flux_error_rows": 10258,
+      "mjd_min": -777.0,
+      "mjd_max": 54433.406463
+    }
+  },
+  "des": {
+    "head": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/0_DATA/DES-SN5YR_DES/DES-SN5YR_DES_HEAD.FITS.gz",
+      "hdu_name": "Header",
+      "rows": 19706,
+      "columns": [
+        "SNID",
+        "IAUC",
+        "FAKE",
+        "MASK_FLUXCOR_SNANA",
+        "RA",
+        "DEC",
+        "PIXSIZE",
+        "NXPIX",
+        "NYPIX",
+        "SNTYPE",
+        "NOBS",
+        "PTROBS_MIN",
+        "PTROBS_MAX",
+        "MWEBV",
+        "MWEBV_ERR",
+        "REDSHIFT_HELIO",
+        "REDSHIFT_HELIO_ERR",
+        "REDSHIFT_FINAL",
+        "REDSHIFT_FINAL_ERR",
+        "REDSHIFT_QUALITYFLAG",
+        "MASK_REDSHIFT_SOURCE",
+        "VPEC",
+        "VPEC_ERR",
+        "HOSTGAL_NMATCH",
+        "HOSTGAL_NMATCH2",
+        "HOSTGAL_OBJID",
+        "HOSTGAL_FLAG",
+        "HOSTGAL_PHOTOZ",
+        "HOSTGAL_PHOTOZ_ERR",
+        "HOSTGAL_SPECZ",
+        "HOSTGAL_SPECZ_ERR",
+        "HOSTGAL_RA",
+        "HOSTGAL_DEC",
+        "HOSTGAL_SNSEP",
+        "HOSTGAL_DDLR",
+        "HOSTGAL_CONFUSION",
+        "HOSTGAL_LOGMASS",
+        "HOSTGAL_LOGMASS_ERR",
+        "HOSTGAL_LOGSFR",
+        "HOSTGAL_LOGSFR_ERR",
+        "HOSTGAL_LOGsSFR",
+        "HOSTGAL_LOGsSFR_ERR",
+        "HOSTGAL_COLOR",
+        "HOSTGAL_COLOR_ERR",
+        "HOSTGAL_ELLIPTICITY",
+        "HOSTGAL_OBJID2",
+        "HOSTGAL_SQRADIUS",
+        "HOSTGAL_OBJID_UNIQUE",
+        "HOSTGAL_MAG_g",
+        "HOSTGAL_MAG_r",
+        "HOSTGAL_MAG_i",
+        "HOSTGAL_MAG_z",
+        "HOSTGAL_MAGERR_g",
+        "HOSTGAL_MAGERR_r",
+        "HOSTGAL_MAGERR_i",
+        "HOSTGAL_MAGERR_z",
+        "HOSTGAL2_OBJID",
+        "HOSTGAL2_FLAG",
+        "HOSTGAL2_PHOTOZ",
+        "HOSTGAL2_PHOTOZ_ERR",
+        "HOSTGAL2_SPECZ",
+        "HOSTGAL2_SPECZ_ERR",
+        "HOSTGAL2_RA",
+        "HOSTGAL2_DEC",
+        "HOSTGAL2_SNSEP",
+        "HOSTGAL2_DDLR",
+        "HOSTGAL2_LOGMASS",
+        "HOSTGAL2_LOGMASS_ERR",
+        "HOSTGAL2_LOGSFR",
+        "HOSTGAL2_LOGSFR_ERR",
+        "HOSTGAL2_LOGsSFR",
+        "HOSTGAL2_LOGsSFR_ERR",
+        "HOSTGAL2_COLOR",
+        "HOSTGAL2_COLOR_ERR",
+        "HOSTGAL2_ELLIPTICITY",
+        "HOSTGAL2_OBJID2",
+        "HOSTGAL2_SQRADIUS",
+        "HOSTGAL2_OBJID_UNIQUE",
+        "HOSTGAL2_MAG_g",
+        "HOSTGAL2_MAG_r",
+        "HOSTGAL2_MAG_i",
+        "HOSTGAL2_MAG_z",
+        "HOSTGAL2_MAGERR_g",
+        "HOSTGAL2_MAGERR_r",
+        "HOSTGAL2_MAGERR_i",
+        "HOSTGAL2_MAGERR_z",
+        "HOSTGAL_SB_FLUXCAL_g",
+        "HOSTGAL_SB_FLUXCAL_r",
+        "HOSTGAL_SB_FLUXCAL_i",
+        "HOSTGAL_SB_FLUXCAL_z",
+        "PEAKMJD",
+        "MJD_TRIGGER",
+        "MJD_DETECT_FIRST",
+        "MJD_DETECT_LAST",
+        "SEARCH_TYPE",
+        "PRIVATE(AGN_SCAN)"
+      ],
+      "resolved": {
+        "class_label": "SNTYPE",
+        "heliocentric_redshift": "REDSHIFT_HELIO",
+        "mw_extinction": "MWEBV",
+        "nobs": "NOBS"
+      }
+    },
+    "phot": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/data/raw/des/DES-SN5YR-1.2/0_DATA/DES-SN5YR_DES/DES-SN5YR_DES_PHOT.FITS.gz",
+      "rows": 1798736,
+      "required_columns": {
+        "time": "MJD",
+        "band": "BAND",
+        "flux": "FLUXCAL",
+        "flux_error": "FLUXCALERR"
+      },
+      "expected_metadata_columns": {
+        "quality_flag": "PHOTFLAG",
+        "field": "FIELD",
+        "zeropoint": "ZEROPT",
+        "gain": "GAIN",
+        "psf": "PSF_SIG1",
+        "sky": "SKY_SIG",
+        "read_noise": "RDNOISE"
+      },
+      "missing_required": [],
+      "builder_schema_compatible": true,
+      "band_tokens": [
+        "-",
+        "g",
+        "i",
+        "r",
+        "z"
+      ],
+      "band_token_status": "DIRECT_GRIZ",
+      "flux_sign_counts": {
+        "negative": 537507,
+        "zero": 63,
+        "positive": 1261166
+      },
+      "nonpositive_flux_error_rows": 19706,
+      "mjd_min": -777.0,
+      "mjd_max": 58167.037
+    }
+  },
+  "final_gate": "PASS"
+}

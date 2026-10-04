@@ -73,7 +73,7 @@ tmp/
 *.log
 
 # Generated Phase 3 outputs
-phase3_real_survey/results/
+phase3_real_survey/results/*
 phase3_real_survey/plots/
 
 # Large/local-only Phase 3 data
@@ -82,3 +82,16 @@ phase3_real_survey/data/*
 !phase3_real_survey/data/README.md
 repo_tree.txt
 archive/presentations/
+
+# Phase 3 results are ignored by default
+phase3_real_survey/results/*
+
+# Keep pre-outcome validation records under version control
+!phase3_real_survey/results/input_validation/
+!phase3_real_survey/results/input_validation/**
+!phase3_real_survey/results/passband_validation/
+!phase3_real_survey/results/passband_validation/**
+!phase3_real_survey/results/quality_mask_validation/
+!phase3_real_survey/results/quality_mask_validation/**
+!phase3_real_survey/results/cadence_template_injection/
+!phase3_real_survey/results/cadence_template_injection/**
