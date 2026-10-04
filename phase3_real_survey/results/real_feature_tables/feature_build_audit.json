@@ -1,0 +1,95 @@
+{
+  "stage": "empirical_feature_construction",
+  "cross_survey_feature_comparison": false,
+  "classifier_run": false,
+  "normalization_applied": false,
+  "frozen_redshift_support": {
+    "min": 0.05,
+    "max": 0.3
+  },
+  "frozen_features": [
+    "z_peak_flux",
+    "r_mean_flux",
+    "peak_color_g_minus_r",
+    "i_peak_flux",
+    "peak_color_r_minus_i",
+    "peak_color_i_minus_z",
+    "g_mean_flux",
+    "r_peak_flux",
+    "z_std_flux",
+    "i_amplitude",
+    "i_std_flux",
+    "time_span",
+    "z_time_of_peak",
+    "i_time_of_peak",
+    "r_time_of_peak",
+    "r_std_flux"
+  ],
+  "sdss": {
+    "survey": "SDSS-II",
+    "rows_written": 366,
+    "counts": {
+      "head_total": 10258,
+      "excluded_nonsecure_or_nonprimary_type": 9673,
+      "secure_before_z_Ia": 499,
+      "in_redshift_support_Ia": 402,
+      "passed_primary_four_band_support": 366,
+      "accepted": 366,
+      "accepted_Ia": 305,
+      "accepted_subtype_Ia": 305,
+      "accepted_objects_with_ignore_epoch": 34,
+      "ignored_epochs_on_accepted_objects": 54,
+      "secure_before_z_CC": 86,
+      "excluded_outside_redshift_support": 115,
+      "excluded_primary_four_band_support": 100,
+      "in_redshift_support_CC": 68,
+      "accepted_CC": 61,
+      "accepted_subtype_II": 49,
+      "accepted_subtype_Ic": 8,
+      "accepted_subtype_Ib": 4,
+      "excluded_missing_raw_griz": 4
+    },
+    "redshift_sources": {
+      "REDSHIFT_HELIO": 585
+    },
+    "feature_rejection_reasons": {},
+    "sdss_ignore": {
+      "parsed": 152,
+      "applied": 149,
+      "absent_release_cid": 3,
+      "ambiguous": 0,
+      "unmatched_present_cid": 0,
+      "tolerance_days": 0.003,
+      "maximum_applied_delta_days": 0.0022539999990840442
+    }
+  },
+  "des": {
+    "survey": "DES-SN5YR",
+    "rows_written": 185,
+    "counts": {
+      "head_total": 19706,
+      "excluded_nonsecure_or_nonprimary_type": 19292,
+      "secure_before_z_Ia": 353,
+      "in_redshift_support_Ia": 140,
+      "passed_primary_four_band_support": 185,
+      "accepted": 185,
+      "accepted_Ia": 134,
+      "accepted_subtype_Ia": 134,
+      "excluded_outside_redshift_support": 222,
+      "secure_before_z_CC": 61,
+      "in_redshift_support_CC": 52,
+      "accepted_CC": 51,
+      "accepted_subtype_II": 39,
+      "accepted_subtype_IIb": 2,
+      "accepted_subtype_Ibc": 6,
+      "accepted_subtype_Ib": 1,
+      "excluded_missing_raw_griz": 7,
+      "accepted_subtype_Ic": 3
+    },
+    "redshift_sources": {
+      "REDSHIFT_HELIO": 414
+    },
+    "feature_rejection_reasons": {},
+    "sdss_ignore": null
+  }
+}
