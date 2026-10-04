@@ -1,0 +1,51 @@
+==============================================================================
+PHASE 3 PRIMARY-COHORT VALIDATION
+COUNTS AND SUPPORT ONLY - NO COMPACT FEATURES
+==============================================================================
+
+SDSS-II
+-------
+Secure objects within z support:
+  Ia : 402
+  CC : 68
+
+Primary four-band survivors:
+  Ia : 305 (expected 305)
+  CC : 61 (expected 61)
+
+Support failures:
+  Ia : 97
+  CC : 7
+
+SDSS official IGNORE:
+  parsed             : 152
+  applied            : 149
+  absent-release CID : 3
+  ambiguous          : 0
+  unmatched-present  : 0
+  maximum MJD delta  : 0.002254 d
+
+Gate: PASS
+
+DES-SN5YR
+---------
+Secure objects within z support:
+  Ia : 140
+  CC : 52
+
+Primary four-band survivors:
+  Ia : 134 (expected 134)
+  CC : 51 (expected 51)
+
+Support failures:
+  Ia : 6
+  CC : 1
+
+Gate: PASS
+
+==============================================================================
+PRIMARY-COHORT VALIDATION GATE: PASS
+==============================================================================
+
+No compact-feature values were computed.
+No SDSS-DES feature outcome was inspected.

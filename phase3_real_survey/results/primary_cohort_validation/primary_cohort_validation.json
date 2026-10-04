@@ -1,0 +1,115 @@
+{
+  "stage": "primary_cohort_validation",
+  "feature_values_computed": false,
+  "cross_survey_feature_statistics": false,
+  "primary_rule": {
+    "z_min": 0.05,
+    "z_max": 0.3,
+    "snr_threshold": 3.0,
+    "bands": [
+      "g",
+      "r",
+      "i",
+      "z"
+    ],
+    "sdss_filter_case": "literal lowercase only",
+    "require_active_support_each_band": true,
+    "sdss_ignore_applied": true
+  },
+  "sdss": {
+    "survey": "SDSS-II",
+    "expected": {
+      "Ia": 305,
+      "CC": 61
+    },
+    "observed": {
+      "Ia": 305,
+      "CC": 61
+    },
+    "counts": {
+      "head_total": 10258,
+      "secure_Ia": 499,
+      "in_z_Ia": 402,
+      "accepted_Ia": 305,
+      "secure_CC": 86,
+      "outside_z_CC": 18,
+      "failed_support_Ia": 97,
+      "outside_z_Ia": 97,
+      "in_z_CC": 68,
+      "failed_support_CC": 7,
+      "accepted_CC": 61
+    },
+    "accepted_subtypes": {
+      "Ia": 305,
+      "II": 49,
+      "Ic": 8,
+      "Ib": 4
+    },
+    "redshift_sources": {
+      "REDSHIFT_HELIO": 585
+    },
+    "support_failure_patterns": {
+      "Ia:z": 95,
+      "CC:z": 6,
+      "Ia:gri": 1,
+      "CC:g": 1,
+      "Ia:iz": 1
+    },
+    "sdss_ignore": {
+      "parsed": 152,
+      "applied": 149,
+      "absent_release_cid": 3,
+      "unmatched_present": 0,
+      "ambiguous": 0,
+      "maximum_delta_days": 0.0022539999990840442
+    },
+    "accepted_object_count": 366,
+    "pass": true
+  },
+  "des": {
+    "survey": "DES-SN5YR",
+    "expected": {
+      "Ia": 134,
+      "CC": 51
+    },
+    "observed": {
+      "Ia": 134,
+      "CC": 51
+    },
+    "counts": {
+      "head_total": 19706,
+      "secure_Ia": 353,
+      "in_z_Ia": 140,
+      "accepted_Ia": 134,
+      "outside_z_Ia": 213,
+      "secure_CC": 61,
+      "in_z_CC": 52,
+      "accepted_CC": 51,
+      "outside_z_CC": 9,
+      "failed_support_CC": 1,
+      "failed_support_Ia": 6
+    },
+    "accepted_subtypes": {
+      "Ia": 134,
+      "II": 39,
+      "IIb": 2,
+      "Ibc": 6,
+      "Ib": 1,
+      "Ic": 3
+    },
+    "redshift_sources": {
+      "REDSHIFT_HELIO": 414
+    },
+    "support_failure_patterns": {
+      "CC:g": 1,
+      "Ia:riz": 1,
+      "Ia:z": 2,
+      "Ia:r": 1,
+      "Ia:gri": 2
+    },
+    "sdss_ignore": null,
+    "accepted_object_count": 185,
+    "pass": true
+  },
+  "overall_pass": true
+}

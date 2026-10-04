@@ -1,0 +1,36 @@
+==============================================================================
+PHASE 3 FEATURE-BUILDER EQUIVALENCE AUDIT
+SYNTHETIC OBSERVATIONS ONLY - NO REAL SURVEY OUTCOMES
+==============================================================================
+
+[1] Verifying registered frozen builder...
+  expected SHA-256 : 7d2b1b7c23d685e652b4b7df383441537162f9dc3829f8edba380a8ddf2a4d76
+  observed SHA-256 : 7d2b1b7c23d685e652b4b7df383441537162f9dc3829f8edba380a8ddf2a4d76
+  hash             : PASS
+
+[2] Extracting frozen builder directly from checksummed source...
+  frozen extraction: PASS
+
+[3] Loading Phase-3 implementation...
+  Phase-3 import   : PASS
+
+[4] Running deterministic edge cases...
+  all_active                       PASS  all 16 features identical within tolerance
+  z_band_fallback                  PASS  all 16 features identical within tolerance
+  multiple_band_fallback           PASS  all 16 features identical within tolerance
+  global_fallback                  PASS  all 16 features identical within tolerance
+  negative_forced_flux             PASS  all 16 features identical within tolerance
+  unsorted_input                   PASS  all 16 features identical within tolerance
+  single_epoch_each_band           PASS  all 16 features identical within tolerance
+  colour_clipping                  PASS  all 16 features identical within tolerance
+  missing_z                        PASS  both reject
+  nonpositive_z_representative     PASS  both reject
+
+[5] Running deterministic randomized corpus...
+  randomized cases : 1,000
+  failures         : 0
+
+==============================================================================
+FEATURE-BUILDER EQUIVALENCE GATE: PASS
+Phase-3 implementation reproduces the registered Tier-4 operator on all synthetic validation cases.
+==============================================================================
