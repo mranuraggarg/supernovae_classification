@@ -64,3 +64,19 @@ outputs/
 tmp/
 
 .DS_Store
+
+# macOS
+.DS_Store
+
+# Temporary working files
+tmp/
+*.log
+
+# Generated Phase 3 outputs
+phase3_real_survey/results/
+phase3_real_survey/plots/
+
+# Large/local-only Phase 3 data
+phase3_real_survey/data/*
+!phase3_real_survey/data/.gitignore
+!phase3_real_survey/data/README.md
