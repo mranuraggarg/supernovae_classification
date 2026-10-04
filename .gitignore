@@ -80,3 +80,5 @@ phase3_real_survey/plots/
 phase3_real_survey/data/*
 !phase3_real_survey/data/.gitignore
 !phase3_real_survey/data/README.md
+repo_tree.txt
+archive/presentations/
