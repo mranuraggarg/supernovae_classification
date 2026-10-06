@@ -1,0 +1,33 @@
+{
+  "stage": "preregistered_primary_confirmatory_stage1",
+  "first_outcome_reveal": true,
+  "primary_features": [
+    "peak_color_r_minus_i",
+    "peak_color_i_minus_z",
+    "i_peak_flux",
+    "z_peak_flux",
+    "r_time_of_peak"
+  ],
+  "passband_features": [
+    "peak_color_r_minus_i",
+    "peak_color_i_minus_z",
+    "i_peak_flux",
+    "z_peak_flux"
+  ],
+  "timing_feature": "r_time_of_peak",
+  "redshift_bins": [
+    "[0.05,0.10)",
+    "[0.10,0.15)",
+    "[0.15,0.20)",
+    "[0.20,0.25)",
+    "[0.25,0.30]"
+  ],
+  "bootstrap_reps": 5000,
+  "bootstrap_seed": 20261006,
+  "normal_Ia_only_primary": true,
+  "sdss_Ia_n": 305,
+  "des_Ia_n": 134,
+  "exploratory_features_inspected": false,
+  "classifier_run": false,
+  "synthetic_operator_applied": false
+}

@@ -1,0 +1,71 @@
+==============================================================================
+PHASE 3 PRIMARY CONFIRMATORY ANALYSIS — STAGE 1
+FIRST EMPIRICAL OUTCOME REVEAL
+ONLY FIVE PREREGISTERED PRIMARY FEATURES
+==============================================================================
+
+[1] Verifying locked empirical tables...
+  sdss_compact_features.csv
+    expected : bdb0653f0638d3998f77c2b1889aad8bfe438fc5c849e5312da525aec7335541
+    observed : bdb0653f0638d3998f77c2b1889aad8bfe438fc5c849e5312da525aec7335541
+    status   : PASS
+  des_compact_features.csv
+    expected : 8963b9e1fb4fe0b30cec58599ae01c53ecf7088a3ddd555b5aed73098d39f669
+    observed : 8963b9e1fb4fe0b30cec58599ae01c53ecf7088a3ddd555b5aed73098d39f669
+    status   : PASS
+
+[2] Loading only preregistered primary features and metadata...
+  SDSS normal Ia : 305
+  DES normal Ia  : 134
+
+[3] Registered passband-feature quantiles and DES-SDSS differences...
+
+  peak_color_r_minus_i
+    [0.05,0.10)  N=39/6  Delta50=-0.198401  95% CI [-0.353310, -0.081156]
+    [0.10,0.15)  N=85/22  Delta50=+0.008304  95% CI [-0.093894, +0.067737]
+    [0.15,0.20)  N=82/31  Delta50=-0.163915  95% CI [-0.201190, -0.095376]
+    [0.20,0.25)  N=65/38  Delta50=-0.100929  95% CI [-0.144794, -0.053843]
+    [0.25,0.30]  N=34/37  Delta50=-0.045825  95% CI [-0.082375, +0.034996]
+
+  peak_color_i_minus_z
+    [0.05,0.10)  N=39/6  Delta50=+0.134169  95% CI [-0.046889, +0.224286]
+    [0.10,0.15)  N=85/22  Delta50=+0.012941  95% CI [-0.078296, +0.123172]
+    [0.15,0.20)  N=82/31  Delta50=-0.278833  95% CI [-0.411283, -0.183710]
+    [0.20,0.25)  N=65/38  Delta50=-0.480202  95% CI [-0.597273, -0.389233]
+    [0.25,0.30]  N=34/37  Delta50=-0.723725  95% CI [-0.989799, -0.571017]
+
+  i_peak_flux
+    [0.05,0.10)  N=39/6  Delta50=+0.077949  95% CI [-0.110503, +0.216256]
+    [0.10,0.15)  N=85/22  Delta50=-0.126305  95% CI [-0.206614, -0.065511]
+    [0.15,0.20)  N=82/31  Delta50=-0.066228  95% CI [-0.133619, -0.026374]
+    [0.20,0.25)  N=65/38  Delta50=-0.133902  95% CI [-0.171578, -0.085319]
+    [0.25,0.30]  N=34/37  Delta50=-0.067792  95% CI [-0.162704, -0.002840]
+
+  z_peak_flux
+    [0.05,0.10)  N=39/6  Delta50=+0.095605  95% CI [-0.092256, +0.281000]
+    [0.10,0.15)  N=85/22  Delta50=-0.137642  95% CI [-0.271759, -0.036622]
+    [0.15,0.20)  N=82/31  Delta50=-0.188048  95% CI [-0.263980, -0.140282]
+    [0.20,0.25)  N=65/38  Delta50=-0.290945  95% CI [-0.334079, -0.231110]
+    [0.25,0.30]  N=34/37  Delta50=-0.377336  95% CI [-0.426276, -0.323625]
+
+[4] Registered survey-stratum summaries...
+  stratum rows written: 100
+
+[5] Registered r_time_of_peak spread comparison...
+  [0.05,0.10) N=39/6 DeltaMAD=-1.895786 DeltaIQR=+11.911101
+  [0.10,0.15) N=85/22 DeltaMAD=+11.718285 DeltaIQR=+25.468589
+  [0.15,0.20) N=82/31 DeltaMAD=-1.451630 DeltaIQR=-2.024792
+  [0.20,0.25) N=65/38 DeltaMAD=+2.475700 DeltaIQR=+6.935431
+  [0.25,0.30] N=34/37 DeltaMAD=-1.057596 DeltaIQR=-1.429746
+
+==============================================================================
+PRIMARY CONFIRMATORY STAGE 1: COMPLETE
+==============================================================================
+
+Passband table : /Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/primary_confirmatory_stage1/primary_passband_raw.csv
+Strata table   : /Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/primary_confirmatory_stage1/primary_strata_raw.csv
+Timing table   : /Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/primary_confirmatory_stage1/primary_r_time_of_peak_raw.csv
+Manifest       : /Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/primary_confirmatory_stage1/stage1_manifest.json
+
+STOP HERE.
+Do not inspect secondary features or run the classifier.
