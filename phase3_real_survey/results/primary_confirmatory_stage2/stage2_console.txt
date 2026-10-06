@@ -1,0 +1,74 @@
+==============================================================================
+PHASE 3 PRIMARY CONFIRMATORY ANALYSIS — STAGE 2
+FROZEN PHYSICS OPERATORS ONLY
+==============================================================================
+
+[1] Verifying locked real feature tables...
+  sdss_compact_features.csv
+    expected : bdb0653f0638d3998f77c2b1889aad8bfe438fc5c849e5312da525aec7335541
+    observed : bdb0653f0638d3998f77c2b1889aad8bfe438fc5c849e5312da525aec7335541
+    status   : PASS
+  des_compact_features.csv
+    expected : 8963b9e1fb4fe0b30cec58599ae01c53ecf7088a3ddd555b5aed73098d39f669
+    observed : 8963b9e1fb4fe0b30cec58599ae01c53ecf7088a3ddd555b5aed73098d39f669
+    status   : PASS
+
+[2] Loading frozen predictions and Stage-1 outcomes...
+  frozen passband grid : PASS
+  Stage-1 passband rows: 20
+  Stage-1 timing rows  : 5
+
+[3] Applying fixed passband operator to normal-Ia SDSS...
+
+  peak_color_r_minus_i
+    [0.05,0.10) raw=-0.198401 residual=-0.071630 W=0.227513->0.112906
+    [0.10,0.15) raw=+0.008304 residual=+0.108660 W=0.108214->0.146667
+    [0.15,0.20) raw=-0.163915 residual=-0.022944 W=0.194703->0.111557
+    [0.20,0.25) raw=-0.100929 residual=+0.008672 W=0.134724->0.066485
+    [0.25,0.30] raw=-0.045825 residual=-0.016984 W=0.036768->0.031775
+
+  peak_color_i_minus_z
+    [0.05,0.10) raw=+0.134169 residual=-0.030029 W=0.097955->0.101215
+    [0.10,0.15) raw=+0.012941 residual=-0.165685 W=0.091577->0.227990
+    [0.15,0.20) raw=-0.278833 residual=-0.353306 W=0.407320->0.483231
+    [0.20,0.25) raw=-0.480202 residual=-0.487998 W=0.612846->0.631549
+    [0.25,0.30] raw=-0.723725 residual=-0.656772 W=0.888859->0.790095
+
+  i_peak_flux
+    [0.05,0.10) raw=+0.077949 residual=+0.136031 W=0.121428->0.157651
+    [0.10,0.15) raw=-0.126305 residual=-0.076865 W=0.162859->0.107684
+    [0.15,0.20) raw=-0.066228 residual=-0.016060 W=0.106765->0.063240
+    [0.20,0.25) raw=-0.133902 residual=-0.097175 W=0.120580->0.079603
+    [0.25,0.30] raw=-0.067792 residual=-0.059851 W=0.095232->0.080294
+
+  z_peak_flux
+    [0.05,0.10) raw=+0.095605 residual=+0.083048 W=0.125788->0.118137
+    [0.10,0.15) raw=-0.137642 residual=-0.152545 W=0.157073->0.168115
+    [0.15,0.20) raw=-0.188048 residual=-0.161914 W=0.227552->0.208847
+    [0.20,0.25) raw=-0.290945 residual=-0.259056 W=0.359614->0.327076
+    [0.25,0.30] raw=-0.377336 residual=-0.325805 W=0.419785->0.366043
+
+[4] Verifying Stage-1 pooled raw medians are reproduced...
+  maximum absolute difference: 8.327e-17
+  Stage-1 reproduction: PASS
+
+[5] Comparing real r_time_of_peak spread with frozen cadence model...
+  [0.05,0.10) MAD real/model=-1.896/+0.793 IQR real/model=+11.911/+1.997
+  [0.10,0.15) MAD real/model=+11.718/+0.952 IQR real/model=+25.469/+1.987
+  [0.15,0.20) MAD real/model=-1.452/+0.973 IQR real/model=-2.025/+1.544
+  [0.20,0.25) MAD real/model=+2.476/+1.001 IQR real/model=+6.935/+2.474
+  [0.25,0.30] MAD real/model=-1.058/+0.744 IQR real/model=-1.430/+1.527
+
+[6] Recording frozen DES shallow/deep cadence predictions...
+
+==============================================================================
+PRIMARY CONFIRMATORY STAGE 2: COMPLETE
+==============================================================================
+
+Passband metrics : /Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/primary_confirmatory_stage2/passband_operator_metrics.csv
+Cadence comparison: /Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/primary_confirmatory_stage2/cadence_model_comparison.csv
+Cadence depth     : /Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/primary_confirmatory_stage2/cadence_depth_predictions.csv
+Manifest          : /Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/primary_confirmatory_stage2/stage2_manifest.json
+
+STOP HERE.
+Do not inspect secondary features or run the classifier.

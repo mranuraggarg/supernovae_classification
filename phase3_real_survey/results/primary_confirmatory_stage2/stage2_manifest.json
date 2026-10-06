@@ -1,0 +1,28 @@
+{
+  "stage": "preregistered_primary_confirmatory_stage2",
+  "stage1_modified": false,
+  "primary_passband_features": [
+    "peak_color_r_minus_i",
+    "peak_color_i_minus_z",
+    "i_peak_flux",
+    "z_peak_flux"
+  ],
+  "primary_cadence_feature": "r_time_of_peak",
+  "passband_operator": "Frozen dense Hsiao DES-SDSS prediction interpolated at each SDSS object's redshift",
+  "colour_operator": "x_DES_pred = x_SDSS + Delta_colour(z)",
+  "compressed_flux_operator": "F=10**x-1; F_DES_pred=F*10**(-0.4*Delta_mag(z)); x_DES_pred=log10(1+F_DES_pred)",
+  "cadence_operator": "Previously frozen object-level schedule injection; no fitted real-data timing correction",
+  "secondary_features_inspected": false,
+  "classifier_run": false,
+  "outcome_fitted_coefficients": false,
+  "stage1_reproduction_max_abs_difference": 8.326672684688674e-17,
+  "input_sha256": {
+    "phase3_real_survey/results/real_feature_tables/sdss_compact_features.csv": "bdb0653f0638d3998f77c2b1889aad8bfe438fc5c849e5312da525aec7335541",
+    "phase3_real_survey/results/real_feature_tables/des_compact_features.csv": "8963b9e1fb4fe0b30cec58599ae01c53ecf7088a3ddd555b5aed73098d39f669",
+    "phase3_real_survey/results/passband_validation/reproduced_passband_predictions.csv": "856ef68fbb8cdceb832acd315af13da4a59474488d70fed0efbc60b5baf6e651",
+    "phase3_real_survey/results/cadence_template_injection/cadence_injection_summary.csv": "edf2761a096278d1d3deba03875f95809dc5175060bdd60b9b7a443979af5ddb",
+    "phase3_real_survey/results/cadence_template_injection/cadence_injection_by_field.csv": "3c88f8ba1c89bfadf2c3a89411d960413d148b1060911e30263e5a60ce2aad52",
+    "phase3_real_survey/results/primary_confirmatory_stage1/primary_passband_raw.csv": "39eaaeb565c48eaba1c1e17c4e3e208c878e941f3dd3a45d5a0c085da5b4c382",
+    "phase3_real_survey/results/primary_confirmatory_stage1/primary_r_time_of_peak_raw.csv": "da0c1abf6c951eb1a477e797cd67b15d2c0868148333c4cf7fb30bdedf929e96"
+  }
+}
