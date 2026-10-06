@@ -1,0 +1,93 @@
+{
+  "stage": "Phase 3 Stage 3C",
+  "status": "PRE_EXECUTION_LOCK",
+
+  "intrinsic_source": {
+    "model": "Hsiao07.dat",
+    "sha256": "6bd032004eccc7b5b52f7c021f0c4b541d801a70195028bf5af0a2578f554d78",
+    "population_role": "fixed normal-Ia mean template only",
+    "rest_phase_min_days": -20,
+    "rest_phase_max_days": 85,
+    "rest_phase_step_days": 1,
+    "fit_x1": false,
+    "fit_color": false,
+    "tune_to_real_feature_discrepancies": false
+  },
+
+  "redshift_grid": [
+    0.050,
+    0.075,
+    0.100,
+    0.125,
+    0.150,
+    0.175,
+    0.200,
+    0.225,
+    0.250,
+    0.275,
+    0.300
+  ],
+
+  "survey_strata": {
+    "SDSS-II": [
+      "82N",
+      "82S"
+    ],
+    "DES-SN5YR": [
+      "SHALLOW",
+      "DEEP"
+    ]
+  },
+
+  "host_surface_brightness": {
+    "primary_treatment": "conditional_grid",
+    "source": "native DES-SN5YR_DES_FLUXERRMODEL_SIM.DAT SBMAG nodes",
+    "values": [
+      20.5,
+      21.5,
+      22.5,
+      23.5,
+      24.5,
+      25.5,
+      26.5,
+      27.5
+    ],
+    "empirical_distribution_used": false,
+    "primary_marginal_average": false,
+    "note": "Report conditional results across the full fixed SBMAG grid. Do not choose or weight host-SB values using Stage-1 or Stage-2 feature outcomes."
+  },
+
+  "simlib_sampling": {
+    "rule": "actual_SIMLIB_entries",
+    "replace_with_mean_cadence": false,
+    "eligible_entries_sorted_by": "numeric LIBID",
+    "selection_method": "deterministic seeded permutation within each survey stratum",
+    "pairing": "Each realization index receives one independently selected SDSS SIMLIB entry and one independently selected DES SIMLIB entry. The same intrinsic source, redshift, host-SB condition and realization identifier are used for both survey branches."
+  },
+
+  "monte_carlo": {
+    "realizations_per_condition": 500,
+    "realization_index_start": 0,
+    "realization_index_stop": 499,
+    "rng_algorithm": "numpy.random.PCG64",
+    "master_seed_namespace": "phase3-stage3c-v1",
+    "common_intrinsic_realization_id": true,
+    "survey_noise_draws_independent": true,
+    "seed_derivation": "SHA256(namespace|purpose|survey|stratum|z|sbmag|realization_id), first 8 digest bytes interpreted as unsigned 64-bit integer"
+  },
+
+  "correction_policy": {
+    "modify_released_real_fluxes": false,
+    "modify_released_real_flux_errors": false,
+    "reapply_DES_DCR_chromatic_to_real_data": false,
+    "reapply_DES_host_SB_error_correction_to_real_data": false,
+    "forward_models_used_for_synthetic_observation_only": true
+  },
+
+  "outcome_blinding": {
+    "stage1_feature_discrepancies_used_for_parameter_choice": false,
+    "stage2_feature_discrepancies_used_for_parameter_choice": false,
+    "classifier_results_used_for_parameter_choice": false,
+    "class_separation_used_for_parameter_choice": false
+  }
+}
