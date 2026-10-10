@@ -1,0 +1,9 @@
+Stage 3D.7 native SNANA host-photon validation
+epochs=102
+pixsize=0.27
+psfsig_max_abs=4.9749093733453265e-12
+psfsig_max_rel=4.6121718867710548e-12
+hostvar_max_abs=1.0065341484732926e-06
+hostvar_max_rel=4.6126227566998007e-11
+psfsig_pass=True
+hostvar_pass=True

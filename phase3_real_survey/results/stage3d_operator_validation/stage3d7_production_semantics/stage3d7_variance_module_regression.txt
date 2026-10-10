@@ -1,0 +1,9 @@
+Stage 3D.7 variance-module regression
+epochs=102
+max_psfsig_abs=4.9749093733453265e-12
+max_galmag_abs=9.3154850311805149e-05
+max_hostvar_rel=8.5802506690559006e-05
+psfsig_pass=True
+galmag_pass=True
+hostvar_pass=True
+pass=True

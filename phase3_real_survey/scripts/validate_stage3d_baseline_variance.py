@@ -659,3 +659,98 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def psfsig_arcsec_from_nea(
+    nea: float,
+    pixsize: float,
+) -> float:
+    if not math.isfinite(nea) or nea <= 0.0:
+        raise RuntimeError(f"Invalid NEA: {nea}")
+
+    if not math.isfinite(pixsize) or pixsize <= 0.0:
+        raise RuntimeError(f"Invalid pixel size: {pixsize}")
+
+    return pixsize * math.sqrt(
+        nea / (4.0 * math.pi)
+    )
+
+
+def interp_galmag_hostlib(
+    psfsig_arcsec: float,
+    psf_grid,
+    galmag_grid,
+) -> float:
+    x = np.asarray(psf_grid, dtype=float)
+    y = np.asarray(galmag_grid, dtype=float)
+
+    if (
+        x.ndim != 1
+        or y.ndim != 1
+        or x.size != y.size
+        or x.size < 2
+    ):
+        raise RuntimeError(
+            "Invalid GALMAG interpolation grids."
+        )
+
+    if (
+        not np.all(np.isfinite(x))
+        or not np.all(np.isfinite(y))
+    ):
+        raise RuntimeError(
+            "Non-finite GALMAG interpolation grid."
+        )
+
+    if not np.all(np.diff(x) > 0.0):
+        raise RuntimeError(
+            "PSF grid must be strictly increasing."
+        )
+
+    psf = float(psfsig_arcsec)
+
+    if psf < x[0]:
+        psf = float(x[0] + 0.0001)
+
+    if psf > x[-1]:
+        psf = float(x[-1] - 0.0001)
+
+    return float(
+        np.interp(psf, x, y)
+    )
+
+
+def host_variance_pe2_from_galmag(
+    *,
+    galmag_nea: float,
+    zpt: float,
+    gain: float,
+) -> float:
+    if not all(
+        math.isfinite(v)
+        for v in (
+            galmag_nea,
+            zpt,
+            gain,
+        )
+    ):
+        raise RuntimeError(
+            "Non-finite host-photon input."
+        )
+
+    if gain <= 0.0:
+        raise RuntimeError(
+            f"Invalid gain: {gain}"
+        )
+
+    return (
+        gain
+        * 10.0
+        ** (
+            0.4
+            * (
+                zpt
+                - galmag_nea
+            )
+        )
+    )
+

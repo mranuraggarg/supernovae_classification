@@ -1,0 +1,6 @@
+Stage 3D.7 native GALMAG interpolation validation
+epochs=102
+max_abs_mag=9.3154850858923055e-05
+mean_abs_mag=1.2210132663693184e-05
+max_rel=4.1028281914574971e-06
+pass=True

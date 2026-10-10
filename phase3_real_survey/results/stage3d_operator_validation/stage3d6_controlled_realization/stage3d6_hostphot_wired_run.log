@@ -1,0 +1,49 @@
+==============================================================================
+PHASE 3 STAGE 3D.6
+CONTROLLED END-TO-END FORWARD-OBSERVATION REALIZATION
+VALIDATION ONLY — NOT PRODUCTION MONTE CARLO
+==============================================================================
+
+[1] Frozen control artifacts...
+  control lock : phase3_real_survey/results/stage3d_operator_validation/stage3d6_controlled_realization_lock.json
+  Stage 3C     : phase3_real_survey/preregistration/stage3c_execution_lock.json
+  Stage 3D.5   : phase3_real_survey/results/stage3d_operator_validation/stage3d5_noise_branch_lock.json
+
+[2] Loading frozen passbands and Hsiao07...
+  Hsiao : /Users/anuraggarg/work/Feature normalization Phase/preliminary_hypothesis_test/SNDATA_ROOT_2024-07-03/snsed/Hsiao07.dat
+  SDSS  : /Users/anuraggarg/work/Feature normalization Phase/preliminary_hypothesis_test/SNDATA_ROOT_2024-07-03/kcor/SDSS/SDSS_Doi2010/kcor_SDSS_Bessell90_BD17.fits.gz
+  bands : griz
+
+[3] Controlled diagnostic normalization...
+  raw SDSS-r Hsiao peak : 1.404412563731e-01
+  global multiplier     : 7.120414797085e+03
+  target SDSS-r peak    : 1000 FLUXCAL
+
+[4] Parsing SIMLIBs...
+
+[5] Deterministic LIBID selection...
+  SDSS-II    82N      -> LIBID 1039 (rank 0, skipped 0)
+  SDSS-II    82S      -> LIBID 1619 (rank 0, skipped 0)
+  DES-SN5YR  SHALLOW  -> LIBID 3816 (rank 1, skipped 1)
+  DES-SN5YR  DEEP     -> LIBID 4234 (rank 0, skipped 0)
+
+[6] Loading validated uncertainty maps...
+  SDSS maps : PASS
+  DES maps  : PASS
+
+[7] Executing four controlled branches...
+  SDSS-II 82N: LIBID=1039 N=76 features=PASS
+  SDSS-II 82S: LIBID=1619 N=144 features=PASS
+  DES-SN5YR SHALLOW: LIBID=3816 N=549 features=PASS
+  DES-SN5YR DEEP: LIBID=4234 N=535 features=PASS
+
+[8] Output...
+  wrote : phase3_real_survey/results/stage3d_operator_validation/stage3d6_controlled_realization/stage3d6_result.json
+  SHA256: 2a125ba6449b5f3c5ddec1b7a3e52fc9850a1c045bc22400b0939c7c7725d614
+
+==============================================================================
+STAGE 3D.6 CONTROLLED REALIZATION: PASS
+==============================================================================
+
+This PASS validates integration only.
+It does NOT authorize the production Stage-3C Monte Carlo.

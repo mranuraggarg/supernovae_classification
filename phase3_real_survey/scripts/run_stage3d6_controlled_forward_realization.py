@@ -66,6 +66,18 @@ SCRIPTS = ROOT / "scripts"
 
 REDSHIFT = 0.150
 DES_SBMAG = 24.5
+
+# Stage-3D.7 native-SNANA validated controlled DES host.
+# This grid is host-specific and is used only for the controlled
+# validation realization, not as a general production HOSTLIB model.
+DES_HOST_GALMAG_GRID = (
+    ROOT
+    / "results"
+    / "stage3d_operator_validation"
+    / "stage3d7_production_semantics"
+    / "stage3d7_native_galmag_grid.txt"
+)
+
 REALIZATION_ID = 0
 
 PHASE_MIN = -20
@@ -360,6 +372,59 @@ def map_lookup(index, key, x):
     )
 
 
+def load_des_host_galmag_grid():
+    """
+    Load the Stage-3D.7 native-SNANA validated GALMAG-vs-PSF grid
+    for the single controlled DES host.
+
+    The artifact contains:
+        index psfsig g r i z
+
+    It is intentionally a validation fixture, not a general HOSTLIB
+    replacement.
+    """
+
+    require_file(DES_HOST_GALMAG_GRID)
+
+    data = np.genfromtxt(
+        DES_HOST_GALMAG_GRID,
+        names=True,
+        dtype=None,
+        encoding=None,
+    )
+
+    psf_grid = np.asarray(
+        data["psfsig"],
+        dtype=float,
+    )
+
+    galmag_grid = {
+        band: np.asarray(
+            data[band],
+            dtype=float,
+        )
+        for band in BANDS
+    }
+
+    if psf_grid.ndim != 1 or psf_grid.size < 2:
+        raise RuntimeError(
+            "Invalid controlled DES host PSF grid."
+        )
+
+    if not np.all(np.diff(psf_grid) > 0.0):
+        raise RuntimeError(
+            "Controlled DES host PSF grid is not increasing."
+        )
+
+    for band in BANDS:
+        if galmag_grid[band].shape != psf_grid.shape:
+            raise RuntimeError(
+                f"Controlled DES GALMAG grid mismatch for {band}."
+            )
+
+    return psf_grid, galmag_grid
+
+
 def apply_sdss_uncertainty(
     base_fluxerr: float,
     fluxcal_true: float,
@@ -506,6 +571,15 @@ def generate_branch(
 
     rows = []
 
+    des_host_psf_grid = None
+    des_host_galmag_grid = None
+
+    if survey == "DES-SN5YR":
+        (
+            des_host_psf_grid,
+            des_host_galmag_grid,
+        ) = load_des_host_galmag_grid()
+
     for obs in observations:
         band = obs["band"]
 
@@ -568,6 +642,34 @@ def generate_branch(
                 band,
             )
 
+        host_flux_pe = 0.0
+        galmag_nea = None
+        psfsig_arcsec = None
+
+        if survey == "DES-SN5YR":
+            psfsig_arcsec = (
+                variance.psfsig_arcsec_from_nea(
+                    nea,
+                    simlib_entry["pixsize"],
+                )
+            )
+
+            galmag_nea = (
+                variance.interp_galmag_hostlib(
+                    psfsig_arcsec,
+                    des_host_psf_grid,
+                    des_host_galmag_grid[band],
+                )
+            )
+
+            host_flux_pe = (
+                variance.host_variance_pe2_from_galmag(
+                    galmag_nea=galmag_nea,
+                    zpt=obs["zpt"],
+                    gain=obs["gain"],
+                )
+            )
+
         base = variance.baseline_variance(
             fluxcal=max(
                 flux_true,
@@ -585,13 +687,23 @@ def generate_branch(
             template_zpt=template_zpt,
             include_template=include_template,
 
-            # Explicit Stage-3D.6 limitation.
-            host_flux_pe=0.0,
+            # Stage-3D.7 validated native-SNANA host-photon term.
+            # SDSS remains zero in this controlled realization.
+            host_flux_pe=host_flux_pe,
         )
 
         ferr = base["fluxcalerr_in"]
 
         diagnostic = {}
+
+        if survey == "DES-SN5YR":
+            diagnostic.update(
+                {
+                    "psfsig_arcsec": psfsig_arcsec,
+                    "galmag_nea": galmag_nea,
+                    "host_variance_pe2": host_flux_pe,
+                }
+            )
 
         if survey == "SDSS-II":
             (

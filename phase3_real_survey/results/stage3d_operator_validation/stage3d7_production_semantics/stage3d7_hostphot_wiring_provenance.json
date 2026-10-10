@@ -1,0 +1,43 @@
+{
+  "created_utc": "2026-10-10T09:34:29.763285+00:00",
+  "files": {
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d6_controlled_realization/stage3d6_hostphot_wired_run.log": "e6f2f4516280fac5d5ad6025f51bbefe9f1b90089d36cddb58493963ac2c3d8b",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d6_controlled_realization/stage3d6_result.json": "2a125ba6449b5f3c5ddec1b7a3e52fc9850a1c045bc22400b0939c7c7725d614",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/native_snana_oracle/des5yr_ia_host_oracle_hostphot_diag.txt": "69f70f264301ade69f1d867a13dbcec4da084da7e3a0b5a40f189fff5ab87264",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/native_snana_oracle/snana_hostphot_diagnostic.patch": "6e3eaa9c821af1e5570999ab6e85ec5f952d7a745871a3b354945dba69f2c314",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/native_snana_oracle/snlc_sim_linux_aarch64_hostphot_diag.sha256": "e9a684375b5b6e2a25758a4eabdb38f196bdbc2918c8aaa5fc33694b12c8098c",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/stage3d7_native_galmag_grid.txt": "6f936d086fd2f84f51b445ad5ddce816986facf369d48863594dc3119912d34b",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/stage3d7_native_galmag_interpolation_validation.txt": "50346d4b84e9e201d54726b80cff05ae925b5c3b4cc65fb09721d789d90980bc",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/stage3d7_native_hostphot_validation.txt": "064f2c4d003dfbd60bd3bee722c0c02eaede036f4e8e20ae29d5708e0657cefe",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/stage3d7_variance_module_regression.txt": "c75cf77d003ceb6666aae22ed8954253ee8a6a367fdc128564b11173e565c85a",
+    "phase3_real_survey/scripts/run_stage3d6_controlled_forward_realization.py": "b3a5cf25f879d076b2b66b5f75eea4850abb3741413a4f6ee0f47609add3488d",
+    "phase3_real_survey/scripts/validate_stage3d7_hostphot_against_variance_module.py": "a22253d7ff75a16f5b7481e8aa56f7c57a026ea9a08100a39facaa7230dd1f98",
+    "phase3_real_survey/scripts/validate_stage3d7_native_galmag_interpolation.py": "4220d2168167f266fd47fb7da060ca6084fb852028bb8c977f74296de3483841",
+    "phase3_real_survey/scripts/validate_stage3d7_native_hostphot_oracle.py": "a1c27d5d88d6953172324ae50cbf11d05da82ea002dc86a52caefd7de15a0ba7",
+    "phase3_real_survey/scripts/validate_stage3d_baseline_variance.py": "c0d7c1684a7ff8d04c1dc122bc0152f36cace9f88da8b45638fb90a46323b186"
+  },
+  "git_status_at_freeze": [
+    " M phase3_real_survey/scripts/run_stage3d6_controlled_forward_realization.py",
+    " M phase3_real_survey/scripts/validate_stage3d_baseline_variance.py",
+    "?? phase3_real_survey/scripts/run_stage3d6_controlled_forward_realization.py.pre_stage3d7_hostphot",
+    "?? phase3_real_survey/scripts/validate_stage3d7_des_host_photon_semantics.py",
+    "?? phase3_real_survey/scripts/validate_stage3d7_hostphot_against_variance_module.py",
+    "?? phase3_real_survey/scripts/validate_stage3d7_native_galmag_interpolation.py",
+    "?? phase3_real_survey/scripts/validate_stage3d7_native_hostphot_oracle.py"
+  ],
+  "native_snana_hostphot_executable_sha256": "f49e81163829b5870984b221afe9476acdb3ae3ad57e96d79675c083dc19118e",
+  "production_authorized": false,
+  "purpose": "Native-SNANA validation and controlled Stage-3D.6 integration of DES host-photon variance semantics.",
+  "repository_commit_before_freeze": "0413fb357f48d5cb121d512ef3e48acc8e43861a",
+  "snana_pinned_commit": "4113779f038eec613b6684d0d46a47019d7c9624",
+  "stage": "Phase 3 Stage 3D.7 production-semantics validation",
+  "stage3d6_result_sha256": "2a125ba6449b5f3c5ddec1b7a3e52fc9850a1c045bc22400b0939c7c7725d614",
+  "validated_native_epochs": 102,
+  "validation": {
+    "galmag_to_host_variance": "PASS",
+    "nea_to_psfsig": "PASS",
+    "psfsig_to_galmag": "PASS",
+    "stage3d6_controlled_integration": "PASS",
+    "variance_module_regression": "PASS"
+  }
+}

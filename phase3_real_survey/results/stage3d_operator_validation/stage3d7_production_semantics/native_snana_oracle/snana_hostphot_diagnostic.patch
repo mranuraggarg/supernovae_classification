@@ -1,0 +1,57 @@
+diff --git a/src/sndata.h b/src/sndata.h
+index 17c3d56a..a458283b 100644
+--- a/src/sndata.h
++++ b/src/sndata.h
+@@ -165,7 +165,7 @@ struct VERSION
+ struct SNDATA {
+ 
+   // global stuff
+-  char SNANA_VERSION[20] ; // Feb 2021
++  char SNANA_VERSION[40] ; // Feb 2021
+   char DATATYPE[20];       // e.g., DATA, SIM_SNANA ...
+ 
+   // name of SURVEY and SUBSURVEY
+diff --git a/src/snlc_sim.c b/src/snlc_sim.c
+index 03e4e8c0..32e8b4bf 100644
+--- a/src/snlc_sim.c
++++ b/src/snlc_sim.c
+@@ -26021,6 +26021,10 @@ void gen_fluxNoise_calc(int epoch, int vbose, FLUXNOISE_DEF *FLUXNOISE) {
+     galmag        = interp_GALMAG_HOSTLIB(ifilt_obs, psfsig_arcsec );
+     arg           = 0.4 * ( zpt - galmag );
+     fluxgal_pe    = ccdgain * pow(10.0,arg);   // effec-aper flux in pe.
++
++    printf("STAGE3D7_HOSTPHOT epoch=%d band=%c MJD=%.6f NEA=%.12g PSFSIG_ASEC=%.12g GALMAG_NEA=%.12g ZPT=%.12g GAIN=%.12g HOSTVAR_PE2=%.12g\n",
++           epoch, FILTERSTRING[ifilt_obs], mjd, area_bg, psfsig_arcsec, galmag, zpt, ccdgain, fluxgal_pe);
++    fflush(stdout);
+   }
+ 
+ 
+diff --git a/src/sntools.c b/src/sntools.c
+index da18383f..89ea8272 100644
+--- a/src/sntools.c
++++ b/src/sntools.c
+@@ -4383,7 +4383,7 @@ int ENVreplace(char *fileName, char *callFun, int ABORTFLAG) {
+       if ( FOUNDSLASH > 0  ) 
+ 	{ strcat(suffix,c1); }
+       else
+-	{ sprintf(ENVname, "%s%s", ENVname, c1) ; }
++	{ strcat(ENVname, c1); }
+     }
+ 
+     
+diff --git a/src/sntools_output.h b/src/sntools_output.h
+index 31b937db..77dce557 100644
+--- a/src/sntools_output.h
++++ b/src/sntools_output.h
+@@ -38,9 +38,9 @@
+ // define flags for software packages
+ 
+ 
+-#define USE_HBOOK                         
++// #define USE_HBOOK
+ 
+-#define USE_ROOT  
++// #define USE_ROOT
+ #define USE_TEXT  // always leave this on; same logic as for HBOOK,ROOT, ...
+ #define USE_MARZ  // always leave this on
+ 
