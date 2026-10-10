@@ -1,0 +1,51 @@
+{
+  "amendment": {
+    "path": "phase3_real_survey/preregistration/stage3c_amendment_v1.0.1_host_sbmag_semantics.md",
+    "sha256": "68172645bc748b50378a109830066012ed5f0bb3de56cb1ec987a4478ecdbd44"
+  },
+  "amendment_type": "mechanistic clarification",
+  "amendment_version": "1.0.1",
+  "diagnostic_evidence": {
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/native_snana_oracle/des5yr_ia_host_oracle_hostphot_diag.txt": "69f70f264301ade69f1d867a13dbcec4da084da7e3a0b5a40f189fff5ab87264",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/native_snana_oracle/des5yr_ia_host_pool10.DUMP": "7aa3bb3caa3b6934417d8ba00f9ff6a7fb91f058728da8a2ea2c6e8c85c3374c",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/native_snana_oracle/des5yr_ia_host_pool10.input": "16bdb60547f63ad7b6a4afa541e98605cfca0ac092ace0578d13e43238c88ad4",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/native_snana_oracle/des5yr_ia_host_pool5000.DUMP": "27a8fc2681e0ee775623990c6f11caae463d2ab2a9cfe044d3a117d427dbbcf0",
+    "phase3_real_survey/results/stage3d_operator_validation/stage3d7_production_semantics/native_snana_oracle/des5yr_ia_host_pool5000.input": "7c27714c3a10df58f57929972026447a9cabe54873f3da11ba47f0bd7d6e65f4"
+  },
+  "frozen_interpretation": {
+    "derive_seed_changed": false,
+    "diagnostic_pool_used_as_production_distribution": false,
+    "host_photon_variance_source": "native GALMAG_b(PSF) semantics",
+    "host_seed_purpose": "des-host",
+    "native_band_sbmag_used_as_stage3c_scalar": false,
+    "physical_host": "native DES SNANA HOSTLIB nuisance realization",
+    "scalar_sbmag": "controlled DES FLUXERRMODEL coordinate only",
+    "scalar_sbmag_inverted_to_host": false
+  },
+  "frozen_utc": "2026-10-10T10:19:22.195672+00:00",
+  "original_preregistration": {
+    "preregistration_manifest": {
+      "modified": false,
+      "path": "phase3_real_survey/preregistration/preregistration_manifest.md",
+      "sha256": "de2ccb572f4f63639fa0002d8385feef1f7116cadf9268612bdaba6f3a24e80f"
+    },
+    "stage3c_execution_lock": {
+      "modified": false,
+      "path": "phase3_real_survey/preregistration/stage3c_execution_lock.json",
+      "sha256": "dead7a3b1fb4ae6613470a160f0ebeec3f55f1ef6faaafa9b0815595b841a332"
+    }
+  },
+  "outcome_blinding_statement": "No Stage 3C production Monte Carlo result, registered physics outcome, or frozen-classifier result was generated or inspected to select this mechanistic clarification.",
+  "production_authorized": false,
+  "repository": {
+    "branch": "phase3-physics-feature-normalization",
+    "head_before_amendment_commit": "cf1bad2ac092263380c914e6150b7172edf777fc",
+    "status_at_freeze": [
+      "?? phase3_real_survey/preregistration/stage3c_amendment_v1.0.1_host_sbmag_semantics.md"
+    ]
+  },
+  "scope": "Stage 3C DES scalar-SBMAG and physical-host semantics",
+  "snana": {
+    "pinned_commit": "4113779f038eec613b6684d0d46a47019d7c9624"
+  }
+}
