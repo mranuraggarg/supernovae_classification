@@ -34,6 +34,52 @@ from stage3c_step5_timing import (
 )
 
 
+from stage3c_step5_records import validate_record, PRIMARY_FEATURES
+
+
+
+class TestRecordSchema(unittest.TestCase):
+
+    def make_accepted_record(self):
+        return {
+            "survey": "DES-SN5YR",
+            "stratum": "SHALLOW",
+            "redshift": 0.15,
+            "sbmag": 23.5,
+            "realization_id": 0,
+            "peak_mjd": 59000.0,
+            "feature_status": "accepted",
+            "feature_rejection_reason": None,
+            "feature_audit": {"first_active_mjd": 58990.0},
+            "features": {name: 1.0 for name in PRIMARY_FEATURES},
+        }
+
+    def test_accepted_record_allows_none_primary_feature(self):
+        record = self.make_accepted_record()
+        record["features"]["i_peak_flux"] = None
+
+        self.assertEqual(
+            validate_record(record),
+            ("DES-SN5YR", "SHALLOW", 0.15, 23.5, 0),
+        )
+
+    def test_accepted_record_rejects_nonfinite_primary_feature(self):
+        for value in (float("nan"), float("inf"), -float("inf")):
+            with self.subTest(value=value):
+                record = self.make_accepted_record()
+                record["features"]["i_peak_flux"] = value
+
+                with self.assertRaises(ValueError):
+                    validate_record(record)
+
+    def test_accepted_record_rejects_missing_primary_feature_key(self):
+        record = self.make_accepted_record()
+        del record["features"]["i_peak_flux"]
+
+        with self.assertRaises(ValueError):
+            validate_record(record)
+
+
 class TestStatisticalCore(unittest.TestCase):
 
     def test_marginal_median_difference(self):
