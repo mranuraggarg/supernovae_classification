@@ -1,0 +1,116 @@
+{
+  "amplitude_normalization": {
+    "application_rule": "Apply this same multiplicative scale unchanged to every redshift, survey stratum, SBMAG node, realization ID, and both SDSS and DES branches.",
+    "definition": "Compute the synthetic Hsiao flux proxy through the frozen SDSS-r response over the frozen Hsiao phase interval at z=0.15. Let P be its maximum. The single global scale is A=1000/P.",
+    "forbidden": [
+      "survey-specific amplitude rescaling",
+      "redshift-specific renormalization",
+      "matching amplitudes to observed Stage 1 or Stage 2 data",
+      "classifier-guided rescaling",
+      "post-outcome calibration"
+    ],
+    "interpretation": "This is an explicit common numerical normalization convention, not an absolute-luminosity or cosmological standard-candle model.",
+    "reference_peak_fluxcal": 1000.0,
+    "reference_redshift": 0.15,
+    "reference_response": "SDSS-r",
+    "status": "FROZEN",
+    "type": "single_global_common_multiplicative_scale"
+  },
+  "blinding_status": {
+    "classifier_consulted": false,
+    "feature_outcomes_consulted": false,
+    "stage1_stage2_outcomes_consulted_for_these_choices": false
+  },
+  "des_host_semantics": {
+    "host_photon_poisson": true,
+    "host_photon_source": "native_hostlib_galmag_psf",
+    "host_sbmag_paths_separated": true,
+    "scalar_sbmag_role": "fluxerrmodel_coordinate_only"
+  },
+  "freeze_date": "2026-10-10",
+  "freeze_id": "stage3c-preproduction-freeze-2026-10-10",
+  "frozen_artifact_hashes": {
+    "cadence_template_injection": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/scripts/run_cadence_template_injection.py",
+      "sha256": "343300c37c615d58c9d3dac8e3852287432e57c18f59ef97a03c35c1d183482a"
+    },
+    "controlled_forward_realization": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/scripts/run_stage3d6_controlled_forward_realization.py",
+      "sha256": "4f24d1516046a6ba4c4bc3b75cbd66f1525aafad350ed71c63468fb47e4c64e6"
+    },
+    "execution_lock": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/preregistration/stage3c_execution_lock.json",
+      "sha256": "dead7a3b1fb4ae6613470a160f0ebeec3f55f1ef6faaafa9b0815595b841a332"
+    },
+    "forward_operator_specification": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/preregistration/stage3c_forward_operator_specification.md",
+      "sha256": "838ed2b38b05426421d6a40846580665412463ae4b7585db53e24793e5587c0c"
+    },
+    "host_photon_regression": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/scripts/validate_stage3d7_hostphot_against_variance_module.py",
+      "sha256": "a22253d7ff75a16f5b7481e8aa56f7c57a026ea9a08100a39facaa7230dd1f98"
+    },
+    "host_sbmag_amendment": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/preregistration/stage3c_amendment_v1.0.1_host_sbmag_semantics.md",
+      "sha256": "68172645bc748b50378a109830066012ed5f0bb3de56cb1ec987a4478ecdbd44"
+    },
+    "host_sbmag_amendment_freeze": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/preregistration/stage3c_amendment_v1.0.1_freeze.json",
+      "sha256": "641baf1a7d780c14cc65497b800ab73276806103e8ff5973eb846fc9f8355ad2"
+    },
+    "hsiao07": {
+      "path": "/Volumes/AstroSSD/share/data/SNDATA_ROOT_2024-07-03/snsed/Hsiao07.dat",
+      "sha256": "6bd032004eccc7b5b52f7c021f0c4b541d801a70195028bf5af0a2578f554d78"
+    },
+    "stage3d6_result": {
+      "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/stage3d_operator_validation/stage3d6_controlled_realization/stage3d6_result.json",
+      "sha256": "14f97a8db01cef70866c13d0a56a9bde5126dccd06cc2dc265a0b1402bbfb8f7"
+    }
+  },
+  "intrinsic_source": {
+    "sha256": "6bd032004eccc7b5b52f7c021f0c4b541d801a70195028bf5af0a2578f554d78",
+    "template": "Hsiao07.dat"
+  },
+  "monte_carlo": {
+    "realization_ids": "0-499",
+    "realizations_per_condition": 500,
+    "rng": "PCG64",
+    "seed_namespace": "phase3-stage3c-v1"
+  },
+  "peak_epoch_rule": {
+    "authorization_requirement": "The deterministic/stochastic mapping from Stage 3C realization ID to one candidate peak anchor must be frozen before production_authorized may become true.",
+    "cadence_gap_rule": {
+      "anchor_fractions": [
+        0.25,
+        0.5,
+        0.75
+      ],
+      "maximum_gap_days": 30.0,
+      "same_season_only": true
+    },
+    "definition": "Candidate true peak epochs are constructed only inside valid within-season cadence gaps no longer than 30 days, at fixed fractions 0.25, 0.50, and 0.75 of each eligible gap.",
+    "realization_to_anchor_mapping": {
+      "candidate_ordering": "Sort eligible within-season cadence gaps chronologically; within each gap order anchors by fraction 0.25, 0.50, 0.75.",
+      "candidate_selection": "For N eligible candidate anchors and latent quantile u, select index=min(floor(u*N), N-1). Each survey maps the common latent quantile onto its own ordered candidate-anchor list.",
+      "canonical_z_format": "three decimal places",
+      "excluded_from_seed": [
+        "survey",
+        "stratum",
+        "SBMAG"
+      ],
+      "interpretation": "The latent peak-placement nuisance is paired across surveys; absolute peak MJD differs according to each survey's cadence geometry.",
+      "pairing_rule": "For each (z, realization_id), generate one deterministic U[0,1) latent peak-placement quantile. Reuse exactly the same quantile for SDSS and DES and for every SBMAG node.",
+      "purpose": "peak_anchor",
+      "rng": "PCG64",
+      "seed_key": "SHA256(namespace|purpose|z|realization_id), first 8 digest bytes interpreted as unsigned 64-bit integer",
+      "seed_namespace": "phase3-stage3c-v1"
+    },
+    "source": "Pre-existing cadence-template injection mechanics; not chosen using downstream Stage 1/2 outcomes.",
+    "status": "FROZEN",
+    "template_peak_definition": "Continuous Hsiao template peak determined from the dense synthetic template light curve."
+  },
+  "production_authorized": false,
+  "purpose": "Final pre-production parameter freeze for the Stage 3C physics-only paired SDSS/DES forward-model experiment.",
+  "remaining_blocker": "Perform final hash/provenance verification of the fully frozen production specification, then execute the explicit production-authorization gate.",
+  "stage3d_gate_status": "ALL_RERUN_AND_PASSED"
+}

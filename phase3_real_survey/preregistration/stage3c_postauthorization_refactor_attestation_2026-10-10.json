@@ -1,0 +1,30 @@
+{
+  "attestation_id": "stage3c-postauthorization-refactor-2026-10-10",
+  "change_type": "implementation_interface_refactor",
+  "classifier_consulted": false,
+  "controlled_regression": {
+    "bitwise_result_identity": true,
+    "pre_refactor_result_sha256": "14f97a8db01cef70866c13d0a56a9bde5126dccd06cc2dc265a0b1402bbfb8f7",
+    "result_path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/stage3d_operator_validation/stage3d6_controlled_realization/stage3d6_result.json",
+    "result_sha256": "14f97a8db01cef70866c13d0a56a9bde5126dccd06cc2dc265a0b1402bbfb8f7",
+    "status": "PASS"
+  },
+  "current_script": {
+    "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/scripts/run_stage3d6_controlled_forward_realization.py",
+    "sha256": "a816dde5a001e5f687be515377150d0eb7744c04664be2dd30122c49cb2099e0"
+  },
+  "date": "2026-10-10",
+  "production_authorization_status": "REMAINS_VALID_SUBJECT_TO_THIS_ATTESTATION",
+  "production_feature_distributions_consulted": false,
+  "purpose": "Parameterize generate_branch so the already validated forward operator can be reused by the Stage 3C production Monte Carlo.",
+  "refactor": {
+    "controlled_harness_restored_original_midpoint_rule": true,
+    "generate_branch_parameters_added": [
+      "redshift",
+      "des_sbmag",
+      "realization_id",
+      "peak_mjd"
+    ]
+  },
+  "scientific_operator_changed": false
+}

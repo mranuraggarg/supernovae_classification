@@ -1,0 +1,30 @@
+{
+  "artifact": "Stage 3C production execution attestation",
+  "date": "2026-10-10",
+  "execution_rule": "The SHA256-identified runner above is the executable frozen for the definitive Stage 3C Monte Carlo. No scientific-operator changes are permitted after this attestation without a new explicit amendment and reauthorization.",
+  "expected_branch_records": 176000,
+  "production_design": {
+    "realizations_per_condition": 500,
+    "redshift_nodes": 11,
+    "sbmag_nodes": 8,
+    "survey_strata": [
+      "SDSS-II/82N",
+      "SDSS-II/82S",
+      "DES-SN5YR/SHALLOW",
+      "DES-SN5YR/DEEP"
+    ]
+  },
+  "production_output_start_state": "EMPTY",
+  "production_runner": "phase3_real_survey/scripts/run_stage3c_production_monte_carlo.py",
+  "production_runner_sha256": "12a0120d2ab694c878e1ce573220662b5880ef987da81a79a5c876af03e497c9",
+  "status": "FROZEN_FOR_PRODUCTION_EXECUTION",
+  "validation_state": {
+    "classifier_consulted": false,
+    "clean_smoke_deterministic_invariants": "PASS",
+    "clean_smoke_structure": "PASS",
+    "independent_branch_noise_seeds": "PASS",
+    "measurement_seed_reproduction": "PASS",
+    "peak_anchor_pairing": "PASS",
+    "preflight": "PASS"
+  }
+}

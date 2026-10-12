@@ -1,0 +1,41 @@
+{
+  "artifact": "Stage 3C feature-rejection writer implementation correction",
+  "classifier_consulted": false,
+  "corrected_runner_sha256": "da7f839a85ba5d0f081cde1fa2db3498debf4e8a6963118f6d83a6b0b6aab086",
+  "correction": {
+    "accepted_branch": "Serialize the existing frozen feature vector unchanged.",
+    "change_noise_draw": false,
+    "drop_registered_branch_record": false,
+    "impute_features": false,
+    "rejected_branch": "Serialize the registered branch with features=null, feature_status='rejected', the frozen rejection reason, and feature_audit.",
+    "relax_feature_rules": false,
+    "replace_peak_anchor": false,
+    "resample_libid": false
+  },
+  "date": "2026-10-10",
+  "execution_rule": "All registered Stage 3C branches remain represented. Feature-builder rejection is recorded as an outcome rather than causing execution failure or replacement sampling.",
+  "expected_registered_branch_records": 176000,
+  "feature_definition_changed": false,
+  "frozen_pipeline_evidence": {
+    "behavior": "build_real_survey_features.py already treats features=None as a feature-builder rejection and continues.",
+    "interpretation": "Feature rejection is therefore an existing frozen pipeline outcome, not a new Stage 3C selection criterion."
+  },
+  "peak_anchor_rule_changed": false,
+  "previous_runner_sha256": "12a0120d2ab694c878e1ce573220662b5880ef987da81a79a5c876af03e497c9",
+  "sampling_rule_changed": false,
+  "scientific_operator_changed": false,
+  "seed_rule_changed": false,
+  "status": "FROZEN_IMPLEMENTATION_CORRECTION",
+  "trigger": {
+    "diagnosed_example": {
+      "feature_rejection_reason": "missing usable g band",
+      "libid": 8220,
+      "realization_id": 5,
+      "redshift": 0.05,
+      "sbmag": 20.5,
+      "stratum": "SHALLOW",
+      "survey": "DES-SN5YR"
+    },
+    "production_failure": "Writer attempted to index result['features'] when the frozen feature builder legitimately returned None."
+  }
+}

@@ -11,7 +11,10 @@
   "limitations": {
     "production_amplitude_not_frozen": true,
     "production_peak_mjd_rule_not_frozen": true,
-    "des_host_photon_poisson": false
+    "des_host_photon_poisson": true,
+    "des_host_photon_source": "native_hostlib_galmag_psf",
+    "des_sbmag_role": "fluxerrmodel_coordinate_only",
+    "des_host_sbmag_paths_separated": true
   },
   "libid_selection_audit": {
     "SDSS-II|82N": {

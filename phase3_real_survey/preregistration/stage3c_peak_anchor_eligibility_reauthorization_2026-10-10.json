@@ -1,0 +1,29 @@
+{
+  "artifact": "Stage 3C production reauthorization after peak-anchor eligibility amendment",
+  "date": "2026-10-10",
+  "status": "AUTHORIZED",
+  "amendment": {
+    "path": "phase3_real_survey/preregistration/stage3c_peak_anchor_eligibility_amendment_2026-10-10.json",
+    "sha256": "a0f66c2862e31c6157a675efb85219243d872ba999207cc0ceefd0b896d70ef9"
+  },
+  "authorization_basis": "The amendment resolves a prospectively discovered pre-production zero-anchor SIMLIB edge case by defining production eligibility using the already-frozen peak-anchor construction. No production outcomes or classifier results were consulted.",
+  "authorized_scope": {
+    "exclude_zero_anchor_simlib_entries_before_sequence_generation": true,
+    "retain_frozen_peak_anchor_rule": true,
+    "retain_frozen_seed_derivation": true,
+    "retain_frozen_redshift_grid": true,
+    "retain_frozen_sbmag_grid": true,
+    "retain_500_realizations_per_condition": true,
+    "retain_frozen_forward_physics": true,
+    "retain_frozen_noise_operator": true,
+    "retain_frozen_feature_definitions": true,
+    "classifier_remains_forbidden_until_step6": true
+  },
+  "outcome_blinding": {
+    "production_forward_realizations_generated": false,
+    "production_feature_distributions_consulted": false,
+    "classifier_consulted": false,
+    "stage1_or_stage2_outcomes_used": false
+  },
+  "production_authorized": true
+}

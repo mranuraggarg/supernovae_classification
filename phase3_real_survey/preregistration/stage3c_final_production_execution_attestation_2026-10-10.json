@@ -1,0 +1,47 @@
+{
+  "artifact": "Stage 3C final production execution attestation",
+  "date": "2026-10-10",
+  "execution_rule": "The SHA256-identified corrected runner is frozen for the definitive Stage 3C Monte Carlo. The run must begin from an empty production output directory and generate all 176000 registered branch records. Feature-builder rejection is a recorded outcome and must not trigger replacement sampling.",
+  "expected_registered_branch_records": 176000,
+  "feature_rejection_writer_correction_attestation_sha256": "bcc00e5010a7f768bd49d77cfa60bc369815e82d384f4380662f093092c8e2ec",
+  "production_output_start_state": "EMPTY",
+  "production_runner": "phase3_real_survey/scripts/run_stage3c_production_monte_carlo.py",
+  "production_runner_sha256": "da7f839a85ba5d0f081cde1fa2db3498debf4e8a6963118f6d83a6b0b6aab086",
+  "production_semantics": {
+    "feature_definition_changed": false,
+    "feature_rejected_branches_remain_in_output": true,
+    "peak_anchor_rule_changed": false,
+    "registered_branches_are_never_resampled_for_feature_rejection": true,
+    "rejected_branch_features_are_null": true,
+    "rejection_reason_and_audit_are_recorded": true,
+    "sampling_rule_changed": false,
+    "scientific_operator_changed_by_writer_correction": false,
+    "seed_rule_changed": false
+  },
+  "status": "FROZEN_FOR_DEFINITIVE_PRODUCTION_EXECUTION",
+  "validation_state": {
+    "classifier_consulted": false,
+    "clean_8_record_smoke_structure": "PASS",
+    "clean_smoke_deterministic_invariants": "PASS",
+    "diagnostic_rejected_branch": {
+      "libid": 8220,
+      "realization_id": 5,
+      "reason": "missing usable g band",
+      "redshift": 0.05,
+      "sbmag": 20.5,
+      "status": "rejected",
+      "stratum": "SHALLOW",
+      "survey": "DES-SN5YR"
+    },
+    "feature_rejection_regression_24_records": "PASS",
+    "feature_rejection_regression_records": {
+      "accepted": 23,
+      "rejected": 1,
+      "total": 24
+    },
+    "independent_branch_noise_seeds": "PASS",
+    "measurement_seed_reproduction": "PASS",
+    "peak_anchor_pairing": "PASS",
+    "preflight": "PASS"
+  }
+}

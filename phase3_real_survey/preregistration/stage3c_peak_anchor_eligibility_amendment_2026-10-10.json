@@ -1,0 +1,104 @@
+{
+  "artifact": "Stage 3C peak-anchor eligibility amendment",
+  "date": "2026-10-10",
+  "status": "FROZEN_PENDING_REAUTHORIZATION",
+  "reason": "Prospective pre-production edge case discovered during cadence-only preflight. A small subset of SIMLIB entries admits zero candidate peak anchors under the already-frozen peak-placement rule.",
+  "outcome_blinding": {
+    "production_forward_realizations_generated": false,
+    "production_feature_distributions_consulted": false,
+    "classifier_consulted": false,
+    "stage1_or_stage2_outcomes_used": false
+  },
+  "eligibility_rule": {
+    "definition": "A SIMLIB entry is eligible for Stage 3C production sampling iff (1) it belongs to the registered survey stratum and (2) it admits at least one candidate peak anchor under the already-frozen peak-placement rule.",
+    "season_gap_days": 45.0,
+    "maximum_within_season_gap_days": 30.0,
+    "anchor_fractions": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "additional_filtering_permitted": false,
+    "outcome_based_filtering_permitted": false
+  },
+  "sampling_consequence": "The deterministic LIBID sequence is generated from the numerically sorted anchor-eligible pool. Zero-anchor entries are excluded before deterministic sequence generation; they are not sampled and replaced post hoc.",
+  "frozen_eligible_pools": {
+    "SDSS-II|82N": {
+      "original_count": 926,
+      "eligible_count": 926,
+      "excluded_count": 0,
+      "eligible_libids_sha256": "8039aaf6f2c0618be14072b13a9d3d6ef946efd3797c6ec587d122c09b12c5d0",
+      "excluded_libids": []
+    },
+    "SDSS-II|82S": {
+      "original_count": 1072,
+      "eligible_count": 1071,
+      "excluded_count": 1,
+      "eligible_libids_sha256": "bf701210223499194b75656fa504b76cad38f99e64779992a87f5340422a44dc",
+      "excluded_libids": [
+        1103
+      ]
+    },
+    "DES-SN5YR|SHALLOW": {
+      "original_count": 7969,
+      "eligible_count": 7955,
+      "excluded_count": 14,
+      "eligible_libids_sha256": "b6338c2bc076e5c357cdd772274c65f08fed5babd201191bd2f3c564dab9c855",
+      "excluded_libids": [
+        832,
+        1084,
+        1229,
+        1645,
+        2388,
+        2466,
+        2670,
+        3498,
+        4068,
+        4104,
+        5854,
+        6501,
+        9535,
+        9948
+      ]
+    },
+    "DES-SN5YR|DEEP": {
+      "original_count": 2031,
+      "eligible_count": 2013,
+      "excluded_count": 18,
+      "eligible_libids_sha256": "15caef11db419d496ec8e8a457d4a4ee170ac696c2584feca8b1b420b0e016d7",
+      "excluded_libids": [
+        895,
+        964,
+        2465,
+        4082,
+        4240,
+        4527,
+        5158,
+        5168,
+        5363,
+        5370,
+        6145,
+        6149,
+        7368,
+        7898,
+        8039,
+        9115,
+        9116,
+        9409
+      ]
+    }
+  },
+  "scope": {
+    "changes_peak_anchor_rule": false,
+    "changes_redshift_grid": false,
+    "changes_sbmag_grid": false,
+    "changes_realization_count": false,
+    "changes_seed_derivation": false,
+    "changes_forward_physics": false,
+    "changes_noise_operator": false,
+    "changes_feature_definitions": false,
+    "changes_classifier": false,
+    "changes_simlib_sampling_pool": true
+  },
+  "production_authorized_under_this_amendment": false
+}

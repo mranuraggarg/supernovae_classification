@@ -1,0 +1,18 @@
+{
+  "authorization_date": "2026-10-10",
+  "authorization_id": "stage3c-production-authorization-2026-10-10",
+  "classifier_consulted": false,
+  "downstream_synthetic_feature_distributions_consulted": false,
+  "intrinsic_amplitude": "FROZEN",
+  "operator_parameters_frozen_before_production": true,
+  "peak_epoch_rule": "FROZEN",
+  "preauthorization_verification": "PASS",
+  "preproduction_freeze": {
+    "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/preregistration/stage3c_preproduction_freeze_2026-10-10.json",
+    "sha256": "be89d36507e54c82c09678c7adaf4239ac5b901fea4ec149b97b27ff94cf6f4f"
+  },
+  "production_authorized": true,
+  "prohibition": "No operator, intrinsic-source, amplitude, peak-placement, sampling, seed, host, or uncertainty parameter may be changed in response to production feature distributions or classifier performance.",
+  "scope": "Stage 3C production Monte Carlo using the frozen operator, sampling, seed, intrinsic-source, amplitude, peak-placement, host-surface-brightness, and uncertainty semantics referenced by the pre-production freeze.",
+  "stage3d_validation_gates": "ALL_RERUN_AND_PASSED"
+}

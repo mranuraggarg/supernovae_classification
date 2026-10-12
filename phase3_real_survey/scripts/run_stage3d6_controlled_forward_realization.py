@@ -530,6 +530,10 @@ def generate_branch(
     hsiao,
     responses,
     flux_scale: float,
+    redshift: float,
+    des_sbmag: float,
+    realization_id: int,
+    peak_mjd: float,
     sdss_maps,
     des_maps,
 ):
@@ -549,20 +553,14 @@ def generate_branch(
         dtype=float,
     )
 
-    # Controlled Stage-3D.6-only rule.
-    peak_mjd = 0.5 * (
-        float(np.min(mjds))
-        + float(np.max(mjds))
-    )
-
     seed = sampling.derive_seed(
         "phase3-stage3c-v1",
         "measurement-noise",
         survey,
         stratum,
-        REDSHIFT,
-        DES_SBMAG,
-        REALIZATION_ID,
+        redshift,
+        des_sbmag,
+        realization_id,
     )
 
     rng = np.random.Generator(
@@ -585,13 +583,13 @@ def generate_branch(
 
         phase_rest = (
             obs["mjd"] - peak_mjd
-        ) / (1.0 + REDSHIFT)
+        ) / (1.0 + redshift)
 
         proxy = phase_flux_proxy(
             hsiao,
             responses[band],
             phase_rest=phase_rest,
-            redshift=REDSHIFT,
+            redshift=redshift,
         )
 
         flux_true = (
@@ -1073,15 +1071,31 @@ def main():
             ("SDSS-II", stratum)
         ]
 
+        entry = sdss_simlib[libid]
+        controlled_mjds = np.array(
+            [
+                float(obs["mjd"])
+                for obs in entry["obs"]
+                if obs["band"] in BANDS
+            ],
+            dtype=float,
+        )
+        controlled_peak_mjd = 0.5 * (
+            float(np.min(controlled_mjds))
+            + float(np.max(controlled_mjds))
+        )
+
         result = generate_branch(
             survey="SDSS-II",
             stratum=stratum,
-            simlib_entry=sdss_simlib[
-                libid
-            ],
+            simlib_entry=entry,
             hsiao=hsiao,
             responses=sdss_responses,
             flux_scale=flux_scale,
+            redshift=REDSHIFT,
+            des_sbmag=DES_SBMAG,
+            realization_id=REALIZATION_ID,
+            peak_mjd=controlled_peak_mjd,
             sdss_maps=sdss_maps,
             des_maps=des_maps,
         )
@@ -1104,15 +1118,31 @@ def main():
             ("DES-SN5YR", stratum)
         ]
 
+        entry = des_simlib[libid]
+        controlled_mjds = np.array(
+            [
+                float(obs["mjd"])
+                for obs in entry["obs"]
+                if obs["band"] in BANDS
+            ],
+            dtype=float,
+        )
+        controlled_peak_mjd = 0.5 * (
+            float(np.min(controlled_mjds))
+            + float(np.max(controlled_mjds))
+        )
+
         result = generate_branch(
             survey="DES-SN5YR",
             stratum=stratum,
-            simlib_entry=des_simlib[
-                libid
-            ],
+            simlib_entry=entry,
             hsiao=hsiao,
             responses=des_responses,
             flux_scale=flux_scale,
+            redshift=REDSHIFT,
+            des_sbmag=DES_SBMAG,
+            realization_id=REALIZATION_ID,
+            peak_mjd=controlled_peak_mjd,
             sdss_maps=sdss_maps,
             des_maps=des_maps,
         )
@@ -1147,7 +1177,13 @@ def main():
             "production_peak_mjd_rule_not_frozen":
                 True,
             "des_host_photon_poisson":
-                False,
+                True,
+            "des_host_photon_source":
+                "native_hostlib_galmag_psf",
+            "des_sbmag_role":
+                "fluxerrmodel_coordinate_only",
+            "des_host_sbmag_paths_separated":
+                True,
         },
         "libid_selection_audit": {
             f"{survey}|{stratum}": audit
