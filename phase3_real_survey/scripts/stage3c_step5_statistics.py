@@ -227,3 +227,180 @@ def simultaneous_redshift_band(point_estimates, bootstrap_matrix,
         "lower": lower,
         "upper": upper,
     }
+
+
+def bootstrap_frequency_counts(indices, n_realizations):
+    """Convert bootstrap index rows to compact realization multiplicities."""
+    idx = np.asarray(indices)
+
+    if idx.ndim != 2:
+        raise ValueError("Bootstrap indices must be two-dimensional.")
+    if not np.issubdtype(idx.dtype, np.integer):
+        raise ValueError("Bootstrap indices must be integers.")
+    if n_realizations <= 0:
+        raise ValueError("n_realizations must be positive.")
+    if np.any(idx < 0) or np.any(idx >= n_realizations):
+        raise ValueError("Bootstrap index out of range.")
+
+    dtype = np.uint16 if idx.shape[1] <= np.iinfo(np.uint16).max else np.uint32
+    counts = np.zeros((idx.shape[0], n_realizations), dtype=dtype)
+    rows = np.arange(idx.shape[0])
+
+    for column in range(idx.shape[1]):
+        np.add.at(counts, (rows, idx[:, column]), 1)
+
+    return counts
+
+
+def bootstrap_weighted_quantile(values, available, counts, q):
+    """Quantiles of bootstrap resamples represented by multiplicity rows.
+
+    The interpolation is identical to NumPy's default linear quantile on the
+    explicitly expanded resample, while unavailable realizations retain zero
+    weight. A row with no available draw is returned as NaN.
+    """
+    if not 0 <= q <= 1:
+        raise ValueError("Quantile must lie between 0 and 1.")
+
+    x = np.asarray(values, dtype=float)
+    mask = np.asarray(available, dtype=bool)
+    weights = np.asarray(counts)
+
+    if x.ndim != 1 or mask.shape != x.shape:
+        raise ValueError("Values and availability mask must be aligned.")
+    if weights.ndim != 2 or weights.shape[1] != x.size:
+        raise ValueError("Bootstrap counts have incompatible dimensions.")
+    if np.any(weights < 0):
+        raise ValueError("Bootstrap counts must be nonnegative.")
+    if np.any(mask & ~np.isfinite(x)):
+        raise ValueError("Available values must be finite.")
+
+    result = np.full(weights.shape[0], np.nan, dtype=float)
+    available_indices = np.flatnonzero(mask)
+
+    if available_indices.size == 0:
+        return result
+
+    order = available_indices[np.argsort(x[available_indices], kind="stable")]
+    sorted_values = x[order]
+    sorted_counts = weights[:, order].astype(np.int64, copy=False)
+    cumulative = np.cumsum(sorted_counts, axis=1)
+    totals = cumulative[:, -1]
+    defined = totals > 0
+
+    if not np.any(defined):
+        return result
+
+    positions = (totals[defined] - 1) * float(q)
+    lower_rank = np.floor(positions).astype(np.int64)
+    upper_rank = np.ceil(positions).astype(np.int64)
+    fraction = positions - lower_rank
+    selected_cumulative = cumulative[defined]
+
+    lower_index = np.argmax(
+        selected_cumulative > lower_rank[:, np.newaxis],
+        axis=1,
+    )
+    upper_index = np.argmax(
+        selected_cumulative > upper_rank[:, np.newaxis],
+        axis=1,
+    )
+
+    lower_value = sorted_values[lower_index]
+    upper_value = sorted_values[upper_index]
+    result[defined] = lower_value + fraction * (upper_value - lower_value)
+    return result
+
+
+def bootstrap_marginal_quantile_differences(
+    des_values,
+    des_available,
+    sdss_values,
+    sdss_available,
+    counts,
+    q=0.5,
+):
+    """Paired-ID bootstrap of a difference between marginal quantiles."""
+    des = bootstrap_weighted_quantile(
+        des_values, des_available, counts, q
+    )
+    sdss = bootstrap_weighted_quantile(
+        sdss_values, sdss_available, counts, q
+    )
+    return des - sdss
+
+
+def _bootstrap_timing_statistics_python(values, available, indices):
+    """Bootstrap all frozen timing summaries for one survey cell.
+
+    The explicit sampled array is used only for timing because MAD is centered
+    on a replicate-specific median. At production dimensions this remains a
+    bounded temporary array of 5000 x 500 values.
+    """
+    x = np.asarray(values, dtype=float)
+    mask = np.asarray(available, dtype=bool)
+    idx = np.asarray(indices)
+
+    if x.ndim != 1 or mask.shape != x.shape:
+        raise ValueError("Values and availability mask must be aligned.")
+    if idx.ndim != 2 or idx.shape[1] != x.size:
+        raise ValueError("Bootstrap indices have incompatible dimensions.")
+    if np.any(mask & ~np.isfinite(x)):
+        raise ValueError("Available timing errors must be finite.")
+
+    sampled = x[idx].astype(float, copy=True)
+    sampled[~mask[idx]] = np.nan
+    defined = np.any(np.isfinite(sampled), axis=1)
+
+    output = {
+        name: np.full(idx.shape[0], np.nan, dtype=float)
+        for name in (
+            "signed_median_days",
+            "median_absolute_error_days",
+            "mad_days",
+            "iqr_days",
+            "q10_days",
+            "q90_days",
+        )
+    }
+
+    if not np.any(defined):
+        return output
+
+    active = sampled[defined]
+    with np.errstate(invalid="ignore"):
+        median = np.nanmedian(active, axis=1)
+        q10 = np.nanquantile(active, 0.10, axis=1)
+        q25 = np.nanquantile(active, 0.25, axis=1)
+        q75 = np.nanquantile(active, 0.75, axis=1)
+        q90 = np.nanquantile(active, 0.90, axis=1)
+        median_absolute = np.nanmedian(np.abs(active), axis=1)
+        mad = np.nanmedian(
+            np.abs(active - median[:, np.newaxis]),
+            axis=1,
+        )
+
+    output["signed_median_days"][defined] = median
+    output["median_absolute_error_days"][defined] = median_absolute
+    output["mad_days"][defined] = mad
+    output["iqr_days"][defined] = q75 - q25
+    output["q10_days"][defined] = q10
+    output["q90_days"][defined] = q90
+    return output
+
+
+def bootstrap_timing_statistics(values, available, indices, backend="python"):
+    """Bootstrap frozen timing summaries with a validated backend.
+
+    ``python`` is the readable reference implementation. ``native`` invokes
+    the optional C++ kernel and fails if it cannot be built or loaded.
+    """
+    if backend not in {"python", "native"}:
+        raise ValueError("backend must be 'python' or 'native'.")
+
+    if backend == "python":
+        return _bootstrap_timing_statistics_python(values, available, indices)
+
+    from stage3c_step5_native import bootstrap_timing_statistics_native
+
+    return bootstrap_timing_statistics_native(values, available, indices)

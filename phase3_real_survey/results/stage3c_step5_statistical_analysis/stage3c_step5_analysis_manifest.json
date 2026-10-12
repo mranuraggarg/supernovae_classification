@@ -1,0 +1,20 @@
+{
+  "analysis_output": "phase3_real_survey/results/stage3c_step5_statistical_analysis/stage3c_step5_analysis.json",
+  "analysis_output_sha256": "ea2a709250782f03e82806eae8c520fb2186bc44387d2b7a16b9f96070423094",
+  "code_provenance": {
+    "phase3_real_survey/native/stage3c_bootstrap_timing.cpp": "6370d3ea45147a43cee6977d854bb730ab3e0aca9c3ea52f64be149ada84642e",
+    "phase3_real_survey/preregistration/stage3c_step5_statistical_analysis_clarification_2026-10-12.md": "e2084fc5cd3f3e4fad9aceddd6e208c05cff66b755678593b41b5189b1265d3a",
+    "phase3_real_survey/preregistration/stage3c_step5_statistical_analysis_freeze_2026-10-12.json": "ff91f025a387d6aa6ae660cc5906aa067de80bc9c693794f702de22bd2e4dc93",
+    "phase3_real_survey/results/passband_validation/reproduced_passband_predictions.csv": "856ef68fbb8cdceb832acd315af13da4a59474488d70fed0efbc60b5baf6e651",
+    "phase3_real_survey/scripts/run_stage3c_step5_analysis.py": "60a859d798f7077c9f31e5a498de8ccba208982ba4dd0570f9723fdae4fb6fd5",
+    "phase3_real_survey/scripts/stage3c_step5_analysis.py": "5f50492fd034aa0d3ca46c73f086112d80963411570b780e02bfeeb3bcfb888b",
+    "phase3_real_survey/scripts/stage3c_step5_native.py": "8eee6753a570a1a37886b40ca0b8c7854aa98629685bf6c2278fcf67a4828989",
+    "phase3_real_survey/scripts/stage3c_step5_records.py": "88a2d2d956d7691a6b2124055e9dec4d075c57f2b9ad5195b3f4b85ba39de73c",
+    "phase3_real_survey/scripts/stage3c_step5_statistics.py": "c5c6db744ef93b0776fe5cc34fde500e3a0aa7d6feb1c307d91000e7448754bf",
+    "phase3_real_survey/scripts/stage3c_step5_timing.py": "f3316215d2729c67eba66cbded9190e7cf87a2b0bacae15d2438704115832055"
+  },
+  "input_path": "phase3_real_survey/results/stage3c_production_monte_carlo/stage3c_production_branches.jsonl",
+  "input_sha256": "2bbfc6454ad7a1f6457442c30d47418ea2d71a8987eb73c9309fe07d021cada0",
+  "schema": "stage3c-step5-analysis-manifest-v1",
+  "scientific_interpretation_generated": false
+}

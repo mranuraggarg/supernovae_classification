@@ -34,7 +34,7 @@ from stage3c_step5_timing import (
 )
 
 
-from stage3c_step5_records import validate_record, PRIMARY_FEATURES
+from stage3c_step5_records import validate_record, REGISTERED_FEATURES
 
 
 
@@ -51,7 +51,7 @@ class TestRecordSchema(unittest.TestCase):
             "feature_status": "accepted",
             "feature_rejection_reason": None,
             "feature_audit": {"first_active_mjd": 58990.0},
-            "features": {name: 1.0 for name in PRIMARY_FEATURES},
+            "features": {name: 1.0 for name in REGISTERED_FEATURES},
         }
 
     def test_accepted_record_allows_none_primary_feature(self):

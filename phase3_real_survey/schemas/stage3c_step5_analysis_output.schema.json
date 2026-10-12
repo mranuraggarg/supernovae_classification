@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "stage3c_step5_analysis_output.schema.json",
+  "title": "Stage 3C Step 5 statistical analysis output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "status",
+    "configuration",
+    "input_provenance",
+    "code_provenance",
+    "grid_validation",
+    "rejection_reason_counts",
+    "acceptance_statistics",
+    "feature_availability_statistics",
+    "primary_and_supportive_feature_statistics",
+    "feature_simultaneous_confidence_bands",
+    "timing_reference_phases",
+    "timing_error_statistics",
+    "timing_comparisons",
+    "timing_simultaneous_confidence_bands",
+    "undefined_statistic_diagnostics",
+    "physical_prediction_metadata",
+    "reproducibility"
+  ],
+  "properties": {
+    "schema": {"const": "stage3c-step5-analysis-v1"},
+    "status": {"const": "analysis_complete_no_scientific_interpretation"},
+    "configuration": {"type": "object"},
+    "input_provenance": {"type": "object"},
+    "code_provenance": {"type": "object"},
+    "grid_validation": {
+      "type": "object",
+      "required": [
+        "complete",
+        "total_records",
+        "branch_count",
+        "redshift_count",
+        "sbmag_count",
+        "realizations_per_cell",
+        "duplicate_records",
+        "missing_cells",
+        "missing_realization_ids",
+        "unexpected_realization_ids"
+      ]
+    },
+    "rejection_reason_counts": {"type": "object"},
+    "acceptance_statistics": {"type": "array", "items": {"$ref": "#/$defs/cellRow"}},
+    "feature_availability_statistics": {"type": "array", "items": {"type": "object"}},
+    "primary_and_supportive_feature_statistics": {"type": "array", "items": {"type": "object"}},
+    "feature_simultaneous_confidence_bands": {"type": "array", "items": {"$ref": "#/$defs/band"}},
+    "timing_reference_phases": {"type": "array", "items": {"type": "object"}},
+    "timing_error_statistics": {"type": "array", "items": {"type": "object"}},
+    "timing_comparisons": {"type": "array", "items": {"type": "object"}},
+    "timing_simultaneous_confidence_bands": {"type": "array", "items": {"$ref": "#/$defs/band"}},
+    "undefined_statistic_diagnostics": {"type": "array", "items": {"type": "object"}},
+    "physical_prediction_metadata": {
+      "type": "object",
+      "required": ["registry", "synthetic_passband_predictions"],
+      "properties": {
+        "registry": {"type": "array", "items": {"type": "object"}},
+        "synthetic_passband_predictions": {
+          "type": "object",
+          "required": ["path", "sha256", "template", "quantity_convention", "nodes"]
+        }
+      }
+    },
+    "reproducibility": {"type": "object"},
+    "timing_reference_provenance": {"type": "object"},
+    "execution": {"type": "object"}
+  },
+  "$defs": {
+    "cellRow": {
+      "type": "object",
+      "required": [
+        "survey",
+        "stratum",
+        "redshift",
+        "sbmag_mag_per_arcsec2",
+        "total_realizations",
+        "accepted_realizations",
+        "rejected_realizations",
+        "acceptance_fraction"
+      ]
+    },
+    "band": {
+      "type": "object",
+      "required": [
+        "comparison",
+        "sbmag_mag_per_arcsec2",
+        "available",
+        "unavailable_reason",
+        "undefined_replicates_by_redshift",
+        "critical_value",
+        "nodes"
+      ]
+    }
+  }
+}

@@ -25,6 +25,8 @@ models/
 *.npz
 *.pkl
 *.json
+!phase3_real_survey/schemas/*.schema.json
+phase3_real_survey/.native_build/
 *.pth  # PyTorch models
 *.h5   # TensorFlow/Keras models
 
@@ -95,3 +97,8 @@ phase3_real_survey/results/*
 !phase3_real_survey/results/quality_mask_validation/**
 !phase3_real_survey/results/cadence_template_injection/
 !phase3_real_survey/results/cadence_template_injection/**
+
+# Keep the finalized Stage 3C statistical result and manifest reproducible.
+!phase3_real_survey/results/stage3c_step5_statistical_analysis/
+!phase3_real_survey/results/stage3c_step5_statistical_analysis/stage3c_step5_analysis.json
+!phase3_real_survey/results/stage3c_step5_statistical_analysis/stage3c_step5_analysis_manifest.json
