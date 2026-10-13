@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "verification_date_utc": "2026-10-13T09:09:00.219018+00:00",
+  "dataset": "SPCC",
+  "total_objects": 21319,
+  "train_validation_objects": 17055,
+  "test_objects": 4264,
+  "test_Ia_objects": 1018,
+  "metrics": {
+    "accuracy": 0.9167448405253283,
+    "precision": 0.7628865979381443,
+    "recall": 0.9449901768172888,
+    "f1": 0.8442299254058798,
+    "roc_auc": 0.9765883838292135,
+    "pr_auc": 0.9277608810161294
+  },
+  "verification_note": "Metrics independently reproduced on the original SPCC test partition using the recovered historical XGBoost model and reconstructed preprocessing. No model retraining or DES evaluation performed."
+}

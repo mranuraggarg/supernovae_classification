@@ -1,0 +1,17 @@
+{
+  "stage": "Stage 6 SPCC-DES distribution audit",
+  "spcc_reference_population": "historical train+validation",
+  "spcc_reference_count": 17055,
+  "spcc_heldout_test_excluded": 4264,
+  "des_count": 185,
+  "feature_count": 16,
+  "des_labels_used": false,
+  "classifier_executed": false,
+  "objects_outside_any_training_feature_range": 117,
+  "objects_outside_any_training_feature_range_pct": 63.24324324324324,
+  "inputs_sha256": {
+    "spcc": "6abb0faa98963587c07cfb803cb7c074988a922051bf4926b65a0f892ef3af1a",
+    "des": "f2968b811482d84ad0c9a9d2b1134dd99af400ae42fc22da7007fd86d31af7e0",
+    "des_extraction_audit": "6baf2695fcf1d20d8c28df02215636b49acd77cf3721de2214824e2e5ba4ca01"
+  }
+}

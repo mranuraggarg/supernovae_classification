@@ -1,0 +1,105 @@
+{
+  "classifier": {
+    "des_based_calibration_allowed": false,
+    "feature_names": [
+      "z_peak_flux",
+      "r_mean_flux",
+      "peak_color_g_minus_r",
+      "i_peak_flux",
+      "peak_color_r_minus_i",
+      "peak_color_i_minus_z",
+      "g_mean_flux",
+      "r_peak_flux",
+      "z_std_flux",
+      "i_amplitude",
+      "i_std_flux",
+      "time_span",
+      "z_time_of_peak",
+      "i_time_of_peak",
+      "r_time_of_peak",
+      "r_std_flux"
+    ],
+    "model_path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/artifacts/historical_tier1_compact_16/phase2_tier1_compact_baseline_xgb.json",
+    "model_sha256": "b961bd8f756e7d5976a22dcf549a7ed3873096caff777b7dc811c53ec885967f",
+    "name": "historical_tier1_compact_xgboost",
+    "negative_class": "non-Ia",
+    "positive_class": "Ia",
+    "preprocessing_path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/artifacts/historical_tier1_compact_16/preprocessing.json",
+    "preprocessing_sha256": "9fcb70e1a068f0a3d84d63f8bed948e625205c89530de28f4a88bbd79f9cccf6",
+    "retraining_allowed": false,
+    "threshold": 0.5,
+    "threshold_optimization_allowed": false
+  },
+  "created_utc": "2026-10-13T10:06:55.628711+00:00",
+  "dataset": {
+    "cohort_size": 185,
+    "known_ia_count": 134,
+    "known_non_ia_count": 51,
+    "name": "DES-SN5YR-1.2",
+    "no_post_prediction_exclusions": true,
+    "redshift_max": 0.3,
+    "redshift_min": 0.05,
+    "selection": "Previously frozen spectroscopic cohort"
+  },
+  "evaluation": {
+    "baselines": [
+      "always_predict_ia",
+      "random_ranking_prevalence_reference"
+    ],
+    "historical_spcc_results": {
+      "accuracy": 0.916745,
+      "average_precision": 0.927761,
+      "ia_f1": 0.84423,
+      "ia_precision": 0.762887,
+      "ia_recall": 0.94499,
+      "roc_auc": 0.976588
+    },
+    "interpretation": {
+      "no_arbitrary_success_threshold": true,
+      "no_model_selection_using_des": true,
+      "report_class_prevalence": true,
+      "report_domain_shift": true,
+      "report_full_confusion_matrix": true
+    },
+    "primary_metrics": [
+      "ia_f1",
+      "balanced_accuracy"
+    ],
+    "ranking_metrics": [
+      "roc_auc",
+      "average_precision"
+    ],
+    "secondary_metrics": [
+      "accuracy",
+      "ia_precision",
+      "ia_recall",
+      "non_ia_specificity",
+      "confusion_matrix"
+    ],
+    "uncertainty": {
+      "confidence_level": 0.95,
+      "interval": "percentile",
+      "method": "stratified_bootstrap",
+      "resamples": 10000,
+      "seed": 42
+    }
+  },
+  "execution_authorized": false,
+  "external_features": {
+    "feature_count": 16,
+    "path": "/Volumes/AstroSSD/share/github/supernovae_classification/phase3_real_survey/results/historical_tier1_des/des_historical_tier1_16.csv",
+    "rows": 185,
+    "sha256": "f2968b811482d84ad0c9a9d2b1134dd99af400ae42fc22da7007fd86d31af7e0",
+    "unique_objects": 185
+  },
+  "protocol_id": "stage8b_des_sn5yr_external_evaluation_v1",
+  "scientific_caveats": [
+    "Spectroscopically selected external cohort.",
+    "Redshift-restricted evaluation population.",
+    "Substantial SPCC-DES feature distribution shift.",
+    "Longer DES observational time spans.",
+    "Absolute flux calibration equivalence not fully established.",
+    "External performance does not establish universal survey generalization."
+  ],
+  "status": "FROZEN_AWAITING_EXECUTION_APPROVAL"
+}
